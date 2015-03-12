@@ -105,11 +105,24 @@ main {
 #floater {
  padding-top: 37px;   
 }
-
-
-
 #sign-up-small {
     display: block;
     margin-top: 25px;
     width: 100px
+}
+
+footer {
+    padding: 50px 15px 15px 15px;
+}
+
+footer .center {
+    text-align: center;
+}
+
+footer .right {
+    text-align: right;
+}
+
+#footer-logo {
+    height: 30px;
 }

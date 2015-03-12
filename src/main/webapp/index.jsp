@@ -73,7 +73,15 @@
                 </section>
             </main>
             <footer class="row">
-
+                <div class="col-sm-3">
+                    <span>© 2015 PureMagic</span>
+                </div>
+                <div class="col-sm-6 center">
+                     <img id="footer-logo" src="images/blacklogo.png" alt="">
+                </div>
+                <div class="col-sm-3 right">
+                    <a href="TODO">login/register</a>
+                </div>
             </footer>
         </div>
     </body>
