@@ -62,7 +62,7 @@
                         <div id="floater">
                             <h2>Find your /match/g</h2>
                             <p>
-                                Is your love life lacking? GitCoupled integrades with your GitHub account and uses cool algorithms to find your perfect partner. Find potential matches based on your love languages (C++, Python, etc.), development habits, and project interests.
+                                Is your love life lacking? GitCoupled integrates with your GitHub account and uses cool algorithms to find your perfect partner. Find potential matches based on your love languages (C++, Python, etc.), development habits, and project interests.
                                 <a data-brackets-id="8481" class="btn btn-primary" id="sign-up-small" style="opacity: 1;">Sign Up</a>
                             </p>
                         </div>
