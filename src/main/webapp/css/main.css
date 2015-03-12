@@ -1,0 +1,115 @@
+h1 {
+	font-family: Consolas;
+	font-size: 24px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+}
+h2 {
+    font-family: Consolas;
+}
+a {
+    font-family: Consolas;
+}
+.gitcoupled .navbar-default .navbar-nav>li>a:hover, .gitcoupled .navbar-default .navbar-nav>li>a:focus {
+    background-color:lightgrey;
+}
+h3 {
+	font-family: monaco, Consolas, 'Lucida Console', monospace;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+}
+p {
+	font-family: monaco, Consolas, 'Lucida Console', monospace;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+}
+blockquote {
+	font-family: monaco, Consolas, 'Lucida Console', monospace;
+	font-size: 21px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+}
+pre {
+	font-family: monaco, Consolas, 'Lucida Console', monospace;
+	font-size: 13px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+}
+nav container {
+    margin: 0px 10px 0px 10px;
+}
+#main-logo {
+    height: 40px;
+    margin-top: -6px;
+}
+
+.navbar.navbar-default.navbar-fixed-top.coupled {
+        background-color: white;
+   border-color:white;
+    color: #000;
+}
+
+.navbar-default.coupled .navbar-nav>li>a {
+    color: black;
+}
+
+main {
+    margin-top: 75px;
+}
+
+.triple-row .panel{
+    height: 411px;
+}
+.typed-cursor{
+    opacity: 1;
+    -webkit-animation: blink 0.7s infinite;
+    -moz-animation: blink 0.7s infinite;
+    animation: blink 0.7s infinite;
+}
+@keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-webkit-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-moz-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+#sign-up {
+    opacity: 0;
+    transition: opacity 1s;
+}
+#happy-man {
+    width: 100%;
+}
+
+
+
+#bottom-logo {
+    float: left;
+}
+
+#floater {
+ padding-top: 37px;   
+}
+
+
+
+#sign-up-small {
+    display: block;
+    margin-top: 25px;
+    width: 100px
+}
