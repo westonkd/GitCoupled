@@ -45,7 +45,7 @@
                 </div>
             </div>
             <main>
-                <section class="row">
+                <section class="row" >
                     <div class="col-md-12">
                         <div class="jumbotron">
                             <h1>Welcome</h1>
@@ -59,7 +59,7 @@
                 </section>
                 <section class="row">
                     <div class="col-md-4">
-                        <div id="floater">
+                        <div id="floater" data-0="opacity: 0.6;" data-center="opacity:1.0;">
                             <h2>Find your /match/g</h2>
                             <p>
                                 Is your love life lacking? GitCoupled integrates with your GitHub account and uses cool algorithms to find your perfect partner. Find potential matches based on your love languages (C++, Python, etc.), development habits, and project interests.
@@ -67,7 +67,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-8" data-0="opacity: 0.6;" data-center="opacity:1.0;">
                         <img id="happy-man" src="images/happy-black-man-with-laptop.jpg" alt="GitCoupled!" />
                     </div>
                 </section>
