@@ -5,6 +5,10 @@
  */
 package Application;
 
+import com.jcabi.github.Github;
+import com.jcabi.github.Repo;
+import com.jcabi.github.Repos;
+import com.jcabi.github.RtGithub;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -31,18 +35,23 @@ public class PersonalProfile extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet PersonalProfile</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet PersonalProfile at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        //test code to see if the login worked
+
+        //if the github object is set
+        if (request.getSession().getAttribute("github") != null) {
+            Github github = (RtGithub) request.getSession().getAttribute("github");
+
+            //get all repos for the user
+            Repos userRepos = github.repos();
+
+            response.getWriter().write("repos: " + userRepos.toString());
+
+            
+
+        } else {
+            //redirect to home
+            response.sendRedirect("index.jps");
+            return;
         }
     }
 
