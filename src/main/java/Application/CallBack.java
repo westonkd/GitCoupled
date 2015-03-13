@@ -37,8 +37,11 @@ public class CallBack extends HttpServlet {
             //create the user-specific instance of a Github
             String token = request.getParameter("code");
             
-            GitHubClient client = new GitHubClient();
-            client = client.setOAuth2Token(token);
+            String accessRequest = "https://api.github.com/login/oauth/access_token?client_id=5459711ee0c7fc3e4b02&client_secret=68dc76a5000249b5c83ae5deca0b8108cc0c0954&code=" + token; 
+            
+            GitHubClient client = new GitHubClient(accessRequest);
+            
+            //client = client.setOAuth2Token(token);
            
             
             
