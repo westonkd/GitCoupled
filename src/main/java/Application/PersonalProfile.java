@@ -5,10 +5,6 @@
  */
 package Application;
 
-import com.jcabi.github.Github;
-import com.jcabi.github.Repo;
-import com.jcabi.github.Repos;
-import com.jcabi.github.RtGithub;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -16,6 +12,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.eclipse.egit.github.core.Repository;
+import org.eclipse.egit.github.core.client.GitHubClient;
+import org.eclipse.egit.github.core.service.RepositoryService;
 
 /**
  *
@@ -39,15 +38,16 @@ public class PersonalProfile extends HttpServlet {
 
         //if the github object is set
         if (request.getSession().getAttribute("github") != null) {
-            Github github = (RtGithub) request.getSession().getAttribute("github");
+            GitHubClient client = (GitHubClient) request.getSession().getAttribute("github");
 
-            //get all repos for the user
-            Repos userRepos = github.repos();
+            String user = client.getUser();
 
-            response.getWriter().write("repos: " + userRepos.toString());
-
+            RepositoryService service = new RepositoryService();
+            for (Repository repo : service.getRepositories("defunkt")) {
+                response.getWriter().write(repo.getName() + " Watchers: " + repo.getWatchers());
+            }
             
-
+           
         } else {
             //redirect to home
             response.sendRedirect("index.jps");

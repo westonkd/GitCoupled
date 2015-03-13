@@ -5,9 +5,6 @@
  */
 package Application;
 
-import com.jcabi.github.Github;
-import com.jcabi.github.RtGithub;
-import com.jcabi.http.wire.RetryWire;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -15,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.eclipse.egit.github.core.client.GitHubClient;
 
 /**
  *
@@ -38,18 +36,17 @@ public class CallBack extends HttpServlet {
         if (request.getParameter("code") != null) {
             //create the user-specific instance of a Github
             String token = request.getParameter("code");
-            Github github = new RtGithub(
-                    new RtGithub(token).entry().through(RetryWire.class)
-            );
             
-            //add the Github as a session object
-            request.getSession().setAttribute("github", github);
+            GitHubClient client = new GitHubClient();
+            client.setOAuth2Token(token);
 
+            //add the Github as a session object
+            request.getSession().setAttribute("github", client);
+            
 //            TODO: update the user data in the database here
 //            we should probably create a java class that works in the data
 //            layer to do that.
             //forward to the profile page
-   
             response.sendRedirect("PersonalProfile");
             return;
         } else {
