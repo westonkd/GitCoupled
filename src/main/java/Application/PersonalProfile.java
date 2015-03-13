@@ -41,6 +41,8 @@ public class PersonalProfile extends HttpServlet {
             GitHubClient client = (GitHubClient) request.getSession().getAttribute("github");
 
             String user = client.getUser();
+            
+            response.getWriter().write((String) request.getSession().getAttribute("token"));
 
             RepositoryService service = new RepositoryService();
             for (Repository repo : service.getRepositories("westonkd")) {

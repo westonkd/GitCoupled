@@ -40,8 +40,11 @@ public class CallBack extends HttpServlet {
             GitHubClient client = new GitHubClient();
             client = client.setOAuth2Token(token);
            
+            
+            
             //add the Github as a session object
             request.getSession().setAttribute("github", client);
+            request.getSession().setAttribute("token", token);
             
 //            TODO: update the user data in the database here
 //            we should probably create a java class that works in the data
