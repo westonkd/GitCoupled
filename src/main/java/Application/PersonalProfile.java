@@ -43,7 +43,7 @@ public class PersonalProfile extends HttpServlet {
             String user = client.getUser();
 
             RepositoryService service = new RepositoryService();
-            for (Repository repo : service.getRepositories(user)) {
+            for (Repository repo : service.getRepositories("westonkd")) {
                 response.getWriter().write(repo.getName() + " Watchers: " + repo.getWatchers() + "\n");
             }
             
