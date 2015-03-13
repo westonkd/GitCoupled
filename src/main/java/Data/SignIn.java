@@ -40,6 +40,7 @@ public class SignIn extends HttpServlet {
             throws ServletException, IOException {
         //let the user sign in
         response.sendRedirect("https://github.com/login/oauth/authorize?client_id=" + clientID);
+        return;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -5,9 +5,6 @@
  */
 package Application;
 
-import com.jcabi.github.Github;
-import com.jcabi.github.RtGithub;
-import com.jcabi.http.wire.RetryWire;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -20,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author weston
  */
-@WebServlet(name = "CallBack", urlPatterns = {"/CallBack"})
-public class CallBack extends HttpServlet {
+@WebServlet(name = "PersonalProfile", urlPatterns = {"/PersonalProfile"})
+public class PersonalProfile extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,28 +31,18 @@ public class CallBack extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //if there is a oAuth token in the request
-        if (request.getParameter("code") != null) {
-            //create the user-specific instance of a Github
-            String token = request.getParameter("code");
-            Github github = new RtGithub(
-                    new RtGithub(token).entry().through(RetryWire.class)
-            );
-            
-            //add the Github as a session object
-            request.getSession().setAttribute("github", github);
-
-//            TODO: update the user data in the database here
-//            we should probably create a java class that works in the data
-//            layer to do that.
-            //forward to the profile page
-   
-            response.sendRedirect("PersonalProfile");
-            return;
-        } else {
-            //redirect home
-            response.sendRedirect("index.jsp");
-            return;
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet PersonalProfile</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet PersonalProfile at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
