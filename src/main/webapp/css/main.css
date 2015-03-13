@@ -1,9 +1,9 @@
 h1 {
-	font-family: Consolas;
-	font-size: 24px;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: 500;
+    font-family: Consolas;
+    font-size: 24px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
 }
 h2 {
     font-family: Consolas;
@@ -15,32 +15,32 @@ a {
     background-color:lightgrey;
 }
 h3 {
-	font-family: monaco, Consolas, 'Lucida Console', monospace;
-	font-size: 14px;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: 500;
+    font-family: monaco, Consolas, 'Lucida Console', monospace;
+    font-size: 14px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
 }
 p {
-	font-family: monaco, Consolas, 'Lucida Console', monospace;
-	font-size: 14px;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: 400;
+    font-family: monaco, Consolas, 'Lucida Console', monospace;
+    font-size: 14px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
 }
 blockquote {
-	font-family: monaco, Consolas, 'Lucida Console', monospace;
-	font-size: 21px;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: 400;
+    font-family: monaco, Consolas, 'Lucida Console', monospace;
+    font-size: 21px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
 }
 pre {
-	font-family: monaco, Consolas, 'Lucida Console', monospace;
-	font-size: 13px;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: 400;
+    font-family: monaco, Consolas, 'Lucida Console', monospace;
+    font-size: 13px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
 }
 nav container {
     margin: 0px 10px 0px 10px;
@@ -51,8 +51,8 @@ nav container {
 }
 
 .navbar.navbar-default.navbar-fixed-top.coupled {
-        background-color: white;
-   border-color:white;
+    background-color: white;
+    border-color:white;
     color: #000;
 }
 
@@ -103,7 +103,7 @@ main {
 }
 
 #floater {
- padding-top: 37px;   
+    padding-top: 37px;   
 }
 #sign-up-small {
     display: block;
@@ -126,4 +126,45 @@ footer .right {
 #footer-logo {
     height: 30px;
     opacity: 0.7;
+}
+
+#profile-pic {
+    margin-top: 30px;
+    width: 100%;
+    border-radius: 5%;
+}
+
+#profile-name {
+    font-size: 50px;
+}
+
+.profile h2 {
+    margin: 0px 0px 5px 0px;
+}
+
+.profile ol {
+    font-size: 20px;
+}
+
+.profile .quote {
+    text-align: center;
+    padding-top: 15px;
+}
+
+.profile .bio {
+    padding-top: 30px;
+}
+
+.profile .profile-info {
+    padding-left: 50px;
+}
+
+.profile .message-btn {
+    margin-top: 30px;
+}
+
+@media only screen and (max-width : 768px) {
+    .message-btn {
+        width: 100%;
+    }Ï
 }

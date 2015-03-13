@@ -37,6 +37,10 @@ public class CallBack extends HttpServlet {
             //create the user-specific instance of a Github
             String token = request.getParameter("code");
             
+            /*
+            * if this does not work try passing in the token that looks like
+            * access_token=e72e16c7e42f292c6912e7710c838347ae178b4a&scope=user%2Cgist&token_type=bearer
+            */
             String accessRequest = "https://api.github.com/login/oauth/access_token?client_id=5459711ee0c7fc3e4b02&client_secret=68dc76a5000249b5c83ae5deca0b8108cc0c0954&code=" + token; 
             
             GitHubClient client = new GitHubClient(accessRequest);
