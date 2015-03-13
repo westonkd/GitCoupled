@@ -43,11 +43,12 @@ public class PersonalProfile extends HttpServlet {
             String user = client.getUser();
 
             RepositoryService service = new RepositoryService();
-            for (Repository repo : service.getRepositories("defunkt")) {
+            for (Repository repo : service.getRepositories(user)) {
                 response.getWriter().write(repo.getName() + " Watchers: " + repo.getWatchers());
             }
             
-           
+            response.getWriter().write("\n" + user);
+            
         } else {
             //redirect to home
             response.sendRedirect("index.jps");
