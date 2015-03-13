@@ -163,6 +163,37 @@ footer .right {
     margin-top: 30px;
 }
 
+.matches h1 {
+    font-size: 40px;
+}
+
+.matches .profile-image {
+    border-radius: 5%;
+}
+
+.thumbnail {
+    border:none !important;
+}
+
+.matches .btn.message-btn {
+    display:block;
+    opacity:1 !important;
+    margin: 20px 0px 20px 0px;
+}
+
+.row.match {
+    padding-top: 23px;
+    border-bottom: solid 2px lightgrey;
+}
+
+.row.match h2 {
+    margin: 0px;
+}
+
+.matches .quote {
+    font-style: italic;
+}
+
 @media only screen and (max-width : 768px) {
     .message-btn {
         width: 100%;
