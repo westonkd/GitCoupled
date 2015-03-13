@@ -38,8 +38,8 @@ public class CallBack extends HttpServlet {
             String token = request.getParameter("code");
             
             GitHubClient client = new GitHubClient();
-            client.setOAuth2Token(token);
-
+            client = client.setOAuth2Token(token);
+           
             //add the Github as a session object
             request.getSession().setAttribute("github", client);
             
