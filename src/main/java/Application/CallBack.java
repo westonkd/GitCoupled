@@ -32,32 +32,37 @@ public class CallBack extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         //if there is a oAuth token in the request
         if (request.getParameter("code") != null) {
+            
             //create the user-specific instance of a Github
+            String clientID = "5459711ee0c7fc3e4b02";
+            String clientSecret = "68dc76a5000249b5c83ae5deca0b8108cc0c0954";
             String token = request.getParameter("code");
             
             /*
             * if this does not work try passing in the token that looks like
             * access_token=e72e16c7e42f292c6912e7710c838347ae178b4a&scope=user%2Cgist&token_type=bearer
             */
-            String accessRequest = "https://api.github.com/login/oauth/access_token?client_id=5459711ee0c7fc3e4b02&client_secret=68dc76a5000249b5c83ae5deca0b8108cc0c0954&code=" + token; 
+            String accessRequest = "https://api.github.com/login/oauth/access_token?client_id=" + clientID +  "&client_secret=" + clientSecret + "&code=" + token; 
             
-            GitHubClient client = new GitHubClient(accessRequest);
+            //get the access token
+            response.sendRedirect(accessRequest);
+            
+            //GitHubClient client = new GitHubClient(accessRequest);
             
             //client = client.setOAuth2Token(token);
            
             
             
             //add the Github as a session object
-            request.getSession().setAttribute("github", client);
-            request.getSession().setAttribute("token", token);
+            //request.getSession().setAttribute("github", client);
+            //request.getSession().setAttribute("token", token);
             
-//            TODO: update the user data in the database here
-//            we should probably create a java class that works in the data
-//            layer to do that.
+
             //forward to the profile page
-            response.sendRedirect("PersonalProfile");
+           // response.sendRedirect("PersonalProfile");
             return;
         } else {
             //redirect home

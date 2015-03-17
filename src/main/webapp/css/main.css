@@ -194,6 +194,10 @@ footer .right {
     font-style: italic;
 }
 
+.edit-profile .radio input, .edit-profile .radio label{
+    margin-left:15px;
+}
+
 @media only screen and (max-width : 768px) {
     .message-btn {
         width: 100%;

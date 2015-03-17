@@ -54,7 +54,7 @@
                         </div>
                     </div>
                     <div class="col-sm-7">
-                        <h2>Smeagol</h2>
+                        <h2>Ori</h2>
                         <h3>Relationship Match 100%</h3>
                         <h3>Primary Language: C++</h3>
                         <h3 class="quote">
@@ -72,7 +72,7 @@
                         </div>
                     </div>
                     <div class="col-sm-7">
-                        <h2>Smeagol</h2>
+                        <h2>Ori</h2>
                         <h3>Relationship Match 100%</h3>
                         <h3>Primary Language: C++</h3>
                         <h3 class="quote">
@@ -90,7 +90,7 @@
                         </div>
                     </div>
                     <div class="col-sm-7">
-                        <h2>Smeagol</h2>
+                        <h2>Ori</h2>
                         <h3>Relationship Match 100%</h3>
                         <h3>Primary Language: C++</h3>
                         <h3 class="quote">
@@ -108,7 +108,7 @@
                         </div>
                     </div>
                     <div class="col-sm-7">
-                        <h2>Smeagol</h2>
+                        <h2>Ori</h2>
                         <h3>Relationship Match 100%</h3>
                         <h3>Primary Language: C++</h3>
                         <h3 class="quote">
@@ -126,7 +126,7 @@
                         </div>
                     </div>
                     <div class="col-sm-7">
-                        <h2>Smeagol</h2>
+                        <h2>Ori</h2>
                         <h3>Relationship Match 100%</h3>
                         <h3>Primary Language: C++</h3>
                         <h3 class="quote">
