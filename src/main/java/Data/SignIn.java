@@ -36,7 +36,7 @@ public class SignIn extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //let the user sign in
-        response.sendRedirect("https://github.com/login/oauth/authorize?client_id=" + clientID);
+        response.sendRedirect("https://github.com/login/oauth/authorize?client_id=" + clientID + "&scope=email");
         return;
     }
 
