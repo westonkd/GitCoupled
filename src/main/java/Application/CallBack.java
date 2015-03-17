@@ -5,6 +5,7 @@
  */
 package Application;
 
+import Data.HttpConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -40,12 +41,13 @@ public class CallBack extends HttpServlet {
             String clientID = "5459711ee0c7fc3e4b02";
             String clientSecret = "68dc76a5000249b5c83ae5deca0b8108cc0c0954";
             String token = request.getParameter("code");
-            String callback = "http://gitcoupled-puremagic.rhcloud.com/InitGC";
             
-            String accessRequest = "https://github.com/login/oauth/access_token?client_id=" + clientID + "&client_secret=" + clientSecret + "&code=" + token + "&redirect_uri" + callback;
+            String accessRequest = "https://github.com/login/oauth/access_token";
+            String parameters = "client_id=" + clientID + "&client_secret=" + clientSecret + "&code=" + token;
             
+            HttpConnection postRequest = new HttpConnection(accessRequest, parameters);
             //get the access token
-            response.sendRedirect(accessRequest);
+            //response.sendRedirect(accessRequest);
             
             //GitHubClient client = new GitHubClient(accessRequest);
             
