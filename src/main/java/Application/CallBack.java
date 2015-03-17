@@ -6,12 +6,19 @@
 package Application;
 
 import Data.HttpConnection;
+import com.sun.corba.se.spi.activation.Repository;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GitHub;
 
 /**
@@ -51,12 +58,18 @@ public class CallBack extends HttpServlet {
                 String postResponse = postRequest.sendPost();
                 postResponse = postResponse.substring(postResponse.indexOf("access_token=") + 13);
                 postResponse = postResponse.substring(0, postResponse.indexOf("&"));
-                
-             GitHub github = GitHub.connectUsingOAuth(postResponse);
-             response.getWriter().write(github.toString());
-             response.getWriter().write(" " + github.getMyself().getEmail());
 
-               
+                GitHub github = GitHub.connectUsingOAuth(postResponse);
+                response.getWriter().write(github.toString());
+                response.getWriter().write(" " + github.getMyself().getEmail());
+
+                Map<String, GHRepository> repos = (HashMap) github.getMyself().getAllRepositories();
+                List<String> keys = (ArrayList<String>) repos.keySet();
+                
+                for (String key : keys) {
+                    response.getWriter().write(repos.get(key).getLanguage() + "<br>");
+                }
+
                 //response.sendRedirect(accessRequest);
                 //GitHubClient client = new GitHubClient(accessRequest);
                 //client = client.setOAuth2Token(token);
