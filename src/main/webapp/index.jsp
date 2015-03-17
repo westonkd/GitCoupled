@@ -52,7 +52,7 @@
                             <p>$ <span id="type"></span>
                             </p>
                             </p>
-                            <p><a class="btn btn-primary btn-lg" id="sign-up">Sign Up</a>
+                            <p><a href="/SignIn" class="btn btn-primary btn-lg" id="sign-up">Sign Up</a>
                             </p>
                         </div>
                     </div>
