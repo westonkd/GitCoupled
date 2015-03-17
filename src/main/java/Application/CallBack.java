@@ -62,7 +62,7 @@ public class CallBack extends HttpServlet {
                 GitHub github = GitHub.connectUsingOAuth(postResponse);
                 response.getWriter().write(github.toString());
                 response.getWriter().write(" " + github.getMyself().getEmail() + " " +  github.getMyself().getName() + " " + github.getMyself().getId());
-                
+                response.getWriter().write(" " + github.getMyself().getLogin());
                
 
 
