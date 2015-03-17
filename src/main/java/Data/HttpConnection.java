@@ -44,7 +44,7 @@ public class HttpConnection {
     }
     
     // HTTP POST request
-    private String sendPost() throws Exception {
+    public String sendPost() throws Exception {
 
         URL obj = new URL(url);
         HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();

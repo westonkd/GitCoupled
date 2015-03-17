@@ -8,6 +8,8 @@ package Application;
 import Data.HttpConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -46,15 +48,19 @@ public class CallBack extends HttpServlet {
             String parameters = "client_id=" + clientID + "&client_secret=" + clientSecret + "&code=" + token;
             
             HttpConnection postRequest = new HttpConnection(accessRequest, parameters);
-            response.getWriter().write(postRequest.sendPost());
-            
-            
-            //get the access token
-            //response.sendRedirect(accessRequest);
-            
-            //GitHubClient client = new GitHubClient(accessRequest);
-            
-            //client = client.setOAuth2Token(token);
+            try {
+                response.getWriter().write(postRequest.sendPost());
+                
+                
+                //get the access token
+                //response.sendRedirect(accessRequest);
+                
+                //GitHubClient client = new GitHubClient(accessRequest);
+                
+                //client = client.setOAuth2Token(token);
+            } catch (Exception ex) {
+                response.getWriter().write("fail");
+            }
            
             
             
