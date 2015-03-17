@@ -41,11 +41,7 @@ public class CallBack extends HttpServlet {
             String clientSecret = "68dc76a5000249b5c83ae5deca0b8108cc0c0954";
             String token = request.getParameter("code");
             
-            /*
-            * if this does not work try passing in the token that looks like
-            * access_token=e72e16c7e42f292c6912e7710c838347ae178b4a&scope=user%2Cgist&token_type=bearer
-            */
-            String accessRequest = "https://api.github.com/login/oauth/access_token?client_id=" + clientID +  "&client_secret=" + clientSecret + "&code=" + token + "&redirect_uri=http://gitcoupled-puremagic.rhcloud.com"; 
+            String accessRequest = "https://github.com/login/oauth/access_token?client_id=" + clientID + "&client_secret=" + clientSecret + "&code=" + token;
             
             //get the access token
             response.sendRedirect(accessRequest);
