@@ -67,7 +67,7 @@ public class CallBack extends HttpServlet {
                
                 
                 response.getWriter().write("<img src='" + github.getMyself().getAvatarUrl() + "' />");
-                response.getWriter().write("</html>")
+                response.getWriter().write("</html>");
 
             } catch (Exception ex) {
                 //redirect home
