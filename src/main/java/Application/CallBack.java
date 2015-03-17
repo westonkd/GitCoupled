@@ -35,42 +35,42 @@ public class CallBack extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         //if there is a oAuth token in the request
         if (request.getParameter("code") != null) {
-            
+
             //create the user-specific instance of a Github
             String clientID = "5459711ee0c7fc3e4b02";
             String clientSecret = "68dc76a5000249b5c83ae5deca0b8108cc0c0954";
             String token = request.getParameter("code");
-            
+
+            //Make the post to get the access token
             String accessRequest = "https://github.com/login/oauth/access_token";
             String parameters = "client_id=" + clientID + "&client_secret=" + clientSecret + "&code=" + token;
-            
+
             HttpConnection postRequest = new HttpConnection(accessRequest, parameters);
             try {
-                response.getWriter().write(postRequest.sendPost());
-                
-                
                 //get the access token
+                String postResponse = postRequest.sendPost();
+                postResponse = postResponse.substring(postResponse.indexOf("access_token"));
+                postResponse = postResponse.substring(0, postResponse.indexOf("&"));
+                
+                response.getWriter().write(postResponse);
+                
                 //response.sendRedirect(accessRequest);
-                
                 //GitHubClient client = new GitHubClient(accessRequest);
-                
                 //client = client.setOAuth2Token(token);
             } catch (Exception ex) {
-                response.getWriter().write("fail");
+                //redirect home
+                response.sendRedirect("index.jsp");
+                return;
             }
-           
-            
-            
+
             //add the Github as a session object
             //request.getSession().setAttribute("github", client);
             //request.getSession().setAttribute("token", token);
-            
-
             //forward to the profile page
-           // response.sendRedirect("PersonalProfile");
+            // response.sendRedirect("PersonalProfile");
             return;
         } else {
             //redirect home
