@@ -60,11 +60,14 @@ public class CallBack extends HttpServlet {
                 postResponse = postResponse.substring(0, postResponse.indexOf("&"));
 
                 GitHub github = GitHub.connectUsingOAuth(postResponse);
+                response.getWriter().write("<html>");
                 response.getWriter().write(github.toString());
                 response.getWriter().write(" " + github.getMyself().getEmail() + " " +  github.getMyself().getName() + " " + github.getMyself().getId());
                 response.getWriter().write(" " + github.getMyself().getLogin());
                
+                
                 response.getWriter().write("<img src='" + github.getMyself().getAvatarUrl() + "' />");
+                response.getWriter().write("</html>")
 
             } catch (Exception ex) {
                 //redirect home
