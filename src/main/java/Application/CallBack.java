@@ -64,11 +64,8 @@ public class CallBack extends HttpServlet {
                 response.getWriter().write(" " + github.getMyself().getEmail() + " " +  github.getMyself().getName() + " " + github.getMyself().getId());
                 response.getWriter().write(" " + github.getMyself().getLogin());
                
+                response.getWriter().write("<img src='" + github.getMyself().getAvatarUrl() + "' />");
 
-
-                //response.sendRedirect(accessRequest);
-                //GitHubClient client = new GitHubClient(accessRequest);
-                //client = client.setOAuth2Token(token);
             } catch (Exception ex) {
                 //redirect home
                 //response.sendRedirect("index.jsp");
