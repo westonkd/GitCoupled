@@ -52,7 +52,7 @@ public class CallBack extends HttpServlet {
                 postResponse = postResponse.substring(postResponse.indexOf("access_token=") + 13);
                 postResponse = postResponse.substring(0, postResponse.indexOf("&"));
                 
-             GitHub github = GitHub.connectUsingOAuth(token);
+             GitHub github = GitHub.connectUsingOAuth(postResponse);
              response.getWriter().write(github.toString());
              response.getWriter().write(" " + github.getMyself().getEmail());
 
