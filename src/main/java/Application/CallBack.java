@@ -52,8 +52,8 @@ public class CallBack extends HttpServlet {
             try {
                 //get the access token
                 String postResponse = postRequest.sendPost();
-                postResponse = postResponse.substring(postResponse.indexOf("access_token"));
-                postResponse = postResponse.substring(0, postResponse.indexOf("&"));
+                postResponse = postResponse.substring(postResponse.indexOf("access_token=") + 13);
+                postResponse = postResponse.substring(0, postResponse.indexOf("&") + 1);
                 
                 response.getWriter().write(postResponse);
                 
