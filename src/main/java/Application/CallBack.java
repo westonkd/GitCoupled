@@ -61,14 +61,9 @@ public class CallBack extends HttpServlet {
 
                 GitHub github = GitHub.connectUsingOAuth(postResponse);
                 response.getWriter().write(github.toString());
-                response.getWriter().write(" " + github.getMyself().getEmail());
+                response.getWriter().write(" " + github.getMyself().getEmail() + " " +  github.getMyself().getName());
+               
 
-                Map<String, GHRepository> repos = (HashMap) github.getMyself().getAllRepositories();
-                List<String> keys = (ArrayList<String>) repos.keySet();
-                
-                for (String key : keys) {
-                    response.getWriter().write(repos.get(key).getLanguage() + "<br>");
-                }
 
                 //response.sendRedirect(accessRequest);
                 //GitHubClient client = new GitHubClient(accessRequest);
