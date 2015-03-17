@@ -7,22 +7,12 @@ package Application;
 
 import Data.HttpConnection;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.eclipse.egit.github.core.Authorization;
-import org.eclipse.egit.github.core.Gist;
-import org.eclipse.egit.github.core.GistFile;
-import org.eclipse.egit.github.core.client.GitHubClient;
-import org.eclipse.egit.github.core.service.GistService;
-import org.eclipse.egit.github.core.service.OAuthService;
+import org.kohsuke.github.GitHub;
 
 /**
  *
@@ -61,32 +51,12 @@ public class CallBack extends HttpServlet {
                 String postResponse = postRequest.sendPost();
                 postResponse = postResponse.substring(postResponse.indexOf("access_token=") + 13);
                 postResponse = postResponse.substring(0, postResponse.indexOf("&"));
+                
+             GitHub github = GitHub.connectUsingOAuth(token);
+             response.getWriter().write(github.toString());
+             reponse.getWriter().write(" " + github.getMyself().getEmail());
 
-                //create the new GitHub object
-                OAuthService oauthService = new OAuthService();
                
-                // Replace with actual login and password
-                oauthService.getClient().setOAuth2Token(postResponse);
-
-                // Create authorization with 'gist' scope only
-                Authorization auth = new Authorization();
-                auth.setScopes(Arrays.asList("gist"));
-                auth = oauthService.createAuthorization(auth);
-
-                // Create Gist service configured with OAuth2 token
-                GistService gistService = new GistService();
-                gistService.getClient().setOAuth2Token(auth.getToken());
-
-                // Create Gist
-                Gist gist = new Gist();
-                gist.setPublic(false);
-                gist.setDescription("Created using OAuth2 token via Java API");
-                GistFile file = new GistFile();
-                file.setContent("Gist!");
-                file.setFilename("gist.txt");
-                gist.setFiles(Collections.singletonMap(file.getFilename(), file));
-                gist = gistService.createGist(gist);
-
                 //response.sendRedirect(accessRequest);
                 //GitHubClient client = new GitHubClient(accessRequest);
                 //client = client.setOAuth2Token(token);

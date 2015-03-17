@@ -12,9 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.eclipse.egit.github.core.Repository;
-import org.eclipse.egit.github.core.client.GitHubClient;
-import org.eclipse.egit.github.core.service.RepositoryService;
+
 
 /**
  *
@@ -38,18 +36,7 @@ public class PersonalProfile extends HttpServlet {
 
         //if the github object is set
         if (request.getSession().getAttribute("github") != null) {
-            GitHubClient client = (GitHubClient) request.getSession().getAttribute("github");
-
-            String user = client.getUser();
             
-            response.getWriter().write((String) request.getSession().getAttribute("token"));
-
-            RepositoryService service = new RepositoryService();
-            for (Repository repo : service.getRepositories("westonkd")) {
-                response.getWriter().write(repo.getName() + " Watchers: " + repo.getWatchers() + "\n");
-            }
-            
-            response.getWriter().write("\n" + user);
             
         } else {
             //redirect to home
