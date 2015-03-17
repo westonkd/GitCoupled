@@ -57,7 +57,7 @@ public class CallBack extends HttpServlet {
                 
                 //create the new GitHub object
                 GitHubClient client = new GitHubClient();
-                client.setOAuth2Token(postResponse);
+                client = client.setOAuth2Token(postResponse);
                 
                 response.getWriter().write("user" + client.getUser());
                 
