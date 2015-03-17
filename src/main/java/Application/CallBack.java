@@ -53,9 +53,13 @@ public class CallBack extends HttpServlet {
                 //get the access token
                 String postResponse = postRequest.sendPost();
                 postResponse = postResponse.substring(postResponse.indexOf("access_token=") + 13);
-                postResponse = postResponse.substring(0, postResponse.indexOf("&") + 1);
+                postResponse = postResponse.substring(0, postResponse.indexOf("&"));
                 
-                response.getWriter().write(postResponse);
+                //create the new GitHub object
+                GitHubClient client = new GitHubClient();
+                client.setOAuth2Token(postResponse);
+                
+                response.getWriter().write("user" + client.getUser());
                 
                 //response.sendRedirect(accessRequest);
                 //GitHubClient client = new GitHubClient(accessRequest);
