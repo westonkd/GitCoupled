@@ -62,7 +62,8 @@ public class CallBack extends HttpServlet {
                 //client = client.setOAuth2Token(token);
             } catch (Exception ex) {
                 //redirect home
-                response.sendRedirect("index.jsp");
+                //response.sendRedirect("index.jsp");
+                response.getWriter().write("Error");
                 return;
             }
 
