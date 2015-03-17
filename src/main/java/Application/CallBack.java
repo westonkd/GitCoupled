@@ -46,6 +46,9 @@ public class CallBack extends HttpServlet {
             String parameters = "client_id=" + clientID + "&client_secret=" + clientSecret + "&code=" + token;
             
             HttpConnection postRequest = new HttpConnection(accessRequest, parameters);
+            response.getWriter().write(postRequest.sendPost());
+            
+            
             //get the access token
             //response.sendRedirect(accessRequest);
             
