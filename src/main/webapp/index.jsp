@@ -10,6 +10,7 @@
 
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <title>GitCoupled</title>
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
         <link rel="stylesheet" href="https://bootswatch.com/cosmo/bootstrap.min.css">

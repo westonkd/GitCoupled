@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <meta charset="UTF-8">
         <title>Profile</title>
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>

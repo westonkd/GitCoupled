@@ -2,14 +2,15 @@
     Document   : profile
     Created on : Mar 13, 2015, 9:13:10 AM
     Author     : weston
-    --%>
+--%>
 
-    <%@page contentType="text/html" pageEncoding="UTF-8"%>
-    <!DOCTYPE html>
-    <html>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
     <head>
         <meta charset="UTF-8">
-        <title>Profile</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <title>GitCoupled - Profile</title>
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
         <link rel="stylesheet" href="https://bootswatch.com/cosmo/bootstrap.min.css">
         <link rel="stylesheet" href="css/main.css">
@@ -45,83 +46,58 @@
             </div>
             <main class="edit-profile">
                 <div class="col-sm-12">
-                    <form class="form-horizontal">
-                      <fieldset>
-                      <div class="form-group radio">
-                            <input id="maleRadio" type="radio" name="gender" value="male">
-                            <label for="maleRadio">Male</label> <br>
-                            <input id="femaleRadio" type="radio" name="gender" value="male">
-                            <label for="femaleRadio">Female</label>    
+                    <h2>Tell us a bit about yourself Weston</h2>
+                    <img src="https://avatars1.githubusercontent.com/u/6128215?v=3&s=460" class="profile pull-right" alt="user-image" />
+                    <form role="form" action="" method="GET" id="profile-form">
+                        <h4>Gender</h4>
+                        <div class="radio">
+                            <label><input type="radio" name="gender" required value="male">Male</label>
                         </div>
-                        <legend>Tell us about yourself</legend>
+                        <div class="radio">
+                            <label><input type="radio" name="gender" value="female">Female</label>
+                        </div>
+                        <h4 style="margin-top:50px;">Bio</h4>
+                        <p>Let everyone know about yourself here. Hobbies, interests, past projects, etc.</p>
                         <div class="form-group">
-                          <label for="inputEmail" class="col-lg-2 control-label">Email</label>
-                          <div class="col-lg-10">
-                            <input type="text" class="form-control" id="inputEmail" placeholder="Email">
+                            <textarea required class="form-control" name="bio" rows="5" id="comment" placeholder="I love fighting crime by night, slaying dragons..."></textarea>
                         </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="inputPassword" class="col-lg-2 control-label">Password</label>
-                      <div class="col-lg-10">
-                        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox"> Checkbox
-                        </label>
-                    </div>
+                        <h4>Quote</h4>
+                        <p>Enter your awesome quote here. It will be displayed with your picture when other users are matched with you.</p>
+                        <div class="form-group">
+                            <input required type="text" class="form-control" placeholder="I'm pure magic." name="quote" id="quote">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
                 </div>
-            </div>
-            <div class="form-group">
-              <label for="textArea" class="col-lg-2 control-label">Textarea</label>
-              <div class="col-lg-10">
-                <textarea class="form-control" rows="3" id="textArea"></textarea>
-                <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
-            </div>
+            </main>
+            <footer>
+                <div class="col-sm-3">
+                    <span>© 2015 PureMagic</span>
+                </div>
+                <div class="col-sm-6 center">
+                    <img id="footer-logo" src="images/blacklogo.png" alt="">
+                </div>
+                <div class="col-sm-3 right">    
+                </div>
+            </footer>
         </div>
-        
-<div class="form-group">
-  <label for="select" class="col-lg-2 control-label">Selects</label>
-  <div class="col-lg-10">
-    <select class="form-control" id="select">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-  </select>
-  <br>
-  <select multiple="" class="form-control">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-  </select>
-</div>
-</div>
-<div class="form-group">
-  <div class="col-lg-10 col-lg-offset-2">
-    <button type="reset" class="btn btn-default">Cancel</button>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</div>
-</div>
-</fieldset>
-</form>
-</div>
-</main>
-<footer class="row">
-    <div class="col-sm-3">
-        <span>© 2015 PureMagic</span>
-    </div>
-    <div class="col-sm-6 center">
-        <img id="footer-logo" src="images/blacklogo.png" alt="">
-    </div>
-    <div class="col-sm-3 right">    
-        <a href="TODO">login/register</a>
-    </div>
-</footer>
-</div>
-</body>
+    </body>
+    <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#quote').change(function () {
+                var current = $(this).val();
 
+                if (current !== "") {
+                    $(this).val('"' + current + '"');
+                }
+            });
+            
+            $('# profile-form').validate();
+        });
+    </script>
+    
+   
 </html>
