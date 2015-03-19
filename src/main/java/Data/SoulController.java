@@ -18,7 +18,7 @@ public class SoulController {
     
    // JDBC driver name and database URL
    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-   private static final String database_url = "jdbc:mysql://127.3.91.130";
+   private static final String database_url = "jdbc:mysql://127.3.91.130/gitcoupled";
 
    //  Database credentials
    private static final String username = "Gandalf";
@@ -30,7 +30,7 @@ public class SoulController {
         try {
             Class.forName(JDBC_DRIVER);
             conn =  DriverManager.getConnection(database_url, username, password);
-        } 
+}
         catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
