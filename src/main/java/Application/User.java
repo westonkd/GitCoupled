@@ -22,8 +22,7 @@ public class User {
     private String second_language;
     private String third_language;
 
-    public User(int id, String gender, int age, String github_username, String quote, String bio) {
-        this.id = id;
+    public User(String gender, int age, String github_username, String quote, String bio) {
         this.gender = gender;
         this.age = age;
         this.github_username = github_username;
