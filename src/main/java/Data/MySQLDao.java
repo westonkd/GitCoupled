@@ -29,7 +29,10 @@ public class MySQLDao implements SoulDao {
             statement = conn.createStatement();
             
         } catch (Exception ex) {
+            System.out.println("NOT CONNECTED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            System.out.println("========================================================================================================================");
             ex.printStackTrace();
+            System.out.println("========================================================================================================================");
         }
     }
     
@@ -44,9 +47,10 @@ public class MySQLDao implements SoulDao {
         User user = null;
         
         try {
-            String sql = "SELECT * FROM user WHERE username = '" + username + "'";
+            String sql = "SELECT * FROM user WHERE github_username = '" + username + "'";
             ResultSet results = statement.executeQuery(sql);
             
+            results.first();
             int id = results.getInt("id");
             String gender = results.getString("gender");
             int age = results.getInt("age");
