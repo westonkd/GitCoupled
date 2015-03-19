@@ -5,10 +5,22 @@
  */
 package Data;
 
+import Application.User;
+import java.util.List;
+
 /**
  *
  * @author McKay
  */
 public interface SoulDao {
+    
+    public void addUser(User user);
+    public User getUser(String username);
+    public User getUser(User user);
+
+    public List<User> getUsers(String primary, String secondary, String thirdly);
+    public List<User> getUsers(String primary, String secondary);
+    public List<User> getUsers(String primary);
+    
     
 }
