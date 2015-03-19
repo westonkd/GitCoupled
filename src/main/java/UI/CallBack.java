@@ -59,20 +59,18 @@ public class CallBack extends HttpServlet {
                 postResponse = postResponse.substring(postResponse.indexOf("access_token=") + 13);
                 postResponse = postResponse.substring(0, postResponse.indexOf("&"));
 
+                //authorize the user
                 GitHub github = GitHub.connectUsingOAuth(postResponse);
-                response.getWriter().write("<html>");
-                response.getWriter().write(github.toString());
-                response.getWriter().write(" " + github.getMyself().getEmail() + " " +  github.getMyself().getName() + " " + github.getMyself().getId());
-                response.getWriter().write(" " + github.getMyself().getLogin());
-               
+             
+                //set the session attribute
+                request.getSession().setAttribute("github", github);
                 
-                response.getWriter().write("<img src='" + github.getMyself().getAvatarUrl() + "' />");
-                response.getWriter().write("</html>");
-
+                //display the profile
+                response.sendRedirect("Profile");
+                
             } catch (Exception ex) {
-                //redirect home
-                //response.sendRedirect("index.jsp");
-                response.getWriter().write("Error");
+                //redirect home TODO redirect to an error page
+                response.sendRedirect("index.jsp");
                 return;
             }
 
