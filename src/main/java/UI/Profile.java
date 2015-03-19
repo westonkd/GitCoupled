@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.kohsuke.github.GitHub;
 
 /**
  *
@@ -33,16 +34,18 @@ public class Profile extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Profile</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Profile at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            //get the github instance
+            GitHub github = (GitHub) request.getSession().getAttribute("github");
+            
+            //create the username
+            response.getWriter().write(github.getMyself().getLogin());
+            
+            //if the user is in the database
+                //go to the profile page
+            
+                        
+            //if the user is not in the database
+                //go to the new user form
         }
     }
 
