@@ -39,7 +39,7 @@ public class Profile extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             //get the github instance
             GitHub github = (GitHub) request.getSession().getAttribute("github");
-            
+
             SoulDao db = new MySQLDao();
             
             User test = db.getUser("Legolas");
@@ -49,11 +49,9 @@ public class Profile extends HttpServlet {
             //create the username
 
             //if the user is in the database
-                //go to the profile page
-            
-                        
+            //go to the profile page
             //if the user is not in the database
-                //go to the new user form
+            //go to the new user form
         }
     }
 
