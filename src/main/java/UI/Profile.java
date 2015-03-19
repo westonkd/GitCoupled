@@ -5,6 +5,9 @@
  */
 package UI;
 
+import Application.User;
+import Data.MySQLDao;
+import Data.SoulDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -37,9 +40,14 @@ public class Profile extends HttpServlet {
             //get the github instance
             GitHub github = (GitHub) request.getSession().getAttribute("github");
             
-            //create the username
-            response.getWriter().write(github.getMyself().getLogin());
+            SoulDao db = new MySQLDao();
             
+            User test = db.getUser("smckaysmalley");
+            
+            response.getWriter().write(test.getQuote());
+            
+            //create the username
+
             //if the user is in the database
                 //go to the profile page
             

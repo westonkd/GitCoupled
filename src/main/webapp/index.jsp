@@ -92,7 +92,7 @@
             var s = skrollr.init();
 
             $("#type").typed({
-                strings: ["sudo ^500 apt-get instll significanlother", "sudo apt-get install significant-other"],
+                strings: ["sudo apt-get install significant-other"],
                 typeSpeed: 0,
                 startDelay: 3000,
                 callback: function () {
