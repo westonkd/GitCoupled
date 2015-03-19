@@ -15,9 +15,9 @@ import java.sql.*;
  */
 public class MySQLDao implements SoulDao {
 
-    private String dbUrl = "jdbc:mysql://localhost:8889/gitcoupled";
-    private String user = "root";
-    private String password = "pass";
+    private String dbUrl = "jdbc:mysql://localhost/gitcoupled";
+    private String user = "Gandalf";
+    private String password = "puremagic";
     private Connection conn = null;
     private Statement statement = null;
 
@@ -30,12 +30,7 @@ public class MySQLDao implements SoulDao {
             statement = conn.createStatement();
 
         } catch (Exception ex) {
-            System.out.println("=======================================");
             ex.printStackTrace();
-            System.out.println(dbUrl);
-            System.out.println(user);
-            System.out.println(password);
-            System.out.println("++++++++++++++++++++++++++++++++++++++++");
         }
     }
 
