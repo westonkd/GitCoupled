@@ -46,6 +46,9 @@ public class Profile extends HttpServlet {
             
             response.getWriter().write(test.getQuote());
             
+               String host = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
+   String port = System.getenv("OPENSHIFT_MYSQL_DB_PORT");
+            response.getWriter().write(host + " " + port);
             //create the username
 
             //if the user is in the database
