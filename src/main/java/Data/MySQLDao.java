@@ -41,7 +41,13 @@ public class MySQLDao implements SoulDao {
 
     @Override
     public void addUser(User user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            String sql = "INSERT INTO User (gender,age,github_username,quote,bio,compat_score,first_language,second_language,third_language) VALUES ('" + user.getGender() + "'," + user.getAge() + ",'" + user.getGithub_username() + "',\"" + user.getQuote() + "\",\"" + user.getBio() + "\"," + user.getCompat_score() + ",'" + user.getFirst_language() + "','" + user.getSecond_language() + "','" + user.getThird_language() + "')";
+            System.out.println("&&&&&&&&&&&&&&&&&&&&&&" + sql);
+            statement.executeUpdate(sql);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override

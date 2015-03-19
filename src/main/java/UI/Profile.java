@@ -43,6 +43,8 @@ public class Profile extends HttpServlet {
             SoulDao db = new MySQLDao();
 
             User test = db.getUser("smckaysmalley");
+            
+            db.addUser(test);
 
             response.getWriter().write(test.getQuote());
 
