@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Application;
+package UI;
 
 import Data.HttpConnection;
 import com.sun.corba.se.spi.activation.Repository;
