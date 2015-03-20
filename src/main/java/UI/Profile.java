@@ -38,30 +38,34 @@ public class Profile extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+           
             //get the github instance
             GitHub github = (GitHub) request.getSession().getAttribute("github");
 
+            //create DAO 
             SoulDao db = new MySQLDao();
 
-            User test = db.getUser("Legolas");
-            
-            db.addUser(test);
-
-            List<User> guys = db.getUsers("Python", "Ruby");
-            
-            for (User guy: guys)
-            {
-                response.getWriter().write(guy.getAge()+ ' '+guy.getGithub_username());
-            }
-            
-            response.getWriter().write(test.getQuote());
-
             //create the username
+            User user = db.getUser(github.getMyself().getLogin());
 
             //if the user is in the database
-            //go to the profile page
-            //if the user is not in the database
-            //go to the new user form
+            if (user != null) {
+                //Set user attribute
+                request.setAttribute("user", user);
+                
+                //forward
+                request.getRequestDispatcher("profile.jsp").forward(request, response);   
+                
+            } else {                
+                //Set github attribute
+                request.setAttribute("github", github);
+                
+                //forward
+                request.getRequestDispatcher("edit-profile.jsp").forward(request, response);   
+            }
+                
+
+                
         }
     }
 

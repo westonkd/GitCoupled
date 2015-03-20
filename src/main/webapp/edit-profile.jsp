@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,6 +22,7 @@
     </head>
 
     <body class="gitcoupled">
+         
         <div class="container">
             <div class="navbar navbar-default navbar-fixed-top coupled">
                 <div class="container">
@@ -46,8 +48,8 @@
             </div>
             <main class="edit-profile">
                 <div class="col-sm-12">
-                    <h2>Tell us a bit about yourself Weston</h2>
-                    <img src="https://avatars1.githubusercontent.com/u/6128215?v=3&s=460" class="profile pull-right" alt="user-image" />
+                    <h2>Tell us a bit about yourself <c:out value = "${github.getMyself().getName()}" ></c:out></h2>
+                    <img src="<c:out value = "${github.getMyself().getAvatarUrl()}" ></c:out>" id="profile-pic" class="profile pull-right" alt="user-image" />
                     <form role="form" action="" method="GET" id="profile-form">
                         <h4>Gender</h4>
                         <div class="radio">
