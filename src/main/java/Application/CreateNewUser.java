@@ -3,14 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UI;
+package Application;
 
-import Application.User;
 import Data.MySQLDao;
-import Data.SoulDao;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,8 +19,8 @@ import org.kohsuke.github.GitHub;
  *
  * @author weston
  */
-@WebServlet(name = "Profile", urlPatterns = {"/Profile"})
-public class Profile extends HttpServlet {
+@WebServlet(name = "CreateNewUser", urlPatterns = {"/CreateNewUser"})
+public class CreateNewUser extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,35 +33,29 @@ public class Profile extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        //get the github object
+        GitHub github = (GitHub) request.getSession().getAttribute("github");
+        
         try (PrintWriter out = response.getWriter()) {
-           
-            //get the github instance
-            GitHub github = (GitHub) request.getSession().getAttribute("github");
-
-            //create DAO 
-            SoulDao db = new MySQLDao();
-
-            //create the username
-            User user = db.getUser(github.getMyself().getLogin());
-            //if the user is in the database
-            if (user != null) {
-                //Set user attribute
-                request.setAttribute("user", user);
+            //get the POST variables if they exists
+            if (request.getParameter("gender") != null && github != null) {
+                String gender = request.getParameter("gender");
+                String bio = request.getParameter("bio");
+                String quote = request.getParameter("quote");
+                int age = Integer.parseInt(request.getParameter("age"));
+                String userName = github.getMyself().getLogin();
                 
-                //forward
-                request.getRequestDispatcher("profile.jsp").forward(request, response);   
+                //create the user object
+                User newUser = new User(gender, age, userName, quote, bio);
                 
-            } else {                
-                //Set github attribute
-                request.setAttribute("github", github);
+                //create a DAO
+                MySQLDao dao = new MySQLDao();
                 
-                //forward
-                request.getRequestDispatcher("edit-profile.jsp").forward(request, response);   
+                //add the user to the database
+                dao.addUser(newUser);
+            } else {
+                response.sendRedirect("index.jsp");
             }
-                
-
-                
         }
     }
 
