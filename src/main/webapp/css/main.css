@@ -200,6 +200,10 @@ img.profile {
     margin-bottom: 15px;
 }
 
+.edit-profile #profile-pic {
+    width: 200px;
+    hieght: 200px;
+}
 .navbar-default .navbar-toggle .icon-bar {
     background-color: black !important;
 }
