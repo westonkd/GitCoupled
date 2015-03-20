@@ -15,15 +15,14 @@ import java.sql.*;
  */
 public class MySQLDao implements SoulDao {
 
-    private String dbUrl = "jdbc:mysql://localhost/gitcoupled";
-    private String user = "Gandalf";
-    private String password = "puremagic";
+    private String dbUrl = "jdbc:mysql://localhost:8889/gitcoupled";
+    private String user = "root";
+    private String password = "pass";
     private Connection conn = null;
     private Statement statement = null;
 
     public MySQLDao() {
         try {
-
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(dbUrl, user, password);
 
@@ -38,7 +37,6 @@ public class MySQLDao implements SoulDao {
     public void addUser(User user) {
         try {
             String sql = "INSERT INTO User (gender,age,github_username,quote,bio,compat_score,first_language,second_language,third_language) VALUES ('" + user.getGender() + "'," + user.getAge() + ",'" + user.getGithub_username() + "',\"" + user.getQuote() + "\",\"" + user.getBio() + "\"," + user.getCompat_score() + ",'" + user.getFirst_language() + "','" + user.getSecond_language() + "','" + user.getThird_language() + "')";
-            System.out.println("&&&&&&&&&&&&&&&&&&&&&&" + sql);
             statement.executeUpdate(sql);
         } catch (Exception ex) {
             ex.printStackTrace();
