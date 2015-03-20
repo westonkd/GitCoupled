@@ -22,6 +22,19 @@ public class User {
     private String second_language;
     private String third_language;
 
+    public User() {
+        id = -1;
+        gender = null;
+        age = -1;
+        github_username = null;
+        quote = null;
+        bio = null;
+        compat_score = -1;
+        first_language = null;
+        second_language = null;
+        third_language = null;
+    }
+
     /**
      * 
      * @param gender
@@ -31,6 +44,7 @@ public class User {
      * @param bio 
      */
     public User(String gender, int age, String github_username, String quote, String bio) {
+        this.id = -1;
         this.gender = gender;
         this.age = age;
         this.github_username = github_username;
