@@ -40,13 +40,19 @@ public class CreateNewUser extends HttpServlet {
             //get the POST variables if they exists
             if (request.getParameter("gender") != null && github != null) {
                 String gender = request.getParameter("gender");
-                String bio = request.getParameter("bio");
-                String quote = request.getParameter("quote");
+                String bio = request.getParameter("bio").replace("\"","").replace("'","");
+                String quote = request.getParameter("quote").replace("\"","").replace("'","");
                 int age = Integer.parseInt(request.getParameter("age"));
                 String userName = github.getMyself().getLogin();
                 
                 //create the user object
                 User newUser = new User(gender, age, userName, quote, bio);
+                
+                out.println(gender);
+                out.println(age);
+                out.println(userName);
+                out.println(quote);
+                out.println(bio);
                 
                 //create a DAO
                 MySQLDao dao = new MySQLDao();
