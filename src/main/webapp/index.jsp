@@ -39,7 +39,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="http://builtwithbootstrap.com/" target="_blank">Settings</a>
                             </li>
-                            <li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">Login</a>
+                            <li><a href="SignIn">Login</a>
                             </li>
                         </ul>
                     </div>
