@@ -97,7 +97,7 @@
                 }
             });
             
-            $('# profile-form').validate();
+            $('#profile-form').validate();
         });
     </script>
     
