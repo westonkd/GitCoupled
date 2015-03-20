@@ -8,6 +8,7 @@ package Data;
 import Application.User;
 import java.util.List;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,6 +23,7 @@ public class MySQLDao implements SoulDao {
     private String password = "puremagic";
     private Connection conn = null;
     private Statement statement = null;
+    private ResultSet results = null;
 
     public MySQLDao() {
         try {
@@ -63,7 +65,7 @@ public class MySQLDao implements SoulDao {
 
         try {
             String sql = "SELECT * FROM user WHERE github_username = '" + username + "'";
-            ResultSet results = statement.executeQuery(sql);
+            results = statement.executeQuery(sql);
 
             results.first();
             int id = results.getInt("id");
@@ -95,7 +97,7 @@ public class MySQLDao implements SoulDao {
         {
             try {
                 String sql = "SELECT * FROM user WHERE id = " + user.getId();
-                ResultSet results = statement.executeQuery(sql);
+                results = statement.executeQuery(sql);
                 results.first();
                 
                 user.setGender(results.getString("gender"));
@@ -103,6 +105,7 @@ public class MySQLDao implements SoulDao {
                 user.setGithub_username(results.getString("github_username"));
                 user.setQuote(results.getString("quote"));
                 user.setBio(results.getString("bio"));
+                user.setCompat_score(results.getInt("compat_score"));
                 user.setFirst_language(results.getString("first_language"));
                 user.setSecond_language(results.getString("second_language"));
                 user.setThird_language(results.getString("third_language"));
@@ -115,7 +118,7 @@ public class MySQLDao implements SoulDao {
         {
             try {
                 String sql = "SELECT * FROM user WHERE github_username = '" + user.getGithub_username() + "'";
-                ResultSet results = statement.executeQuery(sql);
+                results = statement.executeQuery(sql);
                 results.first();
                 
                 user.setId(results.getInt("id"));
@@ -123,6 +126,7 @@ public class MySQLDao implements SoulDao {
                 user.setAge(results.getInt("age"));
                 user.setQuote(results.getString("quote"));
                 user.setBio(results.getString("bio"));
+                user.setCompat_score(results.getInt("compat_score"));
                 user.setFirst_language(results.getString("first_language"));
                 user.setSecond_language(results.getString("second_language"));
                 user.setThird_language(results.getString("third_language"));
@@ -136,17 +140,91 @@ public class MySQLDao implements SoulDao {
 
     @Override
     public List<User> getUsers(String primary, String secondary, String thirdly) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        List<User> list = new ArrayList<User>();
+        
+        try {
+            
+            String sql = "SELECT * FROM user WHERE "
+                    + "first_language = '" + primary + "' AND "
+                    + "second_language = '" + secondary + "' AND "
+                    + "third_language = '" + thirdly + "'";
+            results = statement.executeQuery(sql);
+            
+            while (results.next())            
+            {
+                int id = results.getInt("id");
+                String gender = results.getString("gender");
+                int age = results.getInt("age");
+                String username = results.getString("github_username");
+                String quote = results.getString("quote");
+                String bio = results.getString("bio");
+                int score = results.getInt("compat_score");
+                
+                User user = new User(id, gender, age, username, quote, bio, score, primary, secondary, thirdly);
+                list.add(user);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MySQLDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return list;
     }
 
     @Override
     public List<User> getUsers(String primary, String secondary) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        List<User> list = new ArrayList<User>();
+        
+        try {
+            
+            String sql = "SELECT * FROM user WHERE "
+                    + "first_language = '" + primary + "' AND "
+                    + "second_language = '" + secondary + "'";
+            results = statement.executeQuery(sql);
+            
+            while (results.next())            
+            {
+                int id = results.getInt("id");
+                String gender = results.getString("gender");
+                int age = results.getInt("age");
+                String username = results.getString("github_username");
+                String quote = results.getString("quote");
+                String bio = results.getString("bio");
+                int score = results.getInt("compat_score");
+                String thirdly = results.getString("third_language");
+                
+                User user = new User(id, gender, age, username, quote, bio, score, primary, secondary, thirdly);
+                list.add(user);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MySQLDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return list;
     }
 
     @Override
     public List<User> getUsers(String primary) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        List<User> list = new ArrayList<User>();
+        
+        try {
+            
+            String sql = "SELECT * FROM user WHERE "
+                    + "first_language = '" + primary + "''";
+            results = statement.executeQuery(sql);
+            
+            while (results.next())            
+            {
+                User user = new User(results);
+                list.add(user);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MySQLDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return list;
     }
 
 }
