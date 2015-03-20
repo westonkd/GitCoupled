@@ -59,6 +59,13 @@ public class CreateNewUser extends HttpServlet {
                 
                 //add the user to the database
                 dao.addUser(newUser);
+                
+                //Set user attribute
+                request.setAttribute("user", newUser);
+                request.setAttribute("github", github);
+                
+                //forward
+                request.getRequestDispatcher("profile.jsp").forward(request, response);  
             } else {
                 response.sendRedirect("index.jsp");
             }
