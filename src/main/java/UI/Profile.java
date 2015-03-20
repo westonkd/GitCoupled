@@ -45,18 +45,15 @@ public class Profile extends HttpServlet {
              User test = db.getUser("Legolas");
             
             db.addUser(test);
-
-            
-           
-            
+          
             response.getWriter().write(test.getQuote());
 
             //create the username
 
             //if the user is in the database
-            //go to the profile page
+                //go to the profile page
             //if the user is not in the database
-            //go to the new user form
+                //go to the new user form
         }
     }
 
