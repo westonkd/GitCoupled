@@ -5,6 +5,11 @@
  */
 package Application;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author McKay
@@ -22,6 +27,37 @@ public class User {
     private String second_language;
     private String third_language;
 
+    public User() {
+        id = -1;
+        gender = null;
+        age = -1;
+        github_username = null;
+        quote = null;
+        bio = null;
+        compat_score = -1;
+        first_language = null;
+        second_language = null;
+        third_language = null;
+    }
+    
+    public User(ResultSet results)
+    {
+        try {
+            int id = results.getInt("id");
+            String gender = results.getString("gender");
+            int age = results.getInt("age");
+            String username = results.getString("github_username");
+            String quote = results.getString("quote");
+            String bio = results.getString("bio");
+            int score = results.getInt("compat_score");
+            String primary = results.getString("first_language");
+            String secondary = results.getString("second_language");
+            String thirdly = results.getString("third_language");
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     /**
      * 
      * @param gender
@@ -31,6 +67,7 @@ public class User {
      * @param bio 
      */
     public User(String gender, int age, String github_username, String quote, String bio) {
+        this.id = -1;
         this.gender = gender;
         this.age = age;
         this.github_username = github_username;
