@@ -174,12 +174,11 @@ public class MySQLDao implements SoulDao {
     public List<User> getUsers(String primary, String secondary) {
         
         List<User> list = new ArrayList<User>();
+        String sql;
         
         try {
             
-            String sql = "SELECT * FROM user WHERE "
-                    + "first_language = '" + primary + "' AND "
-                    + "second_language = '" + secondary + "'";
+            sql = "SELECT * FROM user WHERE first_language = \"" + primary + "\" AND second_language = \"" + secondary + "\"";
             results = statement.executeQuery(sql);
             
             while (results.next())            
@@ -210,15 +209,25 @@ public class MySQLDao implements SoulDao {
         
         try {
             
-            String sql = "SELECT * FROM user WHERE "
-                    + "first_language = '" + primary + "''";
+            String sql = "SELECT * FROM user WHERE first_language = '" + primary + "'";
             results = statement.executeQuery(sql);
             
             while (results.next())            
             {
-                User user = new User(results);
+                int id = results.getInt("id");
+                String gender = results.getString("gender");
+                int age = results.getInt("age");
+                String username = results.getString("github_username");
+                String quote = results.getString("quote");
+                String bio = results.getString("bio");
+                int score = results.getInt("compat_score");
+                String secondary = results.getString("second_language");
+                String thirdly = results.getString("third_language");
+                
+                User user = new User(id, gender, age, username, quote, bio, score, primary, secondary, thirdly);
                 list.add(user);
             }
+            
         } catch (SQLException ex) {
             Logger.getLogger(MySQLDao.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -176,7 +176,6 @@
                     $(this).val('"' + current + '"');
                 }
             });
-
             $('#profile-form').validate();
         });
     </script>
