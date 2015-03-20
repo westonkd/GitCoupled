@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class MySQLDao implements SoulDao {
 
-    private String dbUrl = "jdbc:mysql://localhost:3306/gitcoupled";
+    private String dbUrl = "jdbc:mysql://localhost/gitcoupled";
     private String user = "Gandalf";
     private String password = "puremagic";
     private Connection conn = null;

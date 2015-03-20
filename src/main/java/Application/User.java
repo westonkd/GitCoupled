@@ -43,19 +43,28 @@ public class User {
     public User(ResultSet results)
     {
         try {
-            int id = results.getInt("id");
-            String gender = results.getString("gender");
-            int age = results.getInt("age");
-            String username = results.getString("github_username");
-            String quote = results.getString("quote");
-            String bio = results.getString("bio");
-            int score = results.getInt("compat_score");
-            String primary = results.getString("first_language");
-            String secondary = results.getString("second_language");
-            String thirdly = results.getString("third_language");
+            this.id = results.getInt("id");
+            this.gender = results.getString("gender");
+            this.age = results.getInt("age");
+            this.github_username = results.getString("github_username");
+            this.quote = results.getString("quote");
+            this.bio = results.getString("bio");
+            this.compat_score = results.getInt("compat_score");
+            this.first_language = results.getString("first_language");
+            this.second_language = results.getString("second_language");
+            this.third_language = results.getString("third_language");
+            
+            System.out.println("=====================================================================================");
+            System.out.println(results.getRow());
+            results.last();
+            System.out.println("=====================================================================================");
+            System.out.println(results.getRow());
+            System.out.println("=====================================================================================");
         } catch (SQLException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
     }
 
     /**

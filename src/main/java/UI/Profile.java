@@ -10,6 +10,7 @@ import Data.MySQLDao;
 import Data.SoulDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,10 +43,18 @@ public class Profile extends HttpServlet {
 
             SoulDao db = new MySQLDao();
 
-             User test = db.getUser("Legolas");
+            User test = db.getUser("Legolas");
             
             db.addUser(test);
           
+
+            List<User> guys = db.getUsers("Python");
+            
+            for (User guy: guys)
+            {
+                response.getWriter().write(guy.getAge()+ ' '+guy.getGithub_username());
+            }
+            
             response.getWriter().write(test.getQuote());
 
             //create the username
