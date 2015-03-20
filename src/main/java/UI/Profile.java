@@ -47,7 +47,7 @@ public class Profile extends HttpServlet {
             
             db.addUser(test);
 
-            List<User> guys = db.getUsers("Python");
+            List<User> guys = db.getUsers("Python", "Ruby");
             
             for (User guy: guys)
             {

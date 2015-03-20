@@ -40,9 +40,10 @@ public class User {
         third_language = null;
     }
     
-    public User(ResultSet results)
+    public User(ResultSet results, int row)
     {
         try {
+            results.absolute(row);
             this.id = results.getInt("id");
             this.gender = results.getString("gender");
             this.age = results.getInt("age");
@@ -55,7 +56,7 @@ public class User {
             this.third_language = results.getString("third_language");
             
             System.out.println("=====================================================================================");
-            System.out.println(results.getRow());
+            System.out.println(results.getRow() + " " + row);
             results.last();
             System.out.println("=====================================================================================");
             System.out.println(results.getRow());
