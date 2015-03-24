@@ -51,6 +51,7 @@ public class User {
 
     public User(ResultSet results, int row) {
         try {
+            
             results.absolute(row);
             this.id = results.getInt("id");
             this.gender = results.getString("gender");
@@ -63,12 +64,6 @@ public class User {
             this.second_language = results.getString("second_language");
             this.third_language = results.getString("third_language");
 
-            System.out.println("=====================================================================================");
-            System.out.println(results.getRow() + " " + row);
-            results.last();
-            System.out.println("=====================================================================================");
-            System.out.println(results.getRow());
-            System.out.println("=====================================================================================");
         } catch (SQLException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
         }
