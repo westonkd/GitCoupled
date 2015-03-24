@@ -128,6 +128,8 @@ public class User {
     }
 
     public void calcTopThreeLangs(GitHub github) throws IOException {
+        //TODO!! the top three langs need to be stored in the DB after this method is run
+        
         //store a mapping of languages to bytes
         Map<String, Integer> allLangs = new HashMap<>();
 
