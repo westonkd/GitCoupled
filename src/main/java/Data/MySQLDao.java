@@ -277,4 +277,50 @@ public class MySQLDao implements SoulDao {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @param first
+     * @param second
+     * @param third
+     */
+    @Override
+    public void saveLanguages(int id, String first, String second, String third) {
+        
+        if (id <= 0)
+            throw new IllegalArgumentException("The id of the user has not been set");
+        
+        String sql = "UPDATE user "
+                + "SET "
+                + "first_language = '" + first + "', "
+                + "second_language = '" + second + "', "
+                + "third_language = '" + third + "' "
+                + "WHERE id = " + id;
+        
+        try {
+            statement.executeUpdate(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(MySQLDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+
+    @Override
+    public void saveScore(int id, int score) {
+        
+        if (id <= 0)
+            throw new IllegalArgumentException("The id of the user has not been set");
+        
+        String sql = "UPDATE user "
+                + "SET "
+                + "compat_score = " + score + " "
+                + "WHERE id = " + id;
+        
+        try {
+            statement.executeUpdate(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(MySQLDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

@@ -23,6 +23,8 @@ public interface SoulDao {
     public List<User> getUsers(String primary);
     
     public void updateUser(User user);
+    public void saveLanguages(int id, String first, String second, String third);
+    public void saveScore(int id, int score);
     
     
 }
