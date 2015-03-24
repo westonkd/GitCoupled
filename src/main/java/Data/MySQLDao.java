@@ -251,7 +251,7 @@ public class MySQLDao implements SoulDao {
                     + "compat_score = " + user.getCompat_score()+ ", "
                     + "first_language = '" + user.getFirst_language() + "', "
                     + "second_language = '" + user.getSecond_language() + "', "
-                    + "third_language = '" + user.getThird_language() + "', "
+                    + "third_language = '" + user.getThird_language() + "' "
                     + "WHERE id = " + user.getId();
         else
             sql = "UPDATE user "
@@ -264,7 +264,7 @@ public class MySQLDao implements SoulDao {
                     + "compat_score = " + user.getCompat_score()+ ", "
                     + "first_language = '" + user.getFirst_language() + "', "
                     + "second_language = '" + user.getSecond_language() + "', "
-                    + "third_language = '" + user.getThird_language() + "', "
+                    + "third_language = '" + user.getThird_language() + "' "
                     + "WHERE github_username = '" + user.getGithub_username() + "'";
         
         try {
