@@ -305,6 +305,11 @@ public class MySQLDao implements SoulDao {
         
     }
 
+    /**
+     *
+     * @param id
+     * @param score
+     */
     @Override
     public void saveScore(int id, int score) {
         
