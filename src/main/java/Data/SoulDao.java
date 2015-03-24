@@ -22,5 +22,7 @@ public interface SoulDao {
     public List<User> getUsers(String primary, String secondary);
     public List<User> getUsers(String primary);
     
+    public void updateUser(User user);
+    
     
 }

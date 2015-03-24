@@ -235,4 +235,46 @@ public class MySQLDao implements SoulDao {
         return list;
     }
 
+    @Override
+    public void updateUser(User user) {
+        
+        String sql;
+        
+        if (user.getId() != -1)
+            sql = "UPDATE user "
+                    + "SET "
+                    + "gender = '" + user.getGender() + "', "
+                    + "age = " + user.getAge() + ", "
+                    + "github_username = '" + user.getGithub_username() + "', "
+                    + "quote = '" + user.getQuote() + "', "
+                    + "bio = '" + user.getBio() + "', "
+                    + "compat_score = " + user.getCompat_score()+ ", "
+                    + "first_language = '" + user.getFirst_language() + "', "
+                    + "second_language = '" + user.getSecond_language() + "', "
+                    + "third_language = '" + user.getThird_language() + "', "
+                    + "WHERE id = " + user.getId();
+        else
+            sql = "UPDATE user "
+                    + "SET "
+                    + "id = " + user.getId() + ", "
+                    + "gender = '" + user.getGender() + "', "
+                    + "age = " + user.getAge() + ", "
+                    + "quote = '" + user.getQuote() + "', "
+                    + "bio = '" + user.getBio() + "', "
+                    + "compat_score = " + user.getCompat_score()+ ", "
+                    + "first_language = '" + user.getFirst_language() + "', "
+                    + "second_language = '" + user.getSecond_language() + "', "
+                    + "third_language = '" + user.getThird_language() + "', "
+                    + "WHERE github_username = '" + user.getGithub_username() + "'";
+        
+        try {
+            
+            statement.executeUpdate(sql);
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MySQLDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }
