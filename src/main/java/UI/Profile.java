@@ -49,6 +49,13 @@ public class Profile extends HttpServlet {
             User user = db.getUser(github.getMyself().getLogin());
             //if the user is in the database
             if (user != null) {
+                //calculate the top three languages
+                try {
+                    user.calcTopThreeLangs(github);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+                
                 //Set user attribute
                 request.setAttribute("user", user);
                 
@@ -62,9 +69,6 @@ public class Profile extends HttpServlet {
                 //forward
                 request.getRequestDispatcher("edit-profile.jsp").forward(request, response);   
             }
-                
-
-                
         }
     }
 

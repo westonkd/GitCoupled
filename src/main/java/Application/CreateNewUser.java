@@ -56,70 +56,18 @@ public class CreateNewUser extends HttpServlet {
                 //create the user object
                 User newUser = new User(gender, age, userName, quote, bio);
 
-                //store a mapping of languages to bytes
-                Map<String, Integer> allLangs = new HashMap<>();
-
-                //get all repositories for the user
-                Map<String, GHRepository> repositories = github.getMyself().getRepositories();
-
-                //loop through each repository
-                for (String repo : repositories.keySet()) {
-
-                    //get languages specific to repository mapped to bytes written in languages
-                    Map<String, Integer> languages = repositories.get(repo).listLanguages();
-
-                    //loop through languages in repository
-                    for (String lang : languages.keySet()) {
-
-                        //if the global language map contains the key
-                        if (allLangs.containsKey(lang)) {
-                            //add the value for this repository to the total bytes written
-                            allLangs.replace(lang, languages.get(lang) + allLangs.get(lang));
-                        } else {
-                            //just add the number of bytes written
-                            allLangs.put(lang, languages.get(lang));
-                        }
-                    }
+                try {
+                    newUser.calcTopThreeLangs(github);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
                 }
 
-                //get a reverse of the map
-                Map<Integer, String> langsForSort = new HashMap<>();
-
-                for (Map.Entry<String, Integer> entry : allLangs.entrySet()) {
-                    langsForSort.put(entry.getValue(), entry.getKey());
-                }
-
-
-                //get the top languages
-                ArrayList<String> topLangs = new ArrayList<>();
-                SortedSet<Integer> keys = new TreeSet<Integer>(langsForSort.keySet()).descendingSet();
-                for (Integer key : keys) {
-                    if (langsForSort.get(key) != "HTML" && langsForSort.get(key) != "CSS") {
-                        topLangs.add(langsForSort.get(key));
-                    }
-                }
-                
-                //set the top language
-                if (topLangs.size() > 0) {
-                    newUser.setFirst_language(topLangs.get(0));
-                }
-                
-                 //set the second language
-                if (topLangs.size() > 1) {
-                    newUser.setSecond_language(topLangs.get(1));
-                }
-                
-                 //set the third language
-                if (topLangs.size() > 2) {
-                    newUser.setThird_language(topLangs.get(2));
-                }
-                
                 //create a DAO
                 MySQLDao dao = new MySQLDao();
 
                 //add the user to the database
                 dao.addUser(newUser);
-                
+
                 //Set user attribute
                 request.setAttribute("user", newUser);
                 request.setAttribute("github", github);
