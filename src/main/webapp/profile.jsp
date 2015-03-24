@@ -60,9 +60,9 @@
                             <h2>Gender: <c:out value = "${user.gender}" ></c:out></h2>
                             <h2>Love Languages</h2>
                             <ol>
-                                <li>C++</li>
-                                <li>JavaScript</li>
-                                <li>Lisp</li>
+                                <li><c:out value = "${user.getFirst_language()}" ></c:out></li>
+                                <li><c:out value = "${user.getSecond_language()}" ></c:out></li>
+                                <li><c:out value = "${user.getThird_language()}" ></c:out></li>
                             </ol>
                         </div>
                     </div>
