@@ -47,8 +47,8 @@
             <main class="message">
                 <div class="col-sm-12">
                     <h2>Found your soul mate? Why not let them know!</h2>
-                    <h3>From: <c:out value = "${github.getMyself().getName()}" ></c:out></h3>
-                    <img src="<c:out value = "${github.getMyself().getAvatarUrl()}" ></c:out>" id="profile-pic" class="profile pull-right" alt="user-image" />
+                    <h3>From: <c:out value = "${sessionScope.github.getMyself().getName()}" ></c:out></h3>
+                    <img src="<c:out value = "${sessionScope.github.getMyself().getAvatarUrl()}" ></c:out>" id="profile-pic" class="profile pull-right" alt="user-image" />
                     <form role="form" action="CreateNewMessage" method="POST" id="message-form">
                         <h3>To: 
                             <select name="sent_to">
@@ -57,7 +57,7 @@
                                 <option>Soul Mate 2</option>
                             </select>
                         </h3>
-                        <h4>Subject:</h4>
+                        <h4>Subject: </h4>
                         <div class="form-group">
                             <input required type="text" class="form-control" placeholder="I'm pure magic." name="Subject" id="subject">
                         </div>
