@@ -5,7 +5,8 @@
  */
 package Application;
 
-import Data.MySQLDao;
+import Data.MySQLUser;
+import Data.SoulDao;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -63,7 +64,7 @@ public class CreateNewUser extends HttpServlet {
                 }
 
                 //create a DAO
-                MySQLDao dao = new MySQLDao();
+                SoulDao dao = new MySQLUser();
 
                 //add the user to the database
                 dao.addUser(newUser);

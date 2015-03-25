@@ -19,6 +19,8 @@ public class Message {
     private Timestamp sent_date;
     private int sent_from;
     private int recieved_by;
+    private String from;
+    private String to;
 
     /**
      * 
@@ -26,6 +28,7 @@ public class Message {
      * @param body 
      */
     public Message(String subject, String body) {
+        this.id = -1;
         this.subject = subject;
         this.body = body;
     }
@@ -38,10 +41,30 @@ public class Message {
      * @param recieved_by 
      */
     public Message(String subject, String body, int sent_from, int recieved_by) {
+        this.id = -1;
         this.subject = subject;
         this.body = body;
         this.sent_from = sent_from;
         this.recieved_by = recieved_by;
+    }
+    
+    /**
+     * 
+     * @param subject
+     * @param body
+     * @param sent_from
+     * @param recieved_by
+     * @param from
+     * @param to 
+     */
+    public Message(String subject, String body, int sent_from, int recieved_by, String from, String to) {
+        this.id = -1;
+        this.subject = subject;
+        this.body = body;
+        this.sent_from = sent_from;
+        this.recieved_by = recieved_by;
+        this.from = from;
+        this.to = to;
     }
 
     /**
@@ -53,13 +76,15 @@ public class Message {
      * @param sent_from
      * @param recieved_by 
      */
-    public Message(int id, String subject, String body, Timestamp sent_date, int sent_from, int recieved_by) {
+    public Message(int id, String subject, String body, Timestamp sent_date, int sent_from, int recieved_by, String from, String to) {
         this.id = id;
         this.subject = subject;
         this.body = body;
         this.sent_date = sent_date;
         this.sent_from = sent_from;
         this.recieved_by = recieved_by;
+        this.from = from;
+        this.to = to;
     }
 
     /**
@@ -156,6 +181,22 @@ public class Message {
      */
     public void setRecieved_by(int recieved_by) {
         this.recieved_by = recieved_by;
+    }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public String getTo() {
+        return to;
+    }
+
+    public void setTo(String to) {
+        this.to = to;
     }
     
 }

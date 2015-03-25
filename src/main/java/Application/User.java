@@ -5,7 +5,7 @@
  */
 package Application;
 
-import Data.MySQLDao;
+import Data.MySQLUser;
 import Data.SoulDao;
 import com.jcabi.github.Github;
 import java.io.IOException;
@@ -190,7 +190,7 @@ public class User {
         }
         
         //updates the user in the db.
-        SoulDao dao = new MySQLDao();
+        SoulDao dao = new MySQLUser();
         //This updates the entire user
         //dao.updateUser(this);
         //or, you could just set the languages...probably more efficient...

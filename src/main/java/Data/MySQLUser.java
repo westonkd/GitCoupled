@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  *
  * @author McKay
  */
-public class MySQLDao implements SoulDao {
+public class MySQLUser implements SoulDao {
 
     private String dbUrl = "jdbc:mysql://localhost/gitcoupled";
     private String user = "Gandalf";
@@ -25,7 +25,7 @@ public class MySQLDao implements SoulDao {
     private Statement statement = null;
     private ResultSet results = null;
 
-    public MySQLDao() {
+    public MySQLUser() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(dbUrl, user, password);
@@ -110,7 +110,7 @@ public class MySQLDao implements SoulDao {
                 user.setThird_language(results.getString("third_language"));
                 
             } catch (SQLException ex) {
-                Logger.getLogger(MySQLDao.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         else if (user.getGithub_username() != null)
@@ -130,7 +130,7 @@ public class MySQLDao implements SoulDao {
                 user.setSecond_language(results.getString("second_language"));
                 user.setThird_language(results.getString("third_language"));
             } catch (SQLException ex) {
-                Logger.getLogger(MySQLDao.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         
@@ -164,7 +164,7 @@ public class MySQLDao implements SoulDao {
                 list.add(user);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(MySQLDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return list;
@@ -196,7 +196,7 @@ public class MySQLDao implements SoulDao {
                 list.add(user);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(MySQLDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return list;
@@ -229,7 +229,7 @@ public class MySQLDao implements SoulDao {
             }
             
         } catch (SQLException ex) {
-            Logger.getLogger(MySQLDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return list;
@@ -273,7 +273,7 @@ public class MySQLDao implements SoulDao {
             
             
         } catch (SQLException ex) {
-            Logger.getLogger(MySQLDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -300,7 +300,7 @@ public class MySQLDao implements SoulDao {
         try {
             statement.executeUpdate(sql);
         } catch (SQLException ex) {
-            Logger.getLogger(MySQLDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
@@ -324,7 +324,7 @@ public class MySQLDao implements SoulDao {
         try {
             statement.executeUpdate(sql);
         } catch (SQLException ex) {
-            Logger.getLogger(MySQLDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

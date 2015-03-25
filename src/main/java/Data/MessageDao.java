@@ -12,9 +12,9 @@ import java.util.List;
  *
  * @author McKay
  */
-public interface LovenoteDao {
+public interface MessageDao {
     
-    public List<Message> getMessages(int id);
+    public Message getMessage(int id);
     public List<Message> getMessages(String username);
     
     public void saveMessage(Message message);
