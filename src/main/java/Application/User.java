@@ -5,6 +5,8 @@
  */
 package Application;
 
+import Data.MySQLDao;
+import Data.SoulDao;
 import com.jcabi.github.Github;
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -122,6 +124,11 @@ public class User {
         this.third_language = third_language;
     }
 
+    /**
+     * 
+     * @param github
+     * @throws IOException 
+     */
     public void calcTopThreeLangs(GitHub github) throws IOException {
         //TODO!! the top three langs need to be stored in the DB after this method is run
         
@@ -181,6 +188,13 @@ public class User {
         if (topLangs.size() > 2) {
             this.setThird_language(topLangs.get(2));
         }
+        
+        //updates the user in the db.
+        SoulDao dao = new MySQLDao();
+        //This updates the entire user
+        //dao.updateUser(this);
+        //or, you could just set the languages...probably more efficient...
+        dao.saveLanguages(this.getId(), topLangs.get(0), topLangs.get(1), topLangs.get(2));
 
     }
 
