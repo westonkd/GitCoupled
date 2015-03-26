@@ -22,6 +22,8 @@ public interface SoulDao {
     public List<User> getUsers(String primary, String secondary);
     public List<User> getUsers(String primary);
     public List<User> usersThatHaveLanguage(String language);
+    public List<User> usersThatHaveLanguages(String aLanguage, String bLanguage);
+    public List<User> usersThatHaveLanguages(String aLanguage, String bLanguage, String cLanguage);
     
     public void updateUser(User user);
     public void saveLanguages(int id, String first, String second, String third);

@@ -365,4 +365,90 @@ public class MySQLUser implements SoulDao {
         return users;
     }
 
+    @Override
+    public List<User> usersThatHaveLanguages(String aLanguage, String bLanguage) {
+        
+        List<User> users = new ArrayList();
+        String sql = "SELECT * FROM user " 
+                + "WHERE " 
+                + "(first_language = '" + aLanguage + "' OR " 
+                + "second_language = '" + aLanguage + "' OR " 
+                + "third_language = '" + aLanguage + "') " 
+                + "AND " 
+                + "(first_language = '" + bLanguage + "' OR  " 
+                + "second_language = '" + bLanguage + "' OR  " 
+                + "third_language = '" + bLanguage + "') ";
+        
+        try {
+            results = statement.executeQuery(sql);
+            
+            while(results.next())
+            {
+                int id = results.getInt("id");
+                String gender = results.getString("gender");
+                int age = results.getInt("age");
+                String username = results.getString("github_username");
+                String quote = results.getString("quote");
+                String bio = results.getString("bio");
+                int score = results.getInt("compat_score");
+                String primary = results.getString("primary");
+                String secondary = results.getString("second_language");
+                String thirdly = results.getString("third_language");
+                
+                User user = new User(id, gender, age, username, quote, bio, score, primary, secondary, thirdly);
+                users.add(user);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return users;
+    }
+
+    @Override
+    public List<User> usersThatHaveLanguages(String aLanguage, String bLanguage, String cLanguage) {
+        
+        List<User> users = new ArrayList();
+        String sql = "SELECT * FROM user " 
+                + "WHERE " 
+                + "(first_language = '" + aLanguage + "' OR " 
+                + "second_language = '" + aLanguage + "' OR " 
+                + "third_language = '" + aLanguage + "') " 
+                + "AND " 
+                + "(first_language = '" + bLanguage + "' OR  " 
+                + "second_language = '" + bLanguage + "' OR  " 
+                + "third_language = '" + bLanguage + "') " 
+                + "AND " 
+                + "(first_language = '" + cLanguage + "' OR " 
+                + "second_language = '" + cLanguage + "' OR " 
+                + "third_language = '" + cLanguage + "')";
+        
+        try {
+            results = statement.executeQuery(sql);
+            
+            while(results.next())
+            {
+                int id = results.getInt("id");
+                String gender = results.getString("gender");
+                int age = results.getInt("age");
+                String username = results.getString("github_username");
+                String quote = results.getString("quote");
+                String bio = results.getString("bio");
+                int score = results.getInt("compat_score");
+                String primary = results.getString("primary");
+                String secondary = results.getString("second_language");
+                String thirdly = results.getString("third_language");
+                
+                User user = new User(id, gender, age, username, quote, bio, score, primary, secondary, thirdly);
+                users.add(user);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return users;
+    }
+
 }
