@@ -89,11 +89,11 @@
                             <form role="form" action="CreateNewMessage" method="POST" id="message-form">
                                 <h4>Subject: </h4>
                                 <div class="form-group">
-                                    <input required type="text" class="form-control" placeholder="I'm pure magic." name="Subject" id="subject">
+                                    <input required type="text" class="form-control" placeholder="Love" name="Subject" id="subject">
                                 </div>
                                 <h4>Message: </h4>
                                 <div class="form-group">
-                                    <textarea required class="form-control" name="body" rows="5" id="message-body" placeholder="You could be my precious..."></textarea>
+                                    <textarea required class="form-control" name="body" rows="5" id="message-body" placeholder="Hi there..."></textarea>
                                 </div>
                             </form>
                         </div>
@@ -104,6 +104,6 @@
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
-        </c:forEach>Ï
+        </c:forEach>
     </body>
 </html>
