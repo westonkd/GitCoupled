@@ -28,13 +28,14 @@ import org.kohsuke.github.GitHub;
 public class GHMatchMaker {
 
     //the person to find the matches for
-    User toMatch;
+    private User toMatch;
 
     //mapping of matches
-    Map<Integer, Set<User>> matches;
+    private Map<Integer, Set<User>> matches;
+    private Set<User> userMatches;
 
     //github object
-    GitHub github;
+    private GitHub github;
 
     GHMatchMaker(User user, GitHub github) {
         //set the user we are matching
@@ -45,6 +46,17 @@ public class GHMatchMaker {
 
         //set the github
         this.github = github;
+
+        //calculate the matches!
+        calculateMatches();
+    }
+    
+    GHMatchMaker(User user) {
+        //set the user we are matching
+        toMatch = user;
+
+        //create an empty map
+        matches = new TreeMap<Integer, Set<User>>().descendingMap();
 
         //calculate the matches!
         calculateMatches();
@@ -60,6 +72,15 @@ public class GHMatchMaker {
 
     public Map<Integer, Set<User>> getMatches() {
         return matches;
+    }
+    
+    public Set<User> getAllMatches()
+    {
+        for (int i = 0; i < matches.size(); ++i)
+        {
+            userMatches.addAll(matches.get(i));
+        }
+        return userMatches;
     }
 
     /**

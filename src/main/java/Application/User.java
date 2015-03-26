@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.logging.Level;
@@ -40,6 +41,7 @@ public class User {
     private String first_language;
     private String second_language;
     private String third_language;
+    private Set<User> matches;
 
     public User() {
         id = -1;
@@ -52,27 +54,7 @@ public class User {
         first_language = null;
         second_language = null;
         third_language = null;
-    }
-
-    public User(ResultSet results, int row) {
-        try {
-
-            results.absolute(row);
-            this.id = results.getInt("id");
-            this.gender = results.getString("gender");
-            this.age = results.getInt("age");
-            this.github_username = results.getString("github_username");
-            this.quote = results.getString("quote");
-            this.bio = results.getString("bio");
-            this.compat_score = results.getInt("compat_score");
-            this.first_language = results.getString("first_language");
-            this.second_language = results.getString("second_language");
-            this.third_language = results.getString("third_language");
-
-        } catch (SQLException ex) {
-            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        matches = null;
     }
 
     /**
@@ -90,8 +72,21 @@ public class User {
         this.github_username = github_username;
         this.quote = quote;
         this.bio = bio;
+        
+        //get matches
+        GHMatchMaker matchfinder = new GHMatchMaker(this);
+        matches = matchfinder.getAllMatches();
     }
 
+    /**
+     * 
+     * @param id
+     * @param gender
+     * @param age
+     * @param github_username
+     * @param quote
+     * @param bio 
+     */
     public User(int id, String gender, int age, String github_username, String quote, String bio) {
         this.id = id;
         this.gender = gender;
@@ -99,6 +94,10 @@ public class User {
         this.github_username = github_username;
         this.quote = quote;
         this.bio = bio;
+        
+        //get matches
+        GHMatchMaker matchfinder = new GHMatchMaker(this);
+        matches = matchfinder.getAllMatches();
     }
 
     /**
@@ -125,6 +124,18 @@ public class User {
         this.first_language = first_language;
         this.second_language = second_language;
         this.third_language = third_language;
+        
+        //get matches
+        GHMatchMaker matchfinder = new GHMatchMaker(this);
+        matches = matchfinder.getAllMatches();
+    }
+
+    public Set<User> getMatches() {
+        return matches;
+    }
+
+    public void setMatches(Set<User> matches) {
+        this.matches = matches;
     }
 
     /**
