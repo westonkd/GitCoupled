@@ -361,10 +361,6 @@ public class User {
         this.third_language = third_language;
     }
 
-    String getFirst_Language() {
-        return this.first_language;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (o instanceof User) {

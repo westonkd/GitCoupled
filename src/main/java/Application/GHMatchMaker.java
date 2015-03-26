@@ -69,7 +69,7 @@ public class GHMatchMaker {
     private void calculateMatches() {
         SoulDao dao = new MySQLUser();
 
-        //get the top matches
+        //10
         for (User match : dao.getUsers(toMatch.getFirst_language(), toMatch.getSecond_language(), toMatch.getThird_language())) {
             if (!match.getGithub_username().equals(toMatch.getGithub_username())) {
                 //if the key exists
@@ -85,7 +85,7 @@ public class GHMatchMaker {
             }
         }
 
-        //get the second matches
+        //9
         for (User match : dao.getUsers(toMatch.getFirst_language(), toMatch.getSecond_language())) {
             //only add the match if not already in the dictionary
             if (!match.equals(toMatch)) {
@@ -112,8 +112,8 @@ public class GHMatchMaker {
             }
         }
 
-        //get the third matches
-        for (User match : dao.getUsers(toMatch.getFirst_language())) {
+        //8
+        for (User match : dao.getUsers(toMatch.getFirst_language(), toMatch.getThird_language())) {
             //only add the match if not already in the dictionary
             if (!match.equals(toMatch)) {
                 boolean add = true;
@@ -136,6 +136,296 @@ public class GHMatchMaker {
                     matches.put(8, temp);
                 }
 
+            }
+        }
+        
+        //7
+        for (User match : dao.getUsers(toMatch.getSecond_language(), toMatch.getThird_language())) {
+            //only add the match if not already in the dictionary
+            if (!match.equals(toMatch)) {
+                boolean add = true;
+
+                //check if the match is already in the list
+                for (Integer key : matches.keySet()) {
+                    if (matches.get(key).contains(match)) {
+                        add = false;
+                    }
+                }
+
+                //if the user is not in a list already
+                if (add && matches.containsKey(7)) {
+                    matches.get(7).add(match);
+                } else if (add) {
+                    //create the new set with the user
+                    Set<User> temp = new HashSet<>();
+                    temp.add(match);
+
+                    matches.put(7, temp);
+                }
+
+            }
+        }
+        
+        //6
+        for (User match : dao.usersThatHaveLanguages(toMatch.getFirst_language(), toMatch.getSecond_language(), toMatch.getThird_language())) {
+            //only add the match if not already in the dictionary
+            if (!match.equals(toMatch)) {
+                boolean add = true;
+
+                //check if the match is already in the list
+                for (Integer key : matches.keySet()) {
+                    if (matches.get(key).contains(match)) {
+                        add = false;
+                    }
+                }
+
+                //if the user is not in a list already
+                if (add && matches.containsKey(6)) {
+                    matches.get(6).add(match);
+                } else if (add) {
+                    //create the new set with the user
+                    Set<User> temp = new HashSet<>();
+                    temp.add(match);
+
+                    matches.put(6, temp);
+                }
+            }
+        }
+        
+        //5
+        for (User match : dao.usersThatHaveLanguages(toMatch.getFirst_language(), toMatch.getSecond_language())) {
+            //only add the match if not already in the dictionary
+            if (!match.equals(toMatch)) {
+                boolean add = true;
+
+                //check if the match is already in the list
+                for (Integer key : matches.keySet()) {
+                    if (matches.get(key).contains(match)) {
+                        add = false;
+                    }
+                }
+
+                //if the user is not in a list already
+                if (add && matches.containsKey(5)) {
+                    matches.get(5).add(match);
+                } else if (add) {
+                    //create the new set with the user
+                    Set<User> temp = new HashSet<>();
+                    temp.add(match);
+
+                    matches.put(5, temp);
+                }
+
+            }
+        }
+        
+        //5
+        for (User match : dao.usersThatHaveLanguages(toMatch.getFirst_language(), toMatch.getThird_language())) {
+            //only add the match if not already in the dictionary
+            if (!match.equals(toMatch)) {
+                boolean add = true;
+
+                //check if the match is already in the list
+                for (Integer key : matches.keySet()) {
+                    if (matches.get(key).contains(match)) {
+                        add = false;
+                    }
+                }
+
+                //if the user is not in a list already
+                if (add && matches.containsKey(5)) {
+                    matches.get(5).add(match);
+                } else if (add) {
+                    //create the new set with the user
+                    Set<User> temp = new HashSet<>();
+                    temp.add(match);
+
+                    matches.put(5, temp);
+                }
+
+            }
+        }
+        
+        //5
+        for (User match : dao.usersThatHaveLanguages(toMatch.getSecond_language(), toMatch.getThird_language())) {
+            //only add the match if not already in the dictionary
+            if (!match.equals(toMatch)) {
+                boolean add = true;
+
+                //check if the match is already in the list
+                for (Integer key : matches.keySet()) {
+                    if (matches.get(key).contains(match)) {
+                        add = false;
+                    }
+                }
+
+                //if the user is not in a list already
+                if (add && matches.containsKey(5)) {
+                    matches.get(5).add(match);
+                } else if (add) {
+                    //create the new set with the user
+                    Set<User> temp = new HashSet<>();
+                    temp.add(match);
+
+                    matches.put(5, temp);
+                }
+
+            }
+        }
+        
+        //4
+        for (User match : dao.getUsers(toMatch.getFirst_language())) {
+            //only add the match if not already in the dictionary
+            if (!match.equals(toMatch)) {
+                boolean add = true;
+
+                //check if the match is already in the list
+                for (Integer key : matches.keySet()) {
+                    if (matches.get(key).contains(match)) {
+                        add = false;
+                    }
+                }
+
+                //if the user is not in a list already
+                if (add && matches.containsKey(5)) {
+                    matches.get(5).add(match);
+                } else if (add) {
+                    //create the new set with the user
+                    Set<User> temp = new HashSet<>();
+                    temp.add(match);
+
+                    matches.put(5, temp);
+                }
+            }
+        }
+        
+        //3
+        for (User match : dao.getUsers(toMatch.getSecond_language())) {
+            //only add the match if not already in the dictionary
+            if (!match.equals(toMatch)) {
+                boolean add = true;
+
+                //check if the match is already in the list
+                for (Integer key : matches.keySet()) {
+                    if (matches.get(key).contains(match)) {
+                        add = false;
+                    }
+                }
+
+                //if the user is not in a list already
+                if (add && matches.containsKey(5)) {
+                    matches.get(5).add(match);
+                } else if (add) {
+                    //create the new set with the user
+                    Set<User> temp = new HashSet<>();
+                    temp.add(match);
+
+                    matches.put(5, temp);
+                }
+            }
+        }
+        
+        //2
+        for (User match : dao.getUsers(toMatch.getThird_language())) {
+            //only add the match if not already in the dictionary
+            if (!match.equals(toMatch)) {
+                boolean add = true;
+
+                //check if the match is already in the list
+                for (Integer key : matches.keySet()) {
+                    if (matches.get(key).contains(match)) {
+                        add = false;
+                    }
+                }
+
+                //if the user is not in a list already
+                if (add && matches.containsKey(5)) {
+                    matches.get(5).add(match);
+                } else if (add) {
+                    //create the new set with the user
+                    Set<User> temp = new HashSet<>();
+                    temp.add(match);
+
+                    matches.put(5, temp);
+                }
+            }
+        }
+        
+        //1
+        for (User match : dao.usersThatHaveLanguage(toMatch.getFirst_language())) {
+            //only add the match if not already in the dictionary
+            if (!match.equals(toMatch)) {
+                boolean add = true;
+
+                //check if the match is already in the list
+                for (Integer key : matches.keySet()) {
+                    if (matches.get(key).contains(match)) {
+                        add = false;
+                    }
+                }
+
+                //if the user is not in a list already
+                if (add && matches.containsKey(5)) {
+                    matches.get(5).add(match);
+                } else if (add) {
+                    //create the new set with the user
+                    Set<User> temp = new HashSet<>();
+                    temp.add(match);
+
+                    matches.put(5, temp);
+                }
+            }
+        }
+        
+        //1
+        for (User match : dao.usersThatHaveLanguage(toMatch.getSecond_language())) {
+            //only add the match if not already in the dictionary
+            if (!match.equals(toMatch)) {
+                boolean add = true;
+
+                //check if the match is already in the list
+                for (Integer key : matches.keySet()) {
+                    if (matches.get(key).contains(match)) {
+                        add = false;
+                    }
+                }
+
+                //if the user is not in a list already
+                if (add && matches.containsKey(5)) {
+                    matches.get(5).add(match);
+                } else if (add) {
+                    //create the new set with the user
+                    Set<User> temp = new HashSet<>();
+                    temp.add(match);
+
+                    matches.put(5, temp);
+                }
+            }
+        }
+        
+        //1
+        for (User match : dao.usersThatHaveLanguage(toMatch.getThird_language())) {
+            //only add the match if not already in the dictionary
+            if (!match.equals(toMatch)) {
+                boolean add = true;
+
+                //check if the match is already in the list
+                for (Integer key : matches.keySet()) {
+                    if (matches.get(key).contains(match)) {
+                        add = false;
+                    }
+                }
+
+                //if the user is not in a list already
+                if (add && matches.containsKey(5)) {
+                    matches.get(5).add(match);
+                } else if (add) {
+                    //create the new set with the user
+                    Set<User> temp = new HashSet<>();
+                    temp.add(match);
+
+                    matches.put(5, temp);
+                }
             }
         }
     }
