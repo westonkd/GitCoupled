@@ -451,4 +451,24 @@ public class MySQLUser implements SoulDao {
         return users;
     }
 
+    @Override
+    public int getUserId(String username) {
+        
+        int id = -1;
+        String sql = "Select id From user "
+                + "WHERE github_username = '" + username + "'";
+        
+        try {
+            
+            results = statement.executeQuery(sql);
+            results.first();
+                       
+            id = results.getInt("id");
+        } catch (SQLException ex) {
+            Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return id;
+    }
+
 }

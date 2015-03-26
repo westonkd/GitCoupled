@@ -29,5 +29,7 @@ public interface SoulDao {
     public void saveLanguages(int id, String first, String second, String third);
     public void saveScore(int id, int score);
     
+    public int getUserId(String username);
+    
     
 }
