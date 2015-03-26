@@ -328,4 +328,41 @@ public class MySQLUser implements SoulDao {
         }
     }
 
+    @Override
+    public List<User> usersThatHaveLanguage(String language) {
+        
+        List<User> users = new ArrayList();
+        String sql = "SELECT * FROM user "
+                + "WHERE "
+                + "first_language = '" + language + "' OR "
+                + "second_language = '" + language + "' OR "
+                + "third_language = '" + language + "'";
+        
+        try {
+            results = statement.executeQuery(sql);
+            
+            while(results.next())
+            {
+                int id = results.getInt("id");
+                String gender = results.getString("gender");
+                int age = results.getInt("age");
+                String username = results.getString("github_username");
+                String quote = results.getString("quote");
+                String bio = results.getString("bio");
+                int score = results.getInt("compat_score");
+                String primary = results.getString("primary");
+                String secondary = results.getString("second_language");
+                String thirdly = results.getString("third_language");
+                
+                User user = new User(id, gender, age, username, quote, bio, score, primary, secondary, thirdly);
+                users.add(user);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return users;
+    }
+
 }
