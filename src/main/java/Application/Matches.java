@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UI;
+package Application;
 
-import Application.User;
 import Data.MySQLUser;
 import Data.SoulDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,8 +23,8 @@ import org.kohsuke.github.GitHub;
  *
  * @author weston
  */
-@WebServlet(name = "Profile", urlPatterns = {"/Profile"})
-public class Profile extends HttpServlet {
+@WebServlet(name = "Matches", urlPatterns = {"/Matches"})
+public class Matches extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,47 +37,25 @@ public class Profile extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-           
-            //get the github instance
-            GitHub github = (GitHub) request.getSession().getAttribute("github");
-
-            //create DAO 
-            SoulDao db = new MySQLUser();
-
-            //create the username
-            User user = db.getUser(github.getMyself().getLogin());
-            //if the user is in the database
-            if (user != null) {
-                //calculate the top three languages
-                try {
-                    user.calcTopThreeLangs(github);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
+        //get the github object
+        GitHub github = (GitHub) request.getSession().getAttribute("github");
+        User user = (User) request.getSession().getAttribute("user");
+        SoulDao dao = new MySQLUser();
+        
+        if (github != null && user != null) {
+            //create a match maker
+            GHMatchMaker matchMaker = new GHMatchMaker(user, github);
+            
+            //get the matches
+            Map<Integer, Set<User>> matches = matchMaker.getMatches();
+            
+            for (Integer key : matches.keySet()) {
+                for (User match : matches.get(key)) {
+                    response.getWriter().println(match.getGithub_username() + " - " + key);
                 }
-                
-                //Set user attribute
-                request.setAttribute("user", user);
-                request.getSession().setAttribute("user", user);
-                
-                //forward
-                request.getRequestDispatcher("profile.jsp").forward(request, response);   
-                
-            } else {                
-                //Set github attribute
-                request.setAttribute("github", github);
-                
-                //get the user
-                user = db.getUser(github.getMyself().getLogin());
-                
-                //Set user attribute
-                request.setAttribute("user", user);
-                request.getSession().setAttribute("user", user);
-                
-                //forward
-                request.getRequestDispatcher("edit-profile.jsp").forward(request, response);   
             }
+        } else {
+            response.sendRedirect("index.jsp");
         }
     }
 

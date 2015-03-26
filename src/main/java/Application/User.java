@@ -8,12 +8,15 @@ package Application;
 import Data.MySQLUser;
 import Data.SoulDao;
 import com.jcabi.github.Github;
+import com.sun.org.apache.xpath.internal.operations.Variable;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.logging.Level;
@@ -53,7 +56,7 @@ public class User {
 
     public User(ResultSet results, int row) {
         try {
-            
+
             results.absolute(row);
             this.id = results.getInt("id");
             this.gender = results.getString("gender");
@@ -125,13 +128,13 @@ public class User {
     }
 
     /**
-     * 
+     *
      * @param github
-     * @throws IOException 
+     * @throws IOException
      */
     public void calcTopThreeLangs(GitHub github) throws IOException {
         //TODO!! the top three langs need to be stored in the DB after this method is run
-        
+
         //store a mapping of languages to bytes
         Map<String, Integer> allLangs = new HashMap<>();
 
@@ -188,7 +191,7 @@ public class User {
         if (topLangs.size() > 2) {
             this.setThird_language(topLangs.get(2));
         }
-        
+
         //updates the user in the db.
         SoulDao dao = new MySQLUser();
         //This updates the entire user
@@ -358,4 +361,24 @@ public class User {
         this.third_language = third_language;
     }
 
+    String getFirst_Language() {
+        return this.first_language;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof User) {
+            User toCompare = (User) o;
+            return this.github_username.equals(toCompare.getGithub_username());
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 53 * hash + this.id;
+        hash = 53 * hash + Objects.hashCode(this.github_username);
+        return hash;
+    }
 }
