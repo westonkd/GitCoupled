@@ -41,21 +41,20 @@ public class Matches extends HttpServlet {
         GitHub github = (GitHub) request.getSession().getAttribute("github");
         User user = (User) request.getSession().getAttribute("user");
         SoulDao dao = new MySQLUser();
-        
+
         if (github != null && user != null) {
             //create a match maker
             GHMatchMaker matchMaker = new GHMatchMaker(user, github);
-            
+
             //get the matches
             Map<Integer, Set<User>> matches = matchMaker.getMatches();
+
+            //set the attribute and pass to jsp
+            request.setAttribute("matches", matches);
             
-            for (Integer key : matches.keySet()) {
-                for (User match : matches.get(key)) {
-                    response.getWriter().println(match.getGithub_username() + " - " + key);
-                }
-            }
+            request.getRequestDispatcher("matches.jsp").forward(request, response);
         } else {
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("SignIn");
         }
     }
 

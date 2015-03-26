@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.SortedSet;
+import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,7 +41,7 @@ public class GHMatchMaker {
         toMatch = user;
 
         //create an empty map
-        matches = new HashMap<>();
+        matches = new TreeMap<Integer, Set<User>>().descendingMap();
 
         //set the github
         this.github = github;

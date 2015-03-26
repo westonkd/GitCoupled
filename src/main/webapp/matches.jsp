@@ -4,6 +4,7 @@
     Author     : richard
 --%>
 
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -22,7 +23,7 @@
 
     <body class="gitcoupled">
         <div class="container">
-            
+
             <div class="navbar navbar-default navbar-fixed-top coupled">
                 <div class="container">
                     <div class="navbar-header">
@@ -45,101 +46,33 @@
                     </div>
                 </div>
             </div>
-            
+
             <main class="matches">
-                <h1><strong>Possible Matches For:</strong> Arwen</h1>
-                <div class="row match">
-                    <div class="col-sm-2">
-                        <div class="thumbnail">
-                            <img src="images/ori.jpg" class="profile-image"/>
+                <h1><strong>Possible Matches For:</strong> ${github.getMyself().getName()}</h1>
+
+                <c:forEach items="${matches.keySet()}" var="matchList">
+                    <c:forEach items="${matches.get(matchList)}" var="match">
+                        <div class="row match">
+                            <div class="col-sm-2">
+                                <div class="thumbnail">
+                                    <img src="${github.getUser(match.getGithub_username()).getAvatarUrl()}" class="profile-image"/>
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <h2>${github.getUser(match.getGithub_username()).getName()}</h2>
+                                <h3>Relationship Match ${matchList}</h3>
+                                <h3>Primary Language: ${match.getFirst_language()}</h3>
+                                <h3 class="quote">
+                                    "${match.quote}"
+                                </h3>
+                            </div>
+                            <div class="col-sm-3">
+                                <a class="btn btn-success message-btn" id="sign-up" >View Profile</a>
+                                <a class="btn btn-primary message-btn " id="sign-up">Message</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-7">
-                        <h2>Ori</h2>
-                        <h3>Relationship Match 100%</h3>
-                        <h3>Primary Language: C++</h3>
-                        <h3 class="quote">
-                            "You could be my precious."
-                        </h3>
-                    </div>
-                    <div class="col-sm-3">
-                        <a class="btn btn-success message-btn" id="sign-up" >View Profile</a>
-                        <a class="btn btn-primary message-btn " id="sign-up">Message</a>
-                    </div>
-                </div><div class="row match">
-                    <div class="col-sm-2">
-                        <div class="thumbnail">
-                            <img src="images/ori.jpg" class="profile-image"/>
-                        </div>
-                    </div>
-                    <div class="col-sm-7">
-                        <h2>Ori</h2>
-                        <h3>Relationship Match 100%</h3>
-                        <h3>Primary Language: C++</h3>
-                        <h3 class="quote">
-                            "You could be my precious."
-                        </h3>
-                    </div>
-                    <div class="col-sm-3">
-                        <a class="btn btn-success message-btn" id="sign-up" >View Profile</a>
-                        <a class="btn btn-primary message-btn " id="sign-up">Message</a>
-                    </div>
-                </div><div class="row match">
-                    <div class="col-sm-2">
-                        <div class="thumbnail">
-                            <img src="images/ori.jpg" class="profile-image"/>
-                        </div>
-                    </div>
-                    <div class="col-sm-7">
-                        <h2>Ori</h2>
-                        <h3>Relationship Match 100%</h3>
-                        <h3>Primary Language: C++</h3>
-                        <h3 class="quote">
-                            "You could be my precious."
-                        </h3>
-                    </div>
-                    <div class="col-sm-3">
-                        <a class="btn btn-success message-btn" id="sign-up" >View Profile</a>
-                        <a class="btn btn-primary message-btn " id="sign-up">Message</a>
-                    </div>
-                </div><div class="row match">
-                    <div class="col-sm-2">
-                        <div class="thumbnail">
-                            <img src="images/ori.jpg" class="profile-image"/>
-                        </div>
-                    </div>
-                    <div class="col-sm-7">
-                        <h2>Ori</h2>
-                        <h3>Relationship Match 100%</h3>
-                        <h3>Primary Language: C++</h3>
-                        <h3 class="quote">
-                            "You could be my precious."
-                        </h3>
-                    </div>
-                    <div class="col-sm-3">
-                        <a class="btn btn-success message-btn" id="sign-up" >View Profile</a>
-                        <a class="btn btn-primary message-btn " id="sign-up">Message</a>
-                    </div>
-                </div><div class="row match">
-                    <div class="col-sm-2">
-                        <div class="thumbnail">
-                            <img src="images/ori.jpg" class="profile-image"/>
-                        </div>
-                    </div>
-                    <div class="col-sm-7">
-                        <h2>Ori</h2>
-                        <h3>Relationship Match 100%</h3>
-                        <h3>Primary Language: C++</h3>
-                        <h3 class="quote">
-                            "You could be my precious."
-                        </h3>
-                    </div>
-                    <div class="col-sm-3">
-                        <a class="btn btn-success message-btn" id="sign-up" >View Profile</a>
-                        <a class="btn btn-primary message-btn " id="sign-up">Message</a>
-                    </div>
-                </div>
-                
+                    </c:forEach> 
+                </c:forEach>
             </main>
             <footer class="row">
                 <div class="col-sm-3">
