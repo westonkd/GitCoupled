@@ -44,19 +44,30 @@
                     </div>
                 </div>
             </div>
-            <main class="messages-page">
+            <main class="message">
                 <div class="col-sm-12">
-                    <h2>Messages</h2>
-                    <form action="action">
-                        <div class="message">
-                        <h1>Legolas</h1>
-                        <h3><strong>Subject:</strong> Love</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate
-                        </p>  
-                        <a data-brackets-id="8481" class="btn btn-success" id="reply" style="opacity: 1;">Reply</a>
-                        <a data-brackets-id="8481" class="btn btn-danger" id="reply" style="opacity: 1;">Delete</a>
-                    </div>
+                    <h2>Found your soul mate? Why not let them know!</h2>
+                    <h3>From: <c:out value = "${sessionScope.github.getMyself().getName()}" ></c:out></h3>
+                    <img src="<c:out value = "${sessionScope.github.getMyself().getAvatarUrl()}" ></c:out>" id="profile-pic" class="profile pull-right" alt="user-image" />
+                    <form role="form" action="CreateNewMessage" method="POST" id="message-form">
+                        <h3>To: 
+                            <select name="sent_to">
+                                <option>Soul Mate 1</option>
+                                <option>Smeagol</option>
+                                <option>Soul Mate 2</option>
+                            </select>
+                        </h3>
+                        <h4>Subject: </h4>
+                        <div class="form-group">
+                            <input required type="text" class="form-control" placeholder="I'm pure magic." name="Subject" id="subject">
+                        </div>
+                        <h4>Message: </h4>
+                        <div class="form-group">
+                            <textarea required class="form-control" name="body" rows="5" id="message-body" placeholder="You could be my precious..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
                     </form>
                 </div>
             </main>
