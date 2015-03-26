@@ -213,10 +213,14 @@ img.profile {
 }
 
 .messages-page .message {
-    background-color: #0BB5FF;
-    color: white;
+    background-color: lightgrey;
+    color: black;
     padding: 10px;
     margin-bottom: 15px;
+}
+
+.modal-backdrop {
+    display: none !important;
 }
 @media only screen and (max-width : 768px) {
     .message-btn {

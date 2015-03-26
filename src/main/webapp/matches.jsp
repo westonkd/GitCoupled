@@ -1,7 +1,7 @@
 <%-- 
     Document   : matches
     Created on : Mar 13, 2015, 9:13:10 AM
-    Author     : richard
+    Author     : Weston
 --%>
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>

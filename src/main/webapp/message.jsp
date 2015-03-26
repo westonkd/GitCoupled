@@ -1,9 +1,10 @@
 <%-- 
     Document   : message
     Created on : Mar 25, 2015, 9:55:01 AM
-    Author     : McKay
+    Author     : Weston
 --%>
 
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -47,19 +48,23 @@
             <main class="messages-page">
                 <div class="col-sm-12">
                     <h2>Messages</h2>
-                    <form action="action">
-                        <div class="message">
-                        <h1>Legolas</h1>
-                        <h3><strong>Subject:</strong> Love</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate
-                        </p>  
-                        <a data-brackets-id="8481" class="btn btn-success" id="reply" style="opacity: 1;">Reply</a>
-                        <a data-brackets-id="8481" class="btn btn-danger" id="reply" style="opacity: 1;">Delete</a>
-                    </div>
-                    </form>
+                    <c:forEach items="${messages}" var="message">
+                        <form action="action">
+                            <div class="message">
+                                <h1>${github.getUser(message.getFrom()).getName()}</h1>
+                                <h3><strong>Subject:</strong> ${message.getSubject()}</h3>
+                                <p>
+                                    ${message.getBody()}
+                                </p>  
+                                <a type="submit" class="btn btn-primary" onclick="$('#<c:out value="${message.getFrom()}"></c:out>').modal()">Reply</a>
+                                </div>
+                            </form>
+                    </c:forEach>
                 </div>
             </main>
+
+
+
             <footer>
                 <div class="col-sm-3">
                     <span>© 2015 PureMagic</span>
@@ -71,5 +76,34 @@
                 </div>
             </footer>
         </div>
+
+        <c:forEach items="${messages}" var="message">
+            <div class="modal fade" id="<c:out value="${message.getFrom()}"></c:out>">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">To: ${github.getUser(message.getFrom()).getName()}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form role="form" action="CreateNewMessage" method="POST" id="message-form">
+                                <h4>Subject: </h4>
+                                <div class="form-group">
+                                    <input required type="text" class="form-control" placeholder="I'm pure magic." name="Subject" id="subject">
+                                </div>
+                                <h4>Message: </h4>
+                                <div class="form-group">
+                                    <textarea required class="form-control" name="body" rows="5" id="message-body" placeholder="You could be my precious..."></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary">Send</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+        </c:forEach>Ï
     </body>
 </html>
