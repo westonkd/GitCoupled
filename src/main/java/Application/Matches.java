@@ -50,11 +50,14 @@ public class Matches extends HttpServlet {
             //Map<Integer, Set<User>> matches = matchMaker.getMatches();
             Map<Integer, Set<User>> matches = dao.getMatchesWithScores(user);
 
+            dao.close();
+            
             //set the attribute and pass to jsp
             request.setAttribute("matches", matches);
             
             request.getRequestDispatcher("matches.jsp").forward(request, response);
         } else {
+            dao.close();
             response.sendRedirect("SignIn");
         }
     }

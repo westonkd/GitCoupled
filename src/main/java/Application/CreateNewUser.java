@@ -72,6 +72,9 @@ public class CreateNewUser extends HttpServlet {
                 //Set user attribute
                 request.setAttribute("user", newUser);
                 request.setAttribute("github", github);
+               
+                //close the connection
+                dao.close();
 
                 //forward
                 request.getRequestDispatcher("profile.jsp").forward(request, response);

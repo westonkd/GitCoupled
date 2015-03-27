@@ -56,6 +56,9 @@ public class Profile extends HttpServlet {
                     ex.printStackTrace();
                 }
                 
+                //close the connection
+                db.close();
+                
                 //Set user attribute
                 request.setAttribute("user", user);
                 request.getSession().setAttribute("user", user);

@@ -45,6 +45,9 @@ public class MySQLUser implements SoulDao {
         }
     }
     
+    /**
+     *
+     */
     public void close() {
         try {
             results.close();

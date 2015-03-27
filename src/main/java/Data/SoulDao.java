@@ -30,6 +30,7 @@ public interface SoulDao {
     public void updateUser(User user);
     public void saveLanguages(int id, String first, String second, String third);
     public void saveScore(int id, int score);
+    public void close();
     
     public int getUserId(String username);
 

@@ -452,5 +452,7 @@ public class GHMatchMaker {
                 }
             }
         }
+        
+        dao.close();
     }
 }
