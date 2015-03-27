@@ -48,6 +48,7 @@ public class MySQLUser implements SoulDao {
 
         } catch (Exception ex) {
             ex.printStackTrace();
+            System.out.println("========================================================================OPEN============================================================");
         }
     }
     
@@ -59,6 +60,7 @@ public class MySQLUser implements SoulDao {
             conn.close();
         } catch (SQLException ex) {
             Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<CLOSE<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         }
     }
 
