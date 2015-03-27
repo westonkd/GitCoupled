@@ -89,9 +89,12 @@ public class GHMatchMaker {
      */
     private void calculateMatches() {
         SoulDao dao = new MySQLUser();
+        String firstLanguage = toMatch.getFirst_language();
+        String secondLanguage = toMatch.getSecond_language();
+        String thirdLanguage = toMatch.getThird_language();
 
         //10
-        for (User match : dao.getUsers(toMatch.getFirst_language(), toMatch.getSecond_language(), toMatch.getThird_language())) {
+        for (User match : dao.getUsers(firstLanguage, secondLanguage, thirdLanguage)) {
             if (!match.getGithub_username().equals(toMatch.getGithub_username())) {
                 //if the key exists
                 if (matches.containsKey(10)) {
@@ -107,7 +110,7 @@ public class GHMatchMaker {
         }
 
         //9
-        for (User match : dao.getUsers(toMatch.getFirst_language(), toMatch.getSecond_language())) {
+        for (User match : dao.getUsers(firstLanguage, secondLanguage)) {
             //only add the match if not already in the dictionary
             if (!match.equals(toMatch)) {
                 boolean add = true;
@@ -134,7 +137,7 @@ public class GHMatchMaker {
         }
 
         //8
-        for (User match : dao.getUsers(toMatch.getFirst_language(), toMatch.getThird_language())) {
+        for (User match : dao.getUsers(firstLanguage, thirdLanguage)) {
             //only add the match if not already in the dictionary
             if (!match.equals(toMatch)) {
                 boolean add = true;
@@ -161,7 +164,7 @@ public class GHMatchMaker {
         }
         
         //7
-        for (User match : dao.getUsers(toMatch.getSecond_language(), toMatch.getThird_language())) {
+        for (User match : dao.getUsers(secondLanguage, thirdLanguage)) {
             //only add the match if not already in the dictionary
             if (!match.equals(toMatch)) {
                 boolean add = true;
@@ -188,7 +191,7 @@ public class GHMatchMaker {
         }
         
         //6
-        for (User match : dao.usersThatHaveLanguages(toMatch.getFirst_language(), toMatch.getSecond_language(), toMatch.getThird_language())) {
+        for (User match : dao.usersThatHaveLanguages(firstLanguage, secondLanguage, thirdLanguage)) {
             //only add the match if not already in the dictionary
             if (!match.equals(toMatch)) {
                 boolean add = true;
@@ -214,7 +217,7 @@ public class GHMatchMaker {
         }
         
         //5
-        for (User match : dao.usersThatHaveLanguages(toMatch.getFirst_language(), toMatch.getSecond_language())) {
+        for (User match : dao.usersThatHaveLanguages(firstLanguage, secondLanguage)) {
             //only add the match if not already in the dictionary
             if (!match.equals(toMatch)) {
                 boolean add = true;
@@ -241,7 +244,7 @@ public class GHMatchMaker {
         }
         
         //5
-        for (User match : dao.usersThatHaveLanguages(toMatch.getFirst_language(), toMatch.getThird_language())) {
+        for (User match : dao.usersThatHaveLanguages(firstLanguage, thirdLanguage)) {
             //only add the match if not already in the dictionary
             if (!match.equals(toMatch)) {
                 boolean add = true;
@@ -268,7 +271,7 @@ public class GHMatchMaker {
         }
         
         //5
-        for (User match : dao.usersThatHaveLanguages(toMatch.getSecond_language(), toMatch.getThird_language())) {
+        for (User match : dao.usersThatHaveLanguages(secondLanguage, thirdLanguage)) {
             //only add the match if not already in the dictionary
             if (!match.equals(toMatch)) {
                 boolean add = true;
@@ -295,7 +298,7 @@ public class GHMatchMaker {
         }
         
         //4
-        for (User match : dao.getUsers(toMatch.getFirst_language())) {
+        for (User match : dao.getUsers(firstLanguage)) {
             //only add the match if not already in the dictionary
             if (!match.equals(toMatch)) {
                 boolean add = true;
@@ -321,7 +324,7 @@ public class GHMatchMaker {
         }
         
         //3
-        for (User match : dao.getUsers(toMatch.getSecond_language())) {
+        for (User match : dao.getUsers(secondLanguage)) {
             //only add the match if not already in the dictionary
             if (!match.equals(toMatch)) {
                 boolean add = true;
@@ -347,7 +350,7 @@ public class GHMatchMaker {
         }
         
         //2
-        for (User match : dao.getUsers(toMatch.getThird_language())) {
+        for (User match : dao.getUsers(thirdLanguage)) {
             //only add the match if not already in the dictionary
             if (!match.equals(toMatch)) {
                 boolean add = true;
@@ -373,7 +376,7 @@ public class GHMatchMaker {
         }
         
         //1
-        for (User match : dao.usersThatHaveLanguage(toMatch.getFirst_language())) {
+        for (User match : dao.usersThatHaveLanguage(firstLanguage)) {
             //only add the match if not already in the dictionary
             if (!match.equals(toMatch)) {
                 boolean add = true;
@@ -399,7 +402,7 @@ public class GHMatchMaker {
         }
         
         //1
-        for (User match : dao.usersThatHaveLanguage(toMatch.getSecond_language())) {
+        for (User match : dao.usersThatHaveLanguage(secondLanguage)) {
             //only add the match if not already in the dictionary
             if (!match.equals(toMatch)) {
                 boolean add = true;
@@ -425,7 +428,7 @@ public class GHMatchMaker {
         }
         
         //1
-        for (User match : dao.usersThatHaveLanguage(toMatch.getThird_language())) {
+        for (User match : dao.usersThatHaveLanguage(thirdLanguage)) {
             //only add the match if not already in the dictionary
             if (!match.equals(toMatch)) {
                 boolean add = true;

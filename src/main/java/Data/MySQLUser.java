@@ -9,6 +9,10 @@ import Application.User;
 import java.util.List;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -350,7 +354,7 @@ public class MySQLUser implements SoulDao {
                 String quote = results.getString("quote");
                 String bio = results.getString("bio");
                 int score = results.getInt("compat_score");
-                String primary = results.getString("primary");
+                String primary = results.getString("first_language");
                 String secondary = results.getString("second_language");
                 String thirdly = results.getString("third_language");
                 
@@ -391,7 +395,7 @@ public class MySQLUser implements SoulDao {
                 String quote = results.getString("quote");
                 String bio = results.getString("bio");
                 int score = results.getInt("compat_score");
-                String primary = results.getString("primary");
+                String primary = results.getString("first_language");
                 String secondary = results.getString("second_language");
                 String thirdly = results.getString("third_language");
                 
@@ -436,7 +440,7 @@ public class MySQLUser implements SoulDao {
                 String quote = results.getString("quote");
                 String bio = results.getString("bio");
                 int score = results.getInt("compat_score");
-                String primary = results.getString("primary");
+                String primary = results.getString("first_language");
                 String secondary = results.getString("second_language");
                 String thirdly = results.getString("third_language");
                 
@@ -469,6 +473,262 @@ public class MySQLUser implements SoulDao {
         }
         
         return id;
+    }
+
+    @Override
+    public Map<Integer, Set<User>> getMatchesWithScores(User user) {
+        
+        Map<Integer, Set<User>> matches = new TreeMap<Integer, Set<User>>().descendingMap();
+        String first = user.getFirst_language();
+        String second = user.getSecond_language();
+        String third = user.getThird_language();
+        
+        String sql = "SELECT * FROM ( "
+                    + "(SELECT *, 10 as 'score' FROM user "
+                    + "WHERE "
+                    + "first_language  = '" + first + "' AND "
+                    + "second_language = '" + second + "' AND "
+                    + "third_language  = '" + third + "') "
+                + "UNION "
+                    + "(SELECT *, 9 as 'score' FROM user "
+                    + "WHERE "
+                    + "first_language  = '" + first + "' AND "
+                    + "second_language = '" + second + "') "
+                + "UNION "
+                    + "(SELECT *, 8 as 'score' FROM user "
+                    + "WHERE  "
+                    + "first_language  = '" + first + "' AND "
+                    + "third_language  = '" + third + "') "
+                + "UNION "
+                    + "(SELECT *, 7 as 'score' FROM user "
+                    + "WHERE  "
+                    + "first_language  = '" + second + "' AND "
+                    + "second_language = '" + third + "') "
+                + "UNION "
+                    + "(SELECT *, 6 as 'score' FROM user "
+                    + "WHERE  "
+                    + "(first_language  = '" + first + "' OR  "
+                    + "second_language = '" + first + "' OR  "
+                    + "third_language  = '" + first + "')  "
+                    + "AND "
+                    + "(first_language  = '" + second + "' OR "
+                    + "second_language = '" + second + "' OR "
+                    + "third_language  = '" + second + "')  "
+                    + "AND  "
+                    + "(first_language  = '" + third + "' OR  "
+                    + "second_language = '" + third + "' OR "
+                    + "third_language  = '" + third + "')) "
+                + "UNION "
+                    + "(SELECT *, 5 as 'score' FROM user "
+                    + "WHERE  "
+                    + "(first_language  = '" + first + "' OR  "
+                    + "second_language = '" + first + "' OR  "
+                    + "third_language  = '" + first + "')  "
+                    + "AND "
+                    + "(first_language  = '" + second + "' OR "
+                    + "second_language = '" + second + "' OR "
+                    + "third_language  = '" + second + "')) "
+                + "UNION "
+                    + "(SELECT *, 5 as 'score' FROM user "
+                    + "WHERE  "
+                    + "(first_language  = '" + first + "' OR  "
+                    + "second_language = '" + first + "' OR  "
+                    + "third_language  = '" + first + "')  "
+                    + "AND  "
+                    + "(first_language  = '" + third + "' OR  "
+                    + "second_language = '" + third + "' OR "
+                    + "third_language  = '" + third + "')) "
+                + "UNION "
+                    + "(SELECT *, 5 as 'score' FROM user "
+                    + "WHERE  "
+                    + "(first_language  = '" + second + "' OR "
+                    + "second_language = '" + second + "' OR "
+                    + "third_language  = '" + second + "')  "
+                    + "AND  "
+                    + "(first_language  = '" + third + "' OR  "
+                    + "second_language = '" + third + "' OR "
+                    + "third_language  = '" + third + "')) "
+                + "UNION "
+                    + "(SELECT *, 4 as 'score' FROM user "
+                    + "WHERE "
+                    + " first_language  = '" + first + "') "
+                + "UNION "
+                    + "(SELECT *, 3 as 'score' FROM user "
+                    + "WHERE "
+                    + "second_language = '" + second + "') "
+                + "UNION "
+                    + "(SELECT *, 2 as 'score' FROM user "
+                    + "WHERE "
+                    + "third_language  = '" + third + "') "
+                + "UNION "
+                    + "(SELECT *, 1 as 'score' FROM user "
+                    + "WHERE "
+                    + "(first_language IN('" + first + "', '" + second + "', '" + third + "') OR "
+                    + "second_language IN('" + first + "', '" + second + "', '" + third + "') OR "
+                    + "third_language IN('" + first + "', '" + second + "', '" + third + "'))) "
+                    + ") temp "
+                    + "WHERE github_username != '" + user.getGithub_username() + "' "
+                    + "GROUP BY id, github_username ";
+        
+        try {
+            results = statement.executeQuery(sql);
+            
+            while (results.next())
+            {
+                int id = results.getInt("id");
+                String gender = results.getString("gender");
+                int age = results.getInt("age");
+                String username = results.getString("github_username");
+                String quote = results.getString("quote");
+                String bio = results.getString("bio");
+                int compat_score = results.getInt("compat_score");
+                String primary = results.getString("first_language");
+                String secondary = results.getString("second_language");
+                String thirdly = results.getString("third_language");
+                int score = results.getInt("score");
+                
+                User match = new User(id, gender, age, username, quote, bio, compat_score, primary, secondary, thirdly);
+                
+                if (matches.containsKey(score)) {
+                    matches.get(score).add(match);
+                } else {
+                    //create the new set with the user
+                    Set<User> temp = new HashSet<>();
+                    temp.add(match);
+
+                    matches.put(score, temp);
+                }
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return matches;
+    }
+
+    @Override
+    public Set<User> getMatches(User user) {
+        
+        Set<User> matches = new HashSet();
+        String first = user.getFirst_language();
+        String second = user.getSecond_language();
+        String third = user.getThird_language();
+        
+        String sql = "SELECT * FROM ( "
+                + "(SELECT * FROM user "
+                    + "WHERE "
+                    + "first_language  = '" + first + "' AND "
+                    + "second_language = '" + second + "' AND "
+                    + "third_language  = '" + third + "') "
+                + "UNION "
+                    + "(SELECT * FROM user "
+                    + "WHERE "
+                    + "first_language  = '" + first + "' AND "
+                    + "second_language = '" + second + "') "
+                + "UNION "
+                    + "(SELECT * FROM user "
+                    + "WHERE  "
+                    + "first_language  = '" + first + "' AND "
+                    + "third_language  = '" + third + "') "
+                + "UNION "
+                    + "(SELECT * FROM user "
+                    + "WHERE  "
+                    + "first_language  = '" + second + "' AND "
+                    + "second_language = '" + third + "') "
+                + "UNION "
+                    + "(SELECT * FROM user "
+                    + "WHERE  "
+                    + "(first_language  = '" + first + "' OR  "
+                    + "second_language = '" + first + "' OR  "
+                    + "third_language  = '" + first + "')  "
+                    + "AND "
+                    + "(first_language  = '" + second + "' OR "
+                    + "second_language = '" + second + "' OR "
+                    + "third_language  = '" + second + "')  "
+                    + "AND  "
+                    + "(first_language  = '" + third + "' OR  "
+                    + "second_language = '" + third + "' OR "
+                    + "third_language  = '" + third + "')) "
+                + "UNION "
+                    + "(SELECT * FROM user "
+                    + "WHERE  "
+                    + "(first_language  = '" + first + "' OR  "
+                    + "second_language = '" + first + "' OR  "
+                    + "third_language  = '" + first + "')  "
+                    + "AND "
+                    + "(first_language  = '" + second + "' OR "
+                    + "second_language = '" + second + "' OR "
+                    + "third_language  = '" + second + "')) "
+                + "UNION "
+                    + "(SELECT * FROM user "
+                    + "WHERE  "
+                    + "(first_language  = '" + first + "' OR  "
+                    + "second_language = '" + first + "' OR  "
+                    + "third_language  = '" + first + "')  "
+                    + "AND  "
+                    + "(first_language  = '" + third + "' OR  "
+                    + "second_language = '" + third + "' OR "
+                    + "third_language  = '" + third + "')) "
+                + "UNION "
+                    + "(SELECT * FROM user "
+                    + "WHERE  "
+                    + "(first_language  = '" + second + "' OR "
+                    + "second_language = '" + second + "' OR "
+                    + "third_language  = '" + second + "')  "
+                    + "AND  "
+                    + "(first_language  = '" + third + "' OR  "
+                    + "second_language = '" + third + "' OR "
+                    + "third_language  = '" + third + "')) "
+                + "UNION "
+                    + "(SELECT * FROM user "
+                    + "WHERE "
+                    + " first_language  = '" + first + "') "
+                + "UNION "
+                    + "(SELECT * FROM user "
+                    + "WHERE "
+                    + "second_language = '" + second + "') "
+                + "UNION "
+                    + "(SELECT * FROM user "
+                    + "WHERE "
+                    + "third_language  = '" + third + "') "
+                + "UNION "
+                    + "(SELECT * FROM user "
+                    + "WHERE "
+                    + "(first_language IN('" + first + "', '" + second + "', '" + third + "') OR "
+                    + "second_language IN('" + first + "', '" + second + "', '" + third + "') OR "
+                    + "third_language IN('" + first + "', '" + second + "', '" + third + "'))) "
+                    + ") temp "
+                    + "WHERE github_username != '" + user.getGithub_username() + "' "
+                    + "GROUP BY id, github_username ";
+        
+        try {
+            results = statement.executeQuery(sql);
+            
+            while (results.next())
+            {
+                int id = results.getInt("id");
+                String gender = results.getString("gender");
+                int age = results.getInt("age");
+                String username = results.getString("github_username");
+                String quote = results.getString("quote");
+                String bio = results.getString("bio");
+                int compat_score = results.getInt("compat_score");
+                String primary = results.getString("first_language");
+                String secondary = results.getString("second_language");
+                String thirdly = results.getString("third_language");
+                
+                User match = new User(id, gender, age, username, quote, bio, compat_score, primary, secondary, thirdly);
+                
+                matches.add(match);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return matches;
+        
     }
 
 }

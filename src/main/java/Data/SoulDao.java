@@ -7,6 +7,8 @@ package Data;
 
 import Application.User;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  *
@@ -30,6 +32,9 @@ public interface SoulDao {
     public void saveScore(int id, int score);
     
     public int getUserId(String username);
+
+    public Map<Integer, Set<User>> getMatchesWithScores(User user);
+    public Set<User> getMatches(User user);
     
     
 }
