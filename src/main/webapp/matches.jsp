@@ -67,10 +67,10 @@
                                 </h3>
                             </div>
                             <div class="col-sm-3">
+                                <a class="btn btn-primary message-btn " id="sign-up" onclick="$('#<c:out value="${match.getGithub_username()}"></c:out>').modal()">Message</a>
                                 <a class="btn btn-default message-btn" id="sign-up" >View Profile</a>
-                                <a class="btn btn-primary message-btn " id="sign-up">Message</a>
+                                </div>
                             </div>
-                        </div>
                     </c:forEach> 
                 </c:forEach>
             </main>
@@ -86,5 +86,40 @@
                 </div>
             </footer>
         </div>
+
+        <c:forEach items="${matches.keySet()}" var="matchList">
+            <c:forEach items="${matches.get(matchList)}" var="match">
+                <div class="modal fade" id="<c:out value="${match.getGithub_username()}"></c:out>">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title">To: ${github.getUser(match.getGithub_username()).getName()}</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form role="form" action="CreateNewMessage" method="POST" id="message-form">
+                                    <h4>Subject: </h4>
+                                    <div class="form-group">
+                                        <input required type="text" class="form-control" placeholder="Love" name="subject" id="subject">
+                                    </div>
+                                    <h4>Message: </h4>
+                                    <div class="form-group">
+                                        <textarea required class="form-control" name="body" rows="5" id="message-body" placeholder="Hi there..."></textarea>
+                                    </div>
+                                    <div style="display:none;">
+                                        <input type="text" name="userTo" value="${github.getUser(match.getGithub_username()).getLogin()}">
+                                        <input type="text" name="userFrom" value="${github.getMyself().getLogin()}">
+                                        <input type="text" name="callback" value="Matches">
+                                    </div>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Send</button>
+                                </form>
+                            </div>
+
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+            </c:forEach> 
+        </c:forEach>       
     </body>
 </html>
