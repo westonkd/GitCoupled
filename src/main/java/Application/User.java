@@ -41,7 +41,6 @@ public class User {
     private String first_language;
     private String second_language;
     private String third_language;
-    private Set<User> matches;
 
     public User() {
         id = -1;
@@ -54,7 +53,6 @@ public class User {
         first_language = null;
         second_language = null;
         third_language = null;
-        matches = null;
     }
 
     /**
@@ -72,10 +70,7 @@ public class User {
         this.github_username = github_username;
         this.quote = quote;
         this.bio = bio;
-        
-        //get the matches
-//        SoulDao db = new MySQLUser();
-//        this.matches = db.getMatches(this);
+
     }
 
     /**
@@ -95,9 +90,6 @@ public class User {
         this.quote = quote;
         this.bio = bio;
         
-        //get the matches
-//        SoulDao db = new MySQLUser();
-//        this.matches = db.getMatches(this);
     }
 
     /**
@@ -123,19 +115,7 @@ public class User {
         this.compat_score = compat_score;
         this.first_language = first_language;
         this.second_language = second_language;
-        this.third_language = third_language;
-        
-        //get the matches
-//        SoulDao db = new MySQLUser();
-//        this.matches = db.getMatches(this);
-    }
-
-    public Set<User> getMatches() {
-        return matches;
-    }
-
-    public void setMatches(Set<User> matches) {
-        this.matches = matches;
+        this.third_language = third_language;    
     }
 
     /**
