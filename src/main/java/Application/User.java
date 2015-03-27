@@ -75,7 +75,7 @@ public class User {
         
         //get the matches
         SoulDao db = new MySQLUser();
-        db.getMatches(this);
+        this.matches = db.getMatches(this);
         db.close();
     }
 
@@ -96,6 +96,10 @@ public class User {
         this.quote = quote;
         this.bio = bio;
         
+        //get the matches
+        SoulDao db = new MySQLUser();
+        this.matches = db.getMatches(this);
+        db.close();
     }
 
     /**
@@ -123,6 +127,10 @@ public class User {
         this.second_language = second_language;
         this.third_language = third_language;
         
+        //get the matches
+        SoulDao db = new MySQLUser();
+        this.matches = db.getMatches(this);
+        db.close();
     }
 
     public Set<User> getMatches() {
