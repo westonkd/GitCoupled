@@ -73,9 +73,10 @@ public class User {
         this.quote = quote;
         this.bio = bio;
         
-        //get matches
-        GHMatchMaker matchfinder = new GHMatchMaker(this);
-        matches = matchfinder.getAllMatches();
+        //get the matches
+        SoulDao db = new MySQLUser();
+        db.getMatches(this);
+        db.close();
     }
 
     /**
@@ -95,9 +96,6 @@ public class User {
         this.quote = quote;
         this.bio = bio;
         
-        //get matches
-        GHMatchMaker matchfinder = new GHMatchMaker(this);
-        matches = matchfinder.getAllMatches();
     }
 
     /**
@@ -125,9 +123,6 @@ public class User {
         this.second_language = second_language;
         this.third_language = third_language;
         
-        //get matches
-        GHMatchMaker matchfinder = new GHMatchMaker(this);
-        matches = matchfinder.getAllMatches();
     }
 
     public Set<User> getMatches() {

@@ -30,6 +30,10 @@ public class MySQLUser implements SoulDao {
     private ResultSet results = null;
 
     public MySQLUser() {
+        open();
+    }
+    
+    public void open() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(dbUrl, user, password);
@@ -38,6 +42,16 @@ public class MySQLUser implements SoulDao {
 
         } catch (Exception ex) {
             ex.printStackTrace();
+        }
+    }
+    
+    public void close() {
+        try {
+            results.close();
+            statement.close();
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
