@@ -56,7 +56,7 @@ public class MySQLUser implements SoulDao {
     public void close() {
         try {
             System.out.println("Cosed a connection! >>>>>>>>");
-            results.close();
+            results = null;
             statement.close();
             conn.close();
         } catch (SQLException ex) {
