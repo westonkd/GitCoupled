@@ -70,6 +70,8 @@ public class Profile extends HttpServlet {
                 //Set github attribute
                 request.setAttribute("github", github);
                 
+                response.getWriter().println(db);
+                
                 //get the user
                 user = db.getUser(github.getMyself().getLogin());
                 
@@ -77,8 +79,10 @@ public class Profile extends HttpServlet {
                 request.setAttribute("user", user);
                 request.getSession().setAttribute("user", user);
                 
+                response.getWriter().println(github + " " + user);
+                
                 //forward
-                request.getRequestDispatcher("edit-profile.jsp").forward(request, response);   
+                //request.getRequestDispatcher("edit-profile.jsp").forward(request, response);   
             }
         }
     }
