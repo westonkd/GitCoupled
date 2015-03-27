@@ -48,9 +48,7 @@ public class MySQLUser implements SoulDao {
             statement = conn.createStatement();
 
         } catch (Exception ex) {
-            System.out.println("(*****************************************************>");
             ex.printStackTrace();
-            System.out.println("(*****************************************************>");
         }
     }
     
