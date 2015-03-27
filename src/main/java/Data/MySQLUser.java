@@ -51,9 +51,6 @@ public class MySQLUser implements SoulDao {
         }
     }
     
-    /**
-     *
-     */
     @Override
     public void close() {
         try {
