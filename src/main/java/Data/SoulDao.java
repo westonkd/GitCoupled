@@ -35,6 +35,8 @@ public interface SoulDao {
 
     public Map<Integer, Set<User>> getMatchesWithScores(User user);
     public Set<User> getMatches(User user);
+
+    public void close();
     
     
 }
