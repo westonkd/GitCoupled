@@ -144,7 +144,7 @@ public class User {
                 //if the global language map contains the key
                 if (allLangs.containsKey(lang)) {
                     //add the value for this repository to the total bytes written
-                    allLangs.replace(lang, languages.get(lang) + allLangs.get(lang));
+                    allLangs.put(lang, languages.get(lang) + allLangs.get(lang));
                 } else {
                     //just add the number of bytes written
                     allLangs.put(lang, languages.get(lang));
