@@ -34,6 +34,7 @@ public class MySQLUser implements SoulDao {
     }
     
     public void open() {
+        System.out.println(":D Opened a connection! <<<<<<<<<<<");
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(dbUrl, user, password);
@@ -41,7 +42,9 @@ public class MySQLUser implements SoulDao {
             statement = conn.createStatement();
 
         } catch (Exception ex) {
+            System.out.println("(*****************************************************>");
             ex.printStackTrace();
+            System.out.println("(*****************************************************>");
         }
     }
     
@@ -50,6 +53,7 @@ public class MySQLUser implements SoulDao {
      */
     public void close() {
         try {
+            System.out.println("Cosed a connection! >>>>>>>>");
             results.close();
             statement.close();
             conn.close();
