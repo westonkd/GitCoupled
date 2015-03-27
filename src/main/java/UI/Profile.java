@@ -52,7 +52,9 @@ public class Profile extends HttpServlet {
             out.println("success");
 
             //create the username
-            out.println("get user from db");
+            out.println("get user from db with username: " + github.getMyself().getLogin());
+            
+            //This is not working in openshift
             User user = db.getUser(github.getMyself().getLogin());
             out.println("success: " + user);
             
