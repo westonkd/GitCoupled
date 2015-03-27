@@ -16,6 +16,9 @@ import java.util.Set;
  */
 public interface SoulDao {
     
+    public void open();
+    public void close();
+    
     public void addUser(User user);
     public User getUser(String username);
     public User getUser(User user);
@@ -30,7 +33,6 @@ public interface SoulDao {
     public void updateUser(User user);
     public void saveLanguages(int id, String first, String second, String third);
     public void saveScore(int id, int score);
-    public void close();
     
     public int getUserId(String username);
 

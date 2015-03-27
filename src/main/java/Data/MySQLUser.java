@@ -22,17 +22,23 @@ import java.util.logging.Logger;
  */
 public class MySQLUser implements SoulDao {
 
-    private String dbUrl = "jdbc:mysql://localhost/gitcoupled";
-    private String user = "Gandalf";
-    private String password = "puremagic";
-    private Connection conn = null;
-    private Statement statement = null;
-    private ResultSet results = null;
+    private String dbUrl;
+    private String user;
+    private String password;
+    private Connection conn;
+    private Statement statement;
+    private ResultSet results;
 
     public MySQLUser() {
-        open();
+        dbUrl = "jdbc:mysql://localhost/gitcoupled";
+        user = "Gandalf";
+        password = "puremagic";
+        conn = null;
+        statement = null;
+        results = null;
     }
     
+    @Override
     public void open() {
         System.out.println(":D Opened a connection! <<<<<<<<<<<");
         try {
@@ -48,9 +54,7 @@ public class MySQLUser implements SoulDao {
         }
     }
     
-    /**
-     *
-     */
+    @Override
     public void close() {
         try {
             System.out.println("Cosed a connection! >>>>>>>>");
@@ -64,6 +68,8 @@ public class MySQLUser implements SoulDao {
 
     @Override
     public void addUser(User user) {
+        open();
+        
         try {
             String sql = "INSERT INTO User (gender,age,github_username,quote,bio,compat_score,first_language,second_language,third_language) "
                     + "VALUES "
@@ -80,11 +86,13 @@ public class MySQLUser implements SoulDao {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        
+        close();
     }
 
     @Override
     public User getUser(String username) {
-
+        open();
         User user = null;
 
         try {
@@ -105,6 +113,7 @@ public class MySQLUser implements SoulDao {
             ex.printStackTrace();
         }
 
+        close();
         return user;
     }
     
@@ -116,7 +125,7 @@ public class MySQLUser implements SoulDao {
      */
     @Override
     public User getUser(User user) {
-        
+        open();
         if (user.getId() != -1)
         {
             try {
@@ -158,13 +167,13 @@ public class MySQLUser implements SoulDao {
                 Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+        close();
         return user;
     }
 
     @Override
     public List<User> getUsers(String primary, String secondary, String thirdly) {
-        
+        open();
         List<User> list = new ArrayList<User>();
         
         try {
@@ -192,12 +201,13 @@ public class MySQLUser implements SoulDao {
             Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        close();
         return list;
     }
 
     @Override
     public List<User> getUsers(String primary, String secondary) {
-        
+        open();
         List<User> list = new ArrayList<User>();
         String sql;
         
@@ -224,12 +234,13 @@ public class MySQLUser implements SoulDao {
             Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        close();
         return list;
     }
 
     @Override
     public List<User> getUsers(String primary) {
-        
+        close();
         List<User> list = new ArrayList<User>();
         
         try {
@@ -257,12 +268,13 @@ public class MySQLUser implements SoulDao {
             Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        close();
         return list;
     }
 
     @Override
     public void updateUser(User user) {
-        
+        open();
         String sql;
         
         if (user.getId() != -1)
@@ -300,6 +312,7 @@ public class MySQLUser implements SoulDao {
         } catch (SQLException ex) {
             Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
         }
+        close();
     }
 
     /**
@@ -311,7 +324,7 @@ public class MySQLUser implements SoulDao {
      */
     @Override
     public void saveLanguages(int id, String first, String second, String third) {
-        
+        open();
         if (id <= 0)
             throw new IllegalArgumentException("The id of the user has not been set");
         
@@ -327,7 +340,7 @@ public class MySQLUser implements SoulDao {
         } catch (SQLException ex) {
             Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        close();
     }
 
     /**
@@ -337,7 +350,7 @@ public class MySQLUser implements SoulDao {
      */
     @Override
     public void saveScore(int id, int score) {
-        
+        open();
         if (id <= 0)
             throw new IllegalArgumentException("The id of the user has not been set");
         
@@ -351,11 +364,12 @@ public class MySQLUser implements SoulDao {
         } catch (SQLException ex) {
             Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
         }
+        close();
     }
 
     @Override
     public List<User> usersThatHaveLanguage(String language) {
-        
+        open();
         List<User> users = new ArrayList();
         String sql = "SELECT * FROM user "
                 + "WHERE "
@@ -387,12 +401,13 @@ public class MySQLUser implements SoulDao {
             Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        close();
         return users;
     }
 
     @Override
     public List<User> usersThatHaveLanguages(String aLanguage, String bLanguage) {
-        
+        open();
         List<User> users = new ArrayList();
         String sql = "SELECT * FROM user " 
                 + "WHERE " 
@@ -428,12 +443,13 @@ public class MySQLUser implements SoulDao {
             Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        close();
         return users;
     }
 
     @Override
     public List<User> usersThatHaveLanguages(String aLanguage, String bLanguage, String cLanguage) {
-        
+        open();
         List<User> users = new ArrayList();
         String sql = "SELECT * FROM user " 
                 + "WHERE " 
@@ -473,12 +489,13 @@ public class MySQLUser implements SoulDao {
             Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        close();
         return users;
     }
 
     @Override
     public int getUserId(String username) {
-        
+        open();
         int id = -1;
         String sql = "Select id From user "
                 + "WHERE github_username = '" + username + "'";
@@ -493,12 +510,13 @@ public class MySQLUser implements SoulDao {
             Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        close();
         return id;
     }
 
     @Override
     public Map<Integer, Set<User>> getMatchesWithScores(User user) {
-        
+        open();
         Map<Integer, Set<User>> matches = new TreeMap<Integer, Set<User>>().descendingMap();
         String first = user.getFirst_language();
         String second = user.getSecond_language();
@@ -625,12 +643,13 @@ public class MySQLUser implements SoulDao {
             Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        close();
         return matches;
     }
 
     @Override
     public Set<User> getMatches(User user) {
-        
+        open();
         Set<User> matches = new HashSet();
         String first = user.getFirst_language();
         String second = user.getSecond_language();
@@ -748,6 +767,7 @@ public class MySQLUser implements SoulDao {
             Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        close();
         return matches;
         
     }
