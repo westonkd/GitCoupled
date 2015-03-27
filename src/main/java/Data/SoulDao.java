@@ -16,6 +16,9 @@ import java.util.Set;
  */
 public interface SoulDao {
     
+    public void open();
+    public void close();
+    
     public void addUser(User user);
     public User getUser(String username);
     public User getUser(User user);
@@ -35,8 +38,4 @@ public interface SoulDao {
 
     public Map<Integer, Set<User>> getMatchesWithScores(User user);
     public Set<User> getMatches(User user);
-
-    public void close();
-    
-    
 }
