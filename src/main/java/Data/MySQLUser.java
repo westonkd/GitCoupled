@@ -42,24 +42,25 @@ public class MySQLUser implements SoulDao {
     public void open() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(dbUrl, user, password);
+            this.conn = DriverManager.getConnection(dbUrl, user, password);
 
-            statement = conn.createStatement();
+            this.statement = conn.createStatement();
 
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
     
+
     /**
      *
      */
     @Override
     public void close() {
         try {
-            results.close();
-            statement.close();
-            conn.close();
+            this.results = null;
+            this.statement.close();
+            this.conn.close();
         } catch (SQLException ex) {
             Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -199,7 +200,6 @@ public class MySQLUser implements SoulDao {
         } catch (SQLException ex) {
             Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         close();
         return list;
     }
@@ -232,14 +232,13 @@ public class MySQLUser implements SoulDao {
         } catch (SQLException ex) {
             Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         close();
         return list;
     }
 
     @Override
     public List<User> getUsers(String primary) {
-        close();
+        open();
         List<User> list = new ArrayList<User>();
         
         try {
@@ -266,7 +265,6 @@ public class MySQLUser implements SoulDao {
         } catch (SQLException ex) {
             Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         close();
         return list;
     }
@@ -399,7 +397,6 @@ public class MySQLUser implements SoulDao {
         } catch (SQLException ex) {
             Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         close();
         return users;
     }
@@ -487,7 +484,6 @@ public class MySQLUser implements SoulDao {
         } catch (SQLException ex) {
             Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         close();
         return users;
     }
@@ -508,7 +504,6 @@ public class MySQLUser implements SoulDao {
         } catch (SQLException ex) {
             Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         close();
         return id;
     }
