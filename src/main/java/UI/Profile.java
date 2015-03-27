@@ -39,14 +39,23 @@ public class Profile extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
            
+            out.println("connecting to github");
+            
             //get the github instance
             GitHub github = (GitHub) request.getSession().getAttribute("github");
 
+            out.println("success");
+            
+            out.println("connecting to dao");
             //create DAO 
             SoulDao db = new MySQLUser();
+            out.println("success");
 
             //create the username
+            out.println("get user from db");
             User user = db.getUser(github.getMyself().getLogin());
+            out.println("success: " + user);
+            
             //if the user is in the database
             if (user != null) {
                 //calculate the top three languages
@@ -66,7 +75,8 @@ public class Profile extends HttpServlet {
                 //forward
                 request.getRequestDispatcher("profile.jsp").forward(request, response);   
                 
-            } else {                
+            } else {        
+                out.println("does not exists");
                 //Set github attribute
                 request.setAttribute("github", github);
                 
