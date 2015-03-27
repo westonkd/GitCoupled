@@ -100,12 +100,11 @@
                                     <input type="text" name="userFrom" value="${github.getMyself().getLogin()}">
                                     <input type="text" name="callback" value="ViewMessages">
                                 </div>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Send</button>
                             </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary">Send</button>
-                        </div>
+                        
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
