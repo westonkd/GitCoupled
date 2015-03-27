@@ -30,7 +30,8 @@ public class MySQLUser implements SoulDao {
     private ResultSet results;
 
     public MySQLUser() {
-        dbUrl = "jdbc:mysql://localhost/gitcoupled";
+        //dbUrl = "jdbc:mysql://localhost/gitcoupled";
+        dbUrl = "jdbc:mysql://" + System.getenv("OPENSHIFT_MYSQL_DB_HOST") + ":" + System.getenv("OPENSHIFT_MYSQL_DB_PORT") + "/" + "gitcoupled";
         user = "Gandalf";
         password = "puremagic";
         conn = null;
@@ -539,8 +540,8 @@ public class MySQLUser implements SoulDao {
                 + "UNION "
                     + "(SELECT *, 7 as 'score' FROM user "
                     + "WHERE  "
-                    + "first_language  = '" + second + "' AND "
-                    + "second_language = '" + third + "') "
+                    + "second_language  = '" + second + "' AND "
+                    + "third_language = '"   + third +  "') "
                 + "UNION "
                     + "(SELECT *, 6 as 'score' FROM user "
                     + "WHERE  "
@@ -672,8 +673,8 @@ public class MySQLUser implements SoulDao {
                 + "UNION "
                     + "(SELECT * FROM user "
                     + "WHERE  "
-                    + "first_language  = '" + second + "' AND "
-                    + "second_language = '" + third + "') "
+                    + "second_language  = '" + second + "' AND "
+                    + "third_language = '"   + third + "') "
                 + "UNION "
                     + "(SELECT * FROM user "
                     + "WHERE  "
