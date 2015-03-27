@@ -89,11 +89,16 @@
                             <form role="form" action="CreateNewMessage" method="POST" id="message-form">
                                 <h4>Subject: </h4>
                                 <div class="form-group">
-                                    <input required type="text" class="form-control" placeholder="Love" name="Subject" id="subject">
+                                    <input required type="text" class="form-control" placeholder="Love" name="subject" id="subject">
                                 </div>
                                 <h4>Message: </h4>
                                 <div class="form-group">
                                     <textarea required class="form-control" name="body" rows="5" id="message-body" placeholder="Hi there..."></textarea>
+                                </div>
+                                <div style="display:none;">
+                                    <input type="text" name="userTo" value="${github.getUser(message.getFrom()).getLogin()}">
+                                    <input type="text" name="userFrom" value="${github.getMyself().getLogin()}">
+                                    <input type="text" name="callback" value="ViewMessages">
                                 </div>
                             </form>
                         </div>

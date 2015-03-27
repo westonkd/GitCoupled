@@ -67,7 +67,7 @@
                                 </h3>
                             </div>
                             <div class="col-sm-3">
-                                <a class="btn btn-success message-btn" id="sign-up" >View Profile</a>
+                                <a class="btn btn-default message-btn" id="sign-up" >View Profile</a>
                                 <a class="btn btn-primary message-btn " id="sign-up">Message</a>
                             </div>
                         </div>
