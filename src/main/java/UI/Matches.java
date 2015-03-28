@@ -44,14 +44,8 @@ public class Matches extends HttpServlet {
         SoulDao dao = new MySQLUser();
 
         if (github != null && user != null) {
-            //create a match maker
-            //GHMatchMaker matchMaker = new GHMatchMaker(user, github);
-
-            //get the matches
-            //Map<Integer, Set<User>> matches = matchMaker.getMatches();
+           //get the matches
             Map<Integer, Set<User>> matches = dao.getMatchesWithScores(user);
-
-            dao.close();
             
             //set the attribute and pass to jsp
             request.setAttribute("matches", matches);

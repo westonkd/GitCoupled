@@ -15,10 +15,12 @@
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
         <link rel="stylesheet" href="https://bootswatch.com/cosmo/bootstrap.min.css">
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/jRating.css">
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
         <script src="js/typed.js"></script>
         <script src="js/skrollr.min.js"></script>
+        <script src="js/jRating.min.js"></script>
     </head>
 
     <body class="gitcoupled">
@@ -60,7 +62,8 @@
                             </div>
                             <div class="col-sm-7">
                                 <h2>${github.getUser(match.getGithub_username()).getName()}</h2>
-                                <h3>Relationship Match ${matchList}</h3>
+                                <h3>Relationship Match - <strong>${matchList}</strong></h3>
+                                <div class="stars" data-average="${matchList}" data-id="3"></div>
                                 <h3>Primary Language: ${match.getFirst_language()}</h3>
                                 <h3 class="quote">
                                     "${match.quote}"
@@ -120,6 +123,16 @@
                     </div><!-- /.modal-dialog -->
                 </div><!-- /.modal -->
             </c:forEach> 
-        </c:forEach>       
+        </c:forEach> 
+        <script type="text/javascript">
+            $(document).ready(function(){
+                  $(".stars").jRating({
+                    step: true,
+                    length : 10, // nb of stars
+                    decimalLength:0, // number of decimal in the rate
+                    isDisabled: true
+                  });
+            });
+        </script>
     </body>
 </html>
