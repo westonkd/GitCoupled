@@ -46,10 +46,10 @@ public class Profile extends HttpServlet {
 
             out.println("success");
             
-            out.println("connecting to dao");
+            out.println("creating a dao");
             //create DAO 
             SoulDao db = new MySQLUser();
-            out.println("success");
+            out.println("mad a new dao");
 
             //create the username
             out.println("get user from db with username: " + github.getMyself().getLogin());
