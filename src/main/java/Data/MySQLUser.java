@@ -72,7 +72,7 @@ public class MySQLUser implements SoulDao {
         open();
 
         try {
-            String sql = "INSERT INTO User (gender,age,github_username,quote,bio,compat_score,first_language,second_language,third_language) "
+            String sql = "INSERT INTO user (gender,age,github_username,quote,bio,compat_score,first_language,second_language,third_language) "
                     + "VALUES "
                     + "('" + user.getGender()
                     + "'," + user.getAge()
