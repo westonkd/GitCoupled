@@ -54,11 +54,8 @@ public class CreateNewUser extends HttpServlet {
                 int age = Integer.parseInt(request.getParameter("age"));
                 String userName = github.getMyself().getLogin();
 
-                out.println(gender+age+userName+quote+bio);
                 //create the user object
                 User newUser = new User(gender, age, userName, quote, bio);
-
-                out.println(newUser.getGithub_username());
                 
                 try {
                     newUser.calcTopThreeLangs(github);
@@ -66,14 +63,11 @@ public class CreateNewUser extends HttpServlet {
                     ex.printStackTrace();
                 }
                 
-                out.println(newUser.getFirst_language());
-
                 //create a DAO
                 SoulDao dao = new MySQLUser();
 
                 //add the user to the database
                 dao.addUser(newUser);
-                out.println(dao.getStatement(newUser));
 
                 //Set user attribute
                 request.setAttribute("user", newUser);
@@ -83,7 +77,7 @@ public class CreateNewUser extends HttpServlet {
                 dao.close();
 
                 //forward
-                //request.getRequestDispatcher("profile.jsp").forward(request, response);
+                request.getRequestDispatcher("profile.jsp").forward(request, response);
             } else {
                 response.sendRedirect("index.jsp");
             }
