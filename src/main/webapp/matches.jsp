@@ -127,6 +127,7 @@
         <script type="text/javascript">
             $(document).ready(function(){
                   $(".stars").jRating({
+                    type: 'small',
                     step: true,
                     length : 10, // nb of stars
                     decimalLength:0, // number of decimal in the rate
