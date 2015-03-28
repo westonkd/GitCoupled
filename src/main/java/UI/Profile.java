@@ -50,6 +50,7 @@ public class Profile extends HttpServlet {
             
             //This is not working in openshift
             User user = db.getUser(github.getMyself().getLogin());
+            out.println("success: " + user);
             
             //if the user is in the database
             if (user != null) {
@@ -74,13 +75,6 @@ public class Profile extends HttpServlet {
                 out.println(github.getMyself().getLogin() + "does not exists");
                 //Set github attribute
                 request.setAttribute("github", github);
-                
-                //get the user
-                user = db.getUser(github.getMyself().getLogin());
-                
-                //Set user attribute
-                request.setAttribute("user", user);
-                request.getSession().setAttribute("user", user);
                 
                 //forward
                 request.getRequestDispatcher("edit-profile.jsp").forward(request, response);   
