@@ -47,7 +47,7 @@
             <main class="profile">
                 <div class="row">
                     <div class="col-sm-4">
-                        <img src="${github.getUser(match.getGithub_username()).getAvatarUrl()}" id="profile-pic" />
+                        <img src="${github.getUser(userToVisit.getGithub_username()).getAvatarUrl()}" id="profile-pic" />
                         <p class="quote">
                               <c:out value = "${userToVisit.quote}" ></c:out>
                         </p>
