@@ -48,7 +48,9 @@ public class ViewProfile extends HttpServlet {
         
         //String url = github.getUser(userToVisit.getGithub_username()).getAvatarUrl();
         
+        
         PrintWriter out = response.getWriter();
+        out.println(username);
         if (userToVisit == null)
             out.println("the user is null");
         else
