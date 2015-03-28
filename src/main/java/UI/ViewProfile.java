@@ -45,6 +45,7 @@ public class ViewProfile extends HttpServlet {
         request.setAttribute("userToVisit", userToVisit);
         request.setAttribute("github", github);        
         
+        //testing
         PrintWriter out = response.getWriter();
         out.println(username);
         if (userToVisit == null)
