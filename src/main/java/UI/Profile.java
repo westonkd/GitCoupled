@@ -43,20 +43,13 @@ public class Profile extends HttpServlet {
             
             //get the github instance
             GitHub github = (GitHub) request.getSession().getAttribute("github");
-
-            out.println("success");
-            
-            out.println("creating to dao");
             //create DAO 
             SoulDao db = new MySQLUser();
-            out.println("mad a new dao");
 
             //create the username
-            out.println("get user from db with username: " + github.getMyself().getLogin());
             
             //This is not working in openshift
             User user = db.getUser(github.getMyself().getLogin());
-            out.println("success: " + user);
             
             //if the user is in the database
             if (user != null) {
@@ -82,16 +75,12 @@ public class Profile extends HttpServlet {
                 //Set github attribute
                 request.setAttribute("github", github);
                 
-                response.getWriter().println("DB: " + db);
-                
                 //get the user
                 user = db.getUser(github.getMyself().getLogin());
                 
                 //Set user attribute
                 request.setAttribute("user", user);
                 request.getSession().setAttribute("user", user);
-                
-                response.getWriter().println(github + " " + user);
                 
                 //forward
                 request.getRequestDispatcher("edit-profile.jsp").forward(request, response);   

@@ -44,7 +44,7 @@ public class CreateNewUser extends HttpServlet {
             throws ServletException, IOException {
         //get the github object
         GitHub github = (GitHub) request.getSession().getAttribute("github");
-        System.out.println("?????????????????????????????????????????????");
+        response.getWriter().println("on create new user page");
         try (PrintWriter out = response.getWriter()) {
             //get the POST variables if they exists
             if (request.getParameter("gender") != null && github != null) {
