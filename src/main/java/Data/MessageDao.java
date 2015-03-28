@@ -20,4 +20,6 @@ public interface MessageDao {
     public void saveMessage(Message message);
     
     public void deleteMessage(int id);
+    
+    public String printStatement(Message message);
 }

@@ -5,6 +5,7 @@
  */
 package Application;
 
+import Data.MessageDao;
 import Data.MySQLMessage;
 import Data.MySQLUser;
 import Data.SoulDao;
@@ -49,11 +50,15 @@ public class CreateNewMessage extends HttpServlet {
         int sent_from = DB.getUserId(sentFrom);
         int received_by = DB.getUserId(sentTo);       
         
-        MySQLMessage newMySQLMessage = new MySQLMessage();
+        MessageDao newMySQLMessage = new MySQLMessage();
        
         // Create new message
         Message newMessage = new Message(subject, body, sent_from, received_by);
         // Save message
+        
+        PrintWriter out = response.getWriter();
+        out.println(newMySQLMessage.printStatement(newMessage));
+        
         newMySQLMessage.saveMessage(newMessage);
         // Send user back to page they were privously on
         request.getRequestDispatcher(callback).forward(request, response);
