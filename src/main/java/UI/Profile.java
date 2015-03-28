@@ -56,7 +56,7 @@ public class Profile extends HttpServlet {
             
             //This is not working in openshift
             User user = db.getUser(github.getMyself().getLogin());
-            out.println("success: " + user);
+            out.println("success!!!: " + user);
             
             //if the user is in the database
             if (user != null) {
