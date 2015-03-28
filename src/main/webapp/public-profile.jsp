@@ -49,19 +49,19 @@
                     <div class="col-sm-4">
                         <img src="${github.getUser(userToVisit.getGithub_username()).getAvatarUrl()}" id="profile-pic" />
                         <p class="quote">
-                              <c:out value = "${userToVisit.quote}" ></c:out>
+                              <c:out value = "${userToVisit.getQuote()}" ></c:out>
                         </p>
                     </div>
                     <div class="col-sm-4">
                         <div class="profile-info">
                             <h1 id="profile-name"><c:out value = "${github.getMyself().getName()}" ></c:out></h1>
-                            <h2>Age: <c:out value = "${userToVisit.age}" ></c:out></h2>
-                            <h2>Gender: <c:out value = "${userToVisit.gender}" ></c:out></h2>
+                            <h2>Age: <c:out value = "${userToVisit.getAge()}" ></c:out></h2>
+                            <h2>Gender: <c:out value = "${userToVisit.getGender()}" ></c:out></h2>
                             <h2>Love Languages</h2>
                             <ol>
-                                <li><c:out value = "${userToVisit.getFirst_language()}" ></c:out></li>
-                                <li><c:out value = "${userToVisit.getSecond_language()}" ></c:out></li>
-                                <li><c:out value = "${userToVisit.getThird_language()}" ></c:out></li>
+                                <li><c:out value="${userToVisit.getFirst_language()}" ></c:out></li>
+                                <li><c:out value="${userToVisit.getSecond_language()}" ></c:out></li>
+                                <li><c:out value="${userToVisit.getThird_language()}" ></c:out></li>
                             </ol>
                         </div>
                     </div>
