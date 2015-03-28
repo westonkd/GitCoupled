@@ -63,7 +63,7 @@
                             <div class="col-sm-7">
                                 <h2>${github.getUser(match.getGithub_username()).getName()}</h2>
                                 <h3>Relationship Match - <strong>${matchList}</strong></h3>
-                                <div class="stars" data-average="${matchList}" data-id="3"></div>
+                                <div class="stars" data-average="${matchList}" data-id="1"></div>
                                 <h3>Primary Language: ${match.getFirst_language()}</h3>
                                 <h3 class="quote">
                                     "${match.quote}"
@@ -130,8 +130,6 @@
         <script type="text/javascript">
             $(document).ready(function(){
                   $(".stars").jRating({
-                    type: 'small',
-                    step: true,
                     length : 10, // nb of stars
                     decimalLength:0, // number of decimal in the rate
                     isDisabled: true
