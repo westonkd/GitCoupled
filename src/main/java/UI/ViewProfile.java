@@ -10,9 +10,6 @@ import Data.MySQLUser;
 import Data.SoulDao;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,10 +19,10 @@ import org.kohsuke.github.GitHub;
 
 /**
  *
- * @author weston
+ * @author McKay
  */
-@WebServlet(name = "Matches", urlPatterns = {"/Matches"})
-public class Matches extends HttpServlet {
+@WebServlet(name = "ViewOthersProfile", urlPatterns = {"/ViewOthersProfile"})
+public class ViewProfile extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,19 +38,15 @@ public class Matches extends HttpServlet {
         //get the github object
         GitHub github = (GitHub) request.getSession().getAttribute("github");
         User user = (User) request.getSession().getAttribute("user");
-        SoulDao dao = new MySQLUser();
-
-        if (github != null && user != null) {
-           //get the matches
-            Map<Integer, Set<User>> matches = dao.getMatchesWithScores(user);
-            
-            //set the attribute and pass to jsp
-            request.setAttribute("matches", matches);
-            
-            request.getRequestDispatcher("matches.jsp").forward(request, response);
-        } else {
-            response.sendRedirect("SignIn");
-        }
+        String username = (String) request.getAttribute("username");
+        
+        SoulDao db = new MySQLUser();
+        
+        User userToVisit = db.getUser(username);
+        request.setAttribute("userToVisit", userToVisit);
+        
+        //forward
+        request.getRequestDispatcher("public-profile.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

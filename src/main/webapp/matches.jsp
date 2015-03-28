@@ -71,7 +71,10 @@
                             </div>
                             <div class="col-sm-3">
                                 <a class="btn btn-primary message-btn " id="sign-up" onclick="$('#<c:out value="${match.getGithub_username()}"></c:out>').modal()">Message</a>
-                                <a class="btn btn-default message-btn" id="sign-up" >View Profile</a>
+                                <form action ="ViewProfile" method="GET">
+                                    <input type="hidden" name="username" value="${match.getGithub_username()}" />
+                                    <input type="submit" class="btn btn-default message-btn" value="View Profile"/>
+                                </form>
                                 </div>
                             </div>
                     </c:forEach> 
