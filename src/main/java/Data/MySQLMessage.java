@@ -116,7 +116,8 @@ public class MySQLMessage implements MessageDao {
                         "ON m.sent_from = sf.id " +
                         "JOIN (SELECT id, github_username from user) rb " +
                         "ON m.recieved_by = rb.id " +
-                        "WHERE rb.github_username = '" + username +"'";
+                        "WHERE rb.github_username = '" + username +"' " +
+                        "ORDER BY id DESC";
         
         try {
             
