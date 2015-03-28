@@ -69,22 +69,19 @@ public class Profile extends HttpServlet {
                 request.getSession().setAttribute("user", user);
                 
                 //forward
-                //request.getRequestDispatcher("profile.jsp").forward(request, response);   
+                request.getRequestDispatcher("profile.jsp").forward(request, response);   
                 
             } else {        
                 out.println(github.getMyself().getLogin() + "does not exists");
                 //Set github attribute
                 request.setAttribute("github", github);
                 
-                //get the user
-                user = db.getUser(github.getMyself().getLogin());
-                
                 //Set user attribute
                 request.setAttribute("user", user);
                 request.getSession().setAttribute("user", user);
                 
                 //forward
-                //request.getRequestDispatcher("edit-profile.jsp").forward(request, response);   
+                request.getRequestDispatcher("edit-profile.jsp").forward(request, response);   
             }
         }
     }

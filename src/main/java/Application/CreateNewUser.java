@@ -54,6 +54,7 @@ public class CreateNewUser extends HttpServlet {
                 int age = Integer.parseInt(request.getParameter("age"));
                 String userName = github.getMyself().getLogin();
 
+                out.println(gender+age+userName+quote+bio);
                 //create the user object
                 User newUser = new User(gender, age, userName, quote, bio);
 
@@ -77,7 +78,7 @@ public class CreateNewUser extends HttpServlet {
                 dao.close();
 
                 //forward
-                request.getRequestDispatcher("profile.jsp").forward(request, response);
+                //request.getRequestDispatcher("profile.jsp").forward(request, response);
             } else {
                 response.sendRedirect("index.jsp");
             }
