@@ -58,17 +58,22 @@ public class CreateNewUser extends HttpServlet {
                 //create the user object
                 User newUser = new User(gender, age, userName, quote, bio);
 
+                out.println(newUser.getGithub_username());
+                
                 try {
                     newUser.calcTopThreeLangs(github);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
+                
+                out.println(newUser.getFirst_language());
 
                 //create a DAO
                 SoulDao dao = new MySQLUser();
 
                 //add the user to the database
                 dao.addUser(newUser);
+                out.println(dao.getStatement(newUser));
 
                 //Set user attribute
                 request.setAttribute("user", newUser);

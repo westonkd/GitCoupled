@@ -185,9 +185,6 @@ public class User {
 
         //updates the user in the db.
         SoulDao dao = new MySQLUser();
-        //This updates the entire user
-        //dao.updateUser(this);
-        //or, you could just set the languages...probably more efficient...
         dao.saveLanguages(this.getId(), topLangs.get(0), topLangs.get(1), topLangs.get(2));
 
     }
