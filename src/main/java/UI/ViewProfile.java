@@ -40,8 +40,8 @@ public class ViewProfile extends HttpServlet {
         String username = (String) request.getParameter("username");
         
         SoulDao db = new MySQLUser();
-        
         User userToVisit = db.getUser(username);
+        
         request.setAttribute("userToVisit", userToVisit);
         request.setAttribute("github", github);        
         

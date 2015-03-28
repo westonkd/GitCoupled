@@ -107,8 +107,12 @@ public class MySQLUser implements SoulDao {
             String github_username = results.getString("github_username");
             String quote = results.getString("quote");
             String bio = results.getString("bio");
+            int score = results.getInt("compat_score");
+            String first = results.getString("first_language");
+            String second = results.getString("second_language");
+            String third = results.getString("third_language");
 
-            user = new User(id, gender, age, github_username, quote, bio);
+            user = new User(id, gender, age, github_username, quote, bio, score, first, second, third);
 
         } catch (Exception ex) {
             ex.printStackTrace();
