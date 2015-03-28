@@ -21,7 +21,7 @@ import org.kohsuke.github.GitHub;
  *
  * @author McKay
  */
-@WebServlet(name = "ViewOthersProfile", urlPatterns = {"/ViewOthersProfile"})
+@WebServlet(name = "ViewProfile", urlPatterns = {"/ViewProfile"})
 public class ViewProfile extends HttpServlet {
 
     /**
