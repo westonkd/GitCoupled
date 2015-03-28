@@ -70,10 +70,10 @@
                                 </h3>
                             </div>
                             <div class="col-sm-3">
-                                <a class="btn btn-primary message-btn " id="sign-up" onclick="$('#<c:out value="${match.getGithub_username()}"></c:out>').modal()">Message</a>
+                                <button class="btn btn-primary message-btn " onclick="$('#<c:out value="${match.getGithub_username()}"></c:out>').modal()">Message</button>
                                 <form action ="ViewProfile" method="GET">
                                     <input type="hidden" name="username" value="${match.getGithub_username()}" />
-                                    <input type="submit" class="btn btn-default message-btn" value="View Profile"/>
+                                    <button type="submit" class="btn btn-default message-btn">View Profile</button>
                                 </form>
                                 </div>
                             </div>
