@@ -49,7 +49,10 @@ public class ViewProfile extends HttpServlet {
         //String url = github.getUser(userToVisit.getGithub_username()).getAvatarUrl();
         
         PrintWriter out = response.getWriter();
-        out.println(userToVisit.getGithub_username());
+        if (userToVisit == null)
+            out.println("the user is null");
+        else
+            out.println("nope, he's definitly faking it...");
         
         //forward
         //request.getRequestDispatcher("public-profile.jsp").forward(request, response);
