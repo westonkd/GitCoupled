@@ -26,7 +26,7 @@
             <div class="navbar navbar-default navbar-fixed-top coupled">
                 <div class="container">
                     <div class="navbar-header">
-                        <a href="../" class="navbar-brand">
+                        <a href="http://gitcoupled-puremagic.rhcloud.com/" class="navbar-brand">
                             <img id="main-logo" src="images/blacklogo.png" alt="">
                         </a>
                         <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
@@ -37,9 +37,9 @@
                     </div>
                     <div class="navbar-collapse collapse" id="navbar-main">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="http://builtwithbootstrap.com/" target="_blank">Settings</a>
+                            <li><a href="Profile">Profile</a>
                             </li>
-                            <li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">Login</a>
+                            <li><a href="SignIn">Login</a>
                             </li>
                         </ul>
                     </div>
@@ -67,7 +67,10 @@
                         </div>
                     </div>
                     <div class="col-sm-4">
-                        <a class="btn btn-primary message-btn btn-lg" id="sign-up" style="opacity: 1;" href="message.jsp">Message</a>
+                        <a class="btn btn-primary message-btn btn-lg" style="opacity: 1;" href="ViewMessages">Messages</a>
+                    </div>
+                    <div class="col-sm-4">
+                        <a class="btn btn-primary message-btn btn-lg" style="opacity: 1;" href="Matches">Matches</a>
                     </div>
                 </div>
                 <div class="row">
@@ -87,7 +90,7 @@
                     <img id="footer-logo" src="images/blacklogo.png" alt="">
                 </div>
                 <div class="col-sm-3 right">    
-                    <a href="TODO">login/register</a>
+                    <a href="SignIn">login/register</a>
                 </div>
             </footer>
         </div>

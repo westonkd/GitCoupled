@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Application;
+package UI;
 
+import Application.User;
 import Data.MySQLUser;
 import Data.SoulDao;
 import java.io.IOException;
