@@ -31,7 +31,8 @@ public class MySQLUser implements SoulDao {
 
     public MySQLUser() {
         //dbUrl = "jdbc:mysql://localhost/gitcoupled";
-        dbUrl = "jdbc:mysql://" + System.getenv("OPENSHIFT_MYSQL_DB_HOST") + ":" + System.getenv("OPENSHIFT_MYSQL_DB_PORT") + "/" + "gitcoupled";
+        //dbUrl = "jdbc:mysql://" + System.getenv("OPENSHIFT_MYSQL_DB_HOST") + ":" + System.getenv("OPENSHIFT_MYSQL_DB_PORT") + "/" + "gitcoupled";
+        dbUrl = "jdbc:mysql://127.3.91.120:3306/gitcoupled";
         user = "Gandalf";
         password = "puremagic";
         conn = null;
