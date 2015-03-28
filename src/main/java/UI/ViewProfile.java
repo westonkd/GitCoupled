@@ -37,7 +37,6 @@ public class ViewProfile extends HttpServlet {
             throws ServletException, IOException {
         //get the github object
         GitHub github = (GitHub) request.getSession().getAttribute("github");
-        User user = (User) request.getSession().getAttribute("user");
         String username = (String) request.getAttribute("username");
         
         SoulDao db = new MySQLUser();
@@ -46,10 +45,11 @@ public class ViewProfile extends HttpServlet {
         request.setAttribute("userToVisit", userToVisit);
         request.setAttribute("github", github);
         
-        String url = github.getUser(userToVisit.getGithub_username()).getAvatarUrl();
+        
+        //String url = github.getUser(userToVisit.getGithub_username()).getAvatarUrl();
         
         PrintWriter out = response.getWriter();
-        out.println(url);
+        out.println(userToVisit.getGithub_username());
         
         //forward
         //request.getRequestDispatcher("public-profile.jsp").forward(request, response);
