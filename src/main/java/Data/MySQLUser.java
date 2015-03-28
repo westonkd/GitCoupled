@@ -30,7 +30,7 @@ public class MySQLUser implements SoulDao {
     private ResultSet results;
 
     public MySQLUser() {
-        //dbUrl = "jdbc:mysql://localhost/gitcoupled";
+        
         String host = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
         String port = System.getenv("OPENSHIFT_MYSQL_DB_PORT");
         dbUrl = "jdbc:mysql://" + host + ":" + port + "/" + "gitcoupled";

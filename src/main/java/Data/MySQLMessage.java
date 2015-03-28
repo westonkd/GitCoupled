@@ -18,14 +18,28 @@ import java.util.logging.Logger;
  */
 public class MySQLMessage implements MessageDao {
     
-    private String dbUrl = "jdbc:mysql://localhost/gitcoupled";
-    private String user = "Gandalf";
-    private String password = "puremagic";
-    private Connection conn = null;
-    private Statement statement = null;
-    private ResultSet results = null;
+    private String dbUrl;
+    private String user;
+    private String password;
+    private Connection conn;
+    private Statement statement;
+    private ResultSet results;
 
     public MySQLMessage() {
+        
+        String host = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
+        String port = System.getenv("OPENSHIFT_MYSQL_DB_PORT");
+        dbUrl = "jdbc:mysql://" + host + ":" + port + "/" + "gitcoupled";
+        user = "Gandalf";
+        password = "puremagic";
+        conn = null;
+        statement = null;
+        results = null;
+    }
+    
+    @Override
+    public void open()
+    {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(dbUrl, user, password);
@@ -34,6 +48,18 @@ public class MySQLMessage implements MessageDao {
 
         } catch (Exception ex) {
             ex.printStackTrace();
+        }
+    }
+    
+    @Override
+    public void close()
+    {
+        try {
+            results = null;
+            statement.close();
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(MySQLMessage.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -45,6 +71,7 @@ public class MySQLMessage implements MessageDao {
     @Override
     public Message getMessage(int id) {
         
+        open();
         Message lovenote = null;
         
         try {
@@ -72,6 +99,7 @@ public class MySQLMessage implements MessageDao {
             Logger.getLogger(MySQLMessage.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        close();
         return lovenote;
         
     }
@@ -79,6 +107,7 @@ public class MySQLMessage implements MessageDao {
     @Override
     public List<Message> getMessages(String username) {
         
+        open();
         List<Message> lovenotes = new ArrayList();
         
         String sql = "SELECT m.*, sf.github_username as 'from', rb.github_username as 'to' " +
@@ -112,6 +141,7 @@ public class MySQLMessage implements MessageDao {
             Logger.getLogger(MySQLMessage.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        close();
         return lovenotes;
         
     }
@@ -119,6 +149,7 @@ public class MySQLMessage implements MessageDao {
     @Override
     public void saveMessage(Message message) {
         
+        open();
         String sql = "INSERT INTO message "
                 + "(subject, body, sent_date, sent_from, recieved_by) "
                 + "VALUES "
@@ -135,11 +166,13 @@ public class MySQLMessage implements MessageDao {
             Logger.getLogger(MySQLMessage.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        close();
     }
 
     @Override
     public void deleteMessage(int id) {
         
+        open();
         String sql = "DELETE FROM message WHERE id = " + id;
         
         try {
@@ -148,6 +181,7 @@ public class MySQLMessage implements MessageDao {
             Logger.getLogger(MySQLMessage.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        close();
     }
 
     @Override

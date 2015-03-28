@@ -14,6 +14,9 @@ import java.util.List;
  */
 public interface MessageDao {
     
+    public void open();
+    public void close();
+    
     public Message getMessage(int id);
     public List<Message> getMessages(String username);
     
