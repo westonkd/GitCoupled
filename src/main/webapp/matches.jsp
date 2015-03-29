@@ -133,7 +133,7 @@
                     length : 10, // nb of stars
                     decimalLength:0, // number of decimal in the rate
                     isDisabled: true, 
-                    rateMax: 10;
+                    rateMax: 10
                   });
             });
         </script>
