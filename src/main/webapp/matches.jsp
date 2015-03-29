@@ -63,14 +63,14 @@
                             <div class="col-sm-7">
                                 <h2>${github.getUser(match.getGithub_username()).getName()}</h2>
                                 <h3>Relationship Match - <strong>${matchList}</strong></h3>
-                                <div class="stars" data-average="10" data-id="${matchList}"></div>
+                                <div class="stars" data-average="${matchList}"></div>
                                 <h3>Primary Language: ${match.getFirst_language()}</h3>
                                 <h3 class="quote">
                                     "${match.quote}"
                                 </h3>
                             </div>
                             <div class="col-sm-3">
-                                <button class="btn btn-primary message-btn " onclick="$('#<c:out value="${match.getGithub_username()}"></c:out>').modal()">Message</button>
+                                <button class="btn btn-primary message-btn" onclick="$('#<c:out value="${match.getGithub_username()}"></c:out>').modal()">Message</button>
                                 <form action ="ViewProfile" method="GET">
                                     <input type="hidden" name="username" value="${match.getGithub_username()}" />
                                     <button type="submit" class="btn btn-default message-btn">View Profile</button>
@@ -132,7 +132,8 @@
                   $(".stars").jRating({
                     length : 10, // nb of stars
                     decimalLength:0, // number of decimal in the rate
-                    isDisabled: true
+                    isDisabled: true, 
+                    rateMax: 10;
                   });
             });
         </script>
