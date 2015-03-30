@@ -199,23 +199,6 @@ public class MySQLMessage implements MessageDao {
     }
 
     @Override
-    public String printStatement(Message message) {
-        
-        return "INSERT INTO message "
-                + "(subject, body, sent_date, sent_from, recieved_by, in_reply_to, display) "
-                + "VALUES "
-                + "( '" + message.getSubject() + "'"
-                + ", '" + message.getBody() + "'"
-                + ", NOW() "
-                + ", " + message.getSent_from()
-                + ", " + message.getRecieved_by()
-                + ", " + message.getIn_reply_to()
-                + ", " + 1
-                + ")";
-        
-    }
-
-    @Override
     public void updateMessage(Message message) {
         
         open();
@@ -239,6 +222,23 @@ public class MySQLMessage implements MessageDao {
         }
                         
         close();
+    }
+    
+    @Override
+    public String printStatement(Message message) {
+        
+        return "UPDATE message "
+                + "SET "
+                + "subject = '" + message.getSubject() + "', "
+                + "body = '" + message.getBody() + "', "
+                + "sent_date = '" + message.getSent_date() + "', "
+                + "sent_from = " + message.getSent_from() + ", "
+                + "recieved_by = " + message.getRecieved_by() + ", "
+                + "in_reply_to = " + message.getIn_reply_to() + ", "
+                + "display = " + message.getDisplay() + " "
+                + "WHERE "
+                + "id = " + message.getId();
+        
     }
     
 }
