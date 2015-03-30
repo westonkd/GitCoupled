@@ -59,10 +59,10 @@ public class ReplyToMessage extends HttpServlet {
         // Save message
         mDao.saveMessage(newMessage);
         mDao.updateMessage(oldMessage);
-        response.getWriter().println(mDao.printStatement(oldMessage));
+        //response.getWriter().println(mDao.printStatement(oldMessage));
         
         // Send user back to page they were privously on
-        //request.getRequestDispatcher(callback).forward(request, response);
+        request.getRequestDispatcher(callback).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

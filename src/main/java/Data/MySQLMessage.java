@@ -201,6 +201,12 @@ public class MySQLMessage implements MessageDao {
     @Override
     public void updateMessage(Message message) {
         
+        String replyTo;
+        if (message.getIn_reply_to() < 0)
+            replyTo = " NULL";
+        else 
+            replyTo = " " + message.getIn_reply_to();
+        
         open();
         
         String sql = "UPDATE message "
@@ -210,7 +216,7 @@ public class MySQLMessage implements MessageDao {
                 + "sent_date = '" + message.getSent_date() + "', "
                 + "sent_from = " + message.getSent_from() + ", "
                 + "recieved_by = " + message.getRecieved_by() + ", "
-                + "in_reply_to = " + message.getIn_reply_to() + ", "
+                + "in_reply_to =" + replyTo + ", "
                 + "display = " + message.getDisplay() + " "
                 + "WHERE "
                 + "id = " + message.getId();
