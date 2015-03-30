@@ -68,7 +68,7 @@ public class Profile extends HttpServlet {
                 request.getSession().setAttribute("user", user);
                 
                 //forward
-                //request.getRequestDispatcher("profile.jsp").forward(request, response);   
+                request.getRequestDispatcher("profile.jsp").forward(request, response);   
                 
             } else {        
                 
