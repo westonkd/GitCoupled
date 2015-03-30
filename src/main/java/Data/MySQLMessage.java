@@ -202,7 +202,7 @@ public class MySQLMessage implements MessageDao {
     public void updateMessage(Message message) {
         
         String replyTo;
-        if (message.getIn_reply_to() < 0)
+        if (message.getIn_reply_to() <= 0)
             replyTo = " NULL";
         else 
             replyTo = " " + message.getIn_reply_to();
