@@ -155,6 +155,12 @@ public class MySQLMessage implements MessageDao {
     @Override
     public void saveMessage(Message message) {
         
+        String reply;
+        if (message.getIn_reply_to() < 0)
+            reply = " NULL";
+        else
+            reply = " " + message.getIn_reply_to();
+        
         open();
         String sql = "INSERT INTO message "
                 + "(subject, body, sent_date, sent_from, recieved_by, in_reply_to, display) "
@@ -164,7 +170,7 @@ public class MySQLMessage implements MessageDao {
                 + ", NOW() "
                 + ", " + message.getSent_from()
                 + ", " + message.getRecieved_by()
-                + ", " + message.getIn_reply_to()
+                + "," + reply
                 + ", " + 1
                 + ")";
         
