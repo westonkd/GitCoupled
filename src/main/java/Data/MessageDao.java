@@ -21,6 +21,7 @@ public interface MessageDao {
     public List<Message> getMessages(String username);
     
     public void saveMessage(Message message);
+    public void updateMessage(Message message);
     
     public void deleteMessage(int id);
     

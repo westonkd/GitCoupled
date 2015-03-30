@@ -54,11 +54,11 @@ public class ReplyToMessage extends HttpServlet {
         // Create new message
         Message newMessage = new Message(subject, body, sent_from, received_by, in_reply_to);
         Message oldMessage = mDao.getMessage(in_reply_to);
-        oldMessage.setDisplay(false);
+        oldMessage.setDisplay(0);
         
         // Save message
         mDao.saveMessage(newMessage);
-        mDao.saveMessage(oldMessage);
+        mDao.updateMessage(oldMessage);
         
         // Send user back to page they were privously on
         request.getRequestDispatcher(callback).forward(request, response);

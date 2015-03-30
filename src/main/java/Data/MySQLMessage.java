@@ -91,7 +91,7 @@ public class MySQLMessage implements MessageDao {
             int sent_from = results.getInt("sent_from");
             int recieved_by = results.getInt("recieved_by");
             int in_reply_to = results.getInt("in_reply_to");
-            boolean display = results.getBoolean("display");
+            int display = results.getInt("display");
             String from = results.getString("from");
             String to = results.getString("to");            
         
@@ -135,7 +135,7 @@ public class MySQLMessage implements MessageDao {
                 int sent_from = results.getInt("sent_from");
                 int recieved_by = results.getInt("recieved_by");
                 int in_reply_to = results.getInt("in_reply_to");
-                boolean display = results.getBoolean("display");
+                int display = results.getInt("display");
                 String from = results.getString("from");            
         
                 Message lovenote = new Message(id, subject, body, sent_date, sent_from, recieved_by, in_reply_to, display, from, username);
@@ -213,6 +213,32 @@ public class MySQLMessage implements MessageDao {
                 + ", " + 1
                 + ")";
         
+    }
+
+    @Override
+    public void updateMessage(Message message) {
+        
+        open();
+        
+        String sql = "UPDATE message "
+                + "SET "
+                + "subject = '" + message.getSubject() + "', "
+                + "body = '" + message.getBody() + "', "
+                + "sent_date = '" + message.getSent_date() + "', "
+                + "sent_from = " + message.getSent_from() + ", "
+                + "recieved_by = " + message.getRecieved_by() + ", "
+                + "in_reply_to = " + message.getIn_reply_to() + ", "
+                + "display = " + message.getDisplay() + " "
+                + "WHERE "
+                + "id = " + message.getId();
+        
+        try {
+            statement.executeQuery(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(MySQLMessage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                        
+        close();
     }
     
 }

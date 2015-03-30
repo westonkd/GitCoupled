@@ -20,7 +20,7 @@ public class Message {
     private int sent_from;
     private int recieved_by;
     private int in_reply_to;
-    private boolean display;
+    private int display;
     private String from;
     private String to;
 
@@ -120,7 +120,7 @@ public class Message {
      * @param from
      * @param to 
      */
-    public Message(int id, String subject, String body, Timestamp sent_date, int sent_from, int recieved_by, int in_reply_to, boolean display, String from, String to) {
+    public Message(int id, String subject, String body, Timestamp sent_date, int sent_from, int recieved_by, int in_reply_to, int display, String from, String to) {
         this.id = id;
         this.subject = subject;
         this.body = body;
@@ -253,11 +253,11 @@ public class Message {
         this.in_reply_to = in_reply_to;
     }
 
-    public boolean isDisplay() {
+    public int getDisplay() {
         return display;
     }
 
-    public void setDisplay(boolean display) {
+    public void setDisplay(int display) {
         this.display = display;
     }
     
