@@ -90,10 +90,12 @@ public class MySQLMessage implements MessageDao {
             Timestamp sent_date = results.getTimestamp("sent_date");
             int sent_from = results.getInt("sent_from");
             int recieved_by = results.getInt("recieved_by");
+            int in_reply_to = results.getInt("in_reply_to");
+            boolean display = results.getBoolean("display");
             String from = results.getString("from");
             String to = results.getString("to");            
         
-            lovenote = new Message(id, subject, body, sent_date, sent_from, recieved_by, from, to);
+            lovenote = new Message(id, subject, body, sent_date, sent_from, recieved_by, in_reply_to, display, from, to);
             
         } catch (SQLException ex) {
             Logger.getLogger(MySQLMessage.class.getName()).log(Level.SEVERE, null, ex);
@@ -116,8 +118,9 @@ public class MySQLMessage implements MessageDao {
                         "ON m.sent_from = sf.id " +
                         "JOIN (SELECT id, github_username from user) rb " +
                         "ON m.recieved_by = rb.id " +
-                        "WHERE rb.github_username = '" + username +"' " +
-                        "ORDER BY id DESC";
+                        "WHERE rb.github_username = '" + username +"' AND" +
+                        "display = " + 1 + " " +
+                        "ORDER BY sent_date DESC";
         
         try {
             
@@ -131,9 +134,11 @@ public class MySQLMessage implements MessageDao {
                 Timestamp sent_date = results.getTimestamp("sent_date");
                 int sent_from = results.getInt("sent_from");
                 int recieved_by = results.getInt("recieved_by");
+                int in_reply_to = results.getInt("in_reply_to");
+                boolean display = results.getBoolean("display");
                 String from = results.getString("from");            
         
-                Message lovenote = new Message(id, subject, body, sent_date, sent_from, recieved_by, from, username);
+                Message lovenote = new Message(id, subject, body, sent_date, sent_from, recieved_by, in_reply_to, display, from, username);
                 
                 lovenotes.add(lovenote);
             }
@@ -152,13 +157,15 @@ public class MySQLMessage implements MessageDao {
         
         open();
         String sql = "INSERT INTO message "
-                + "(subject, body, sent_date, sent_from, recieved_by) "
+                + "(subject, body, sent_date, sent_from, recieved_by, in_reply_to, display) "
                 + "VALUES "
                 + "( '" + message.getSubject() + "'"
                 + ", '" + message.getBody() + "'"
                 + ", NOW() "
                 + ", " + message.getSent_from()
                 + ", " + message.getRecieved_by()
+                + ", " + message.getIn_reply_to()
+                + ", " + 1
                 + ")";
         
         try {

@@ -49,16 +49,14 @@
                 <div class="col-sm-12">
                     <h2>Messages</h2>
                     <c:forEach items="${messages}" var="message">
-                        <form action="action">
-                            <div class="message">
-                                <h1>${github.getUser(message.getFrom()).getName()}</h1>
-                                <h3><strong>Subject:</strong> ${message.getSubject()}</h3>
-                                <p>
-                                    ${message.getBody()}
-                                </p>  
-                                <a type="submit" class="btn btn-primary" onclick="$('#<c:out value="${message.getFrom()}"></c:out>').modal()">Reply</a>
-                                </div>
-                            </form>
+                        <div class="message">
+                            <h1>${github.getUser(message.getFrom()).getName()}</h1>
+                            <h3><strong>Subject:</strong> ${message.getSubject()}</h3>
+                            <p>
+                                ${message.getBody()}
+                            </p>  
+                            <a type="submit" class="btn btn-primary" onclick="$('#<c:out value="${message.getFrom()}"></c:out>').modal()">Reply</a>
+                        </div>
                     </c:forEach>
                 </div>
             </main>
@@ -87,7 +85,7 @@
                                 <h4 class="modal-title">To: ${github.getUser(message.getFrom()).getName()}</h4>
                         </div>
                         <div class="modal-body">
-                            <form role="form" action="CreateNewMessage" method="POST" id="message-form">
+                            <form role="form" action="ReplyToMessage" method="POST" id="message-form">
                                 <h4>Subject: </h4>
                                 <div class="form-group">
                                     <input required type="text" class="form-control" placeholder="Love" name="subject" id="subject">
@@ -100,6 +98,7 @@
                                     <input type="text" name="userTo" value="${github.getUser(message.getFrom()).getLogin()}">
                                     <input type="text" name="userFrom" value="${github.getMyself().getLogin()}">
                                     <input type="text" name="callback" value="ViewMessages">
+                                    <input type="hidden" name="in_reply_to" value="${message.getId()}" >
                                 </div>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                                 <button type="submit" class="btn btn-primary">Send</button>

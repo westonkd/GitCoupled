@@ -19,6 +19,8 @@ public class Message {
     private Timestamp sent_date;
     private int sent_from;
     private int recieved_by;
+    private int in_reply_to;
+    private boolean display;
     private String from;
     private String to;
 
@@ -46,6 +48,24 @@ public class Message {
         this.body = body;
         this.sent_from = sent_from;
         this.recieved_by = recieved_by;
+        this.in_reply_to = -1;
+    }
+    
+    /**
+     * 
+     * @param subject
+     * @param body
+     * @param sent_from
+     * @param recieved_by 
+     * @param in_reply_to
+     */
+    public Message(String subject, String body, int sent_from, int recieved_by, int in_reply_to) {
+        this.id = -1;
+        this.subject = subject;
+        this.body = body;
+        this.sent_from = sent_from;
+        this.recieved_by = recieved_by;
+        this.in_reply_to = in_reply_to;
     }
     
     /**
@@ -83,6 +103,32 @@ public class Message {
         this.sent_date = sent_date;
         this.sent_from = sent_from;
         this.recieved_by = recieved_by;
+        this.from = from;
+        this.to = to;
+    }
+
+    /**
+     * 
+     * @param id
+     * @param subject
+     * @param body
+     * @param sent_date
+     * @param sent_from
+     * @param recieved_by
+     * @param in_reply_to
+     * @param display
+     * @param from
+     * @param to 
+     */
+    public Message(int id, String subject, String body, Timestamp sent_date, int sent_from, int recieved_by, int in_reply_to, boolean display, String from, String to) {
+        this.id = id;
+        this.subject = subject;
+        this.body = body;
+        this.sent_date = sent_date;
+        this.sent_from = sent_from;
+        this.recieved_by = recieved_by;
+        this.in_reply_to = in_reply_to;
+        this.display = display;
         this.from = from;
         this.to = to;
     }
@@ -197,6 +243,22 @@ public class Message {
 
     public void setTo(String to) {
         this.to = to;
+    }
+
+    public int getIn_reply_to() {
+        return in_reply_to;
+    }
+
+    public void setIn_reply_to(int in_reply_to) {
+        this.in_reply_to = in_reply_to;
+    }
+
+    public boolean isDisplay() {
+        return display;
+    }
+
+    public void setDisplay(boolean display) {
+        this.display = display;
     }
     
 }
