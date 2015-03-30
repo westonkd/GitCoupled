@@ -55,13 +55,11 @@ public class CreateNewMessage extends HttpServlet {
         // Create new message
         Message newMessage = new Message(subject, body, sent_from, received_by);
         
-        response.getWriter().println(newMySQLMessage.printStatement(newMessage));
-        
         // Save message
         newMySQLMessage.saveMessage(newMessage);
         
         // Send user back to page they were privously on
-        //request.getRequestDispatcher(callback).forward(request, response);
+        request.getRequestDispatcher(callback).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
