@@ -196,13 +196,15 @@ public class MySQLMessage implements MessageDao {
     public String printStatement(Message message) {
         
         return "INSERT INTO message "
-                + "(subject, body, sent_date, sent_from, recieved_by) "
+                + "(subject, body, sent_date, sent_from, recieved_by, in_reply_to, display) "
                 + "VALUES "
                 + "( '" + message.getSubject() + "'"
                 + ", '" + message.getBody() + "'"
                 + ", NOW() "
                 + ", " + message.getSent_from()
                 + ", " + message.getRecieved_by()
+                + ", " + message.getIn_reply_to()
+                + ", " + 1
                 + ")";
         
     }
