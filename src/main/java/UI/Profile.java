@@ -57,7 +57,7 @@ public class Profile extends HttpServlet {
                 //calculate the top three languages
                 try {
                     user.calcTopThreeLangs(github);
-                    db.saveLanguages(user.getId(), user.getFirst_language(), user.getSecond_language(), user.getThird_language());
+                    out.println(db.getStatement(user));
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -70,7 +70,7 @@ public class Profile extends HttpServlet {
                 request.getSession().setAttribute("user", user);
                 
                 //forward
-                request.getRequestDispatcher("profile.jsp").forward(request, response);   
+                //request.getRequestDispatcher("profile.jsp").forward(request, response);   
                 
             } else {        
                 

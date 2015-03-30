@@ -771,17 +771,17 @@ public class MySQLUser implements SoulDao {
     @Override
     public String getStatement(User user) {
         
-        return "INSERT INTO user (gender,age,github_username,quote,bio,compat_score,first_language,second_language,third_language) "
-                    + "VALUES "
-                    + "('" + user.getGender()
-                    + "'," + user.getAge()
-                    + ",'" + user.getGithub_username()
-                    + "',\"" + user.getQuote()
-                    + "\",\"" + user.getBio()
-                    + "\"," + user.getCompat_score()
-                    + ",'" + user.getFirst_language()
-                    + "','" + user.getSecond_language()
-                    + "','" + user.getThird_language() + "')";
+        int id = user.getId();
+        String first = user.getFirst_language();
+        String second = user.getSecond_language();
+        String third = user.getThird_language();
+        
+        return "UPDATE user "
+                + "SET "
+                + "first_language = '" + first + "', "
+                + "second_language = '" + second + "', "
+                + "third_language = '" + third + "' "
+                + "WHERE id = " + id;
         
     }
 
