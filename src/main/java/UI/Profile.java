@@ -39,7 +39,6 @@ public class Profile extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
            
-            out.println("connecting to github");
             
             //get the github instance
             GitHub github = (GitHub) request.getSession().getAttribute("github");
@@ -50,14 +49,13 @@ public class Profile extends HttpServlet {
             
             //This is not working in openshift
             User user = db.getUser(github.getMyself().getLogin());
-            out.println("success: " + user);
+            out.println(db.getStatement(user));
             
             //if the user is in the database
             if (user != null) {
                 //calculate the top three languages
                 try {
                     user.calcTopThreeLangs(github);
-                    out.println(db.getStatement(user));
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
