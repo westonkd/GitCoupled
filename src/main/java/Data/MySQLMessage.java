@@ -216,7 +216,7 @@ public class MySQLMessage implements MessageDao {
                 + "id = " + message.getId();
         
         try {
-            statement.executeQuery(sql);
+            statement.executeUpdate(sql);
         } catch (SQLException ex) {
             Logger.getLogger(MySQLMessage.class.getName()).log(Level.SEVERE, null, ex);
         }
