@@ -42,13 +42,11 @@ public class ViewProfile extends HttpServlet {
         SoulDao db = new MySQLUser();
         User userToVisit = db.getUser(username);
         
-        request.setAttribute("userToVisit", userToVisit);
+        request.setAttribute("visit", userToVisit);
         request.setAttribute("github", github);        
         
-        response.getWriter().println("<<<<<<<<<<<<<<<<<<<<<<<<<<< " + userToVisit.getGithub_username() + userToVisit.getFirst_language());
-        
         //forward
-        //request.getRequestDispatcher("public-profile.jsp").forward(request, response);
+        request.getRequestDispatcher("public-profile.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

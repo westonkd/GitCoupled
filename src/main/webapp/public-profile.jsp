@@ -55,13 +55,13 @@
                     <div class="col-sm-4">
                         <div class="profile-info">
                             <h1 id="profile-name"><c:out value = "${github.getMyself().getName()}" ></c:out></h1>
-                            <h2>Age: <c:out value = "${userToVisit.getAge()}" ></c:out></h2>
-                            <h2>Gender: <c:out value = "${userToVisit.getGender()}" ></c:out></h2>
+                            <h2>Age: <c:out value = "${visit.getAge()}" ></c:out></h2>
+                            <h2>Gender: <c:out value = "${visit.getGender()}" ></c:out></h2>
                             <h2>Love Languages</h2>
                             <ol>
-                                <li><c:out value="${userToVisit.getFirst_language()}" ></c:out></li>
-                                <li><c:out value="${userToVisit.getSecond_language()}" ></c:out></li>
-                                <li><c:out value="${userToVisit.getThird_language()}" ></c:out></li>
+                                <li><c:out value="${visit.getFirst_language()}" ></c:out></li>
+                                <li><c:out value="${visit.getSecond_language()}" ></c:out></li>
+                                <li><c:out value="${visit.getThird_language()}" ></c:out></li>
                             </ol>
                         </div>
                     </div>
@@ -70,7 +70,7 @@
                     <div class="bio col-sm-12">
                         <h2>Bio</h2>
                         <p>
-                            <c:out value = "${userToVisit.bio}" ></c:out>
+                            <c:out value = "${visit.bio}" ></c:out>
                         </p>
                     </div>
                 </div>
@@ -83,7 +83,6 @@
                     <img id="footer-logo" src="images/blacklogo.png" alt="">
                 </div>
                 <div class="col-sm-3 right">    
-                    <a href="SignIn">login/register</a>
                 </div>
             </footer>
         </div>
