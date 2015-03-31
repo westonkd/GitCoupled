@@ -45,7 +45,7 @@ public class ViewProfile extends HttpServlet {
         request.setAttribute("userToVisit", userToVisit);
         request.setAttribute("github", github);        
         
-        response.getWriter().println("<<<<<<<<<<<<<<<<<<<<<<<<<<< " + userToVisit.getGithub_username());
+        response.getWriter().println("<<<<<<<<<<<<<<<<<<<<<<<<<<< " + userToVisit.getGithub_username() + userToVisit.getFirst_language());
         
         //forward
         //request.getRequestDispatcher("public-profile.jsp").forward(request, response);
