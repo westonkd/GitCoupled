@@ -38,7 +38,6 @@ public class Profile extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-           
             
             //get the github instance
             GitHub github = (GitHub) request.getSession().getAttribute("github");

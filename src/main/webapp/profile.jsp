@@ -67,10 +67,17 @@
                         </div>
                     </div>
                     <div class="col-sm-4">
-                        <a class="btn btn-primary message-btn btn-lg" style="opacity: 1;" href="ViewMessages">Messages</a>
+                        <div class="container-fluid">
+                            <div class="col-xs-6">
+                                <a class="btn btn-primary message-btn btn-lg" style="opacity: 1;" href="ViewMessages">Messages</a>
+                            </div>
+                            <div class="col-xs-6">
+                                 <a class="btn btn-default message-btn btn-lg" style="opacity: 1;" href="Matches">Matches</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-sm-4">
-                        <a class="btn btn-primary message-btn btn-lg" style="opacity: 1;" href="Matches">Matches</a>
+                        
                     </div>
                 </div>
                 <div class="row">
