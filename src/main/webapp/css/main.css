@@ -223,7 +223,7 @@ img.profile {
     display: none !important;
 }
 
-.matches .btn {
+.matches .btn, .profile .btn {
     width: 100%;
 }
 
