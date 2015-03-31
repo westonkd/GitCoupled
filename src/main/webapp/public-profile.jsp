@@ -47,9 +47,9 @@
             <main class="profile">
                 <div class="row">
                     <div class="col-sm-4">
-                        <img src="${github.getUser(userToVisit.getGithub_username()).getAvatarUrl()}" id="profile-pic" />
+                        <img src="${github.getUser(visit.getGithub_username()).getAvatarUrl()}" id="profile-pic" />
                         <p class="quote">
-                              <c:out value = "${userToVisit.getQuote()}" ></c:out>
+                              <c:out value = "${visit.getQuote()}" ></c:out>
                         </p>
                     </div>
                     <div class="col-sm-4">
