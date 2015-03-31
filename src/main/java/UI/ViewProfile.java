@@ -39,6 +39,8 @@ public class ViewProfile extends HttpServlet {
         GitHub github = (GitHub) request.getSession().getAttribute("github");
         String username = (String) request.getParameter("username");
         
+        response.getWriter().write(username);
+        
         SoulDao db = new MySQLUser();
         User userToVisit = db.getUser(username);
         
@@ -46,7 +48,7 @@ public class ViewProfile extends HttpServlet {
         request.setAttribute("github", github);        
         
         //forward
-        request.getRequestDispatcher("public-profile.jsp").forward(request, response);
+        //request.getRequestDispatcher("public-profile.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
