@@ -42,14 +42,12 @@ public class Profile extends HttpServlet {
             
             //get the github instance
             GitHub github = (GitHub) request.getSession().getAttribute("github");
+            
             //create DAO 
             SoulDao db = new MySQLUser();
 
-            //create the username
-            
-            //This is not working in openshift
+            //create the user
             User user = db.getUser(github.getMyself().getLogin());
-            out.println(db.getStatement(user));
             
             //if the user is in the database
             if (user != null) {
@@ -59,6 +57,9 @@ public class Profile extends HttpServlet {
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
+
+                //update the languages in the DB
+                db.saveLanguages(user.getId(), user.getFirst_language(), user.getSecond_language(), user.getThird_language());
                 
                 //close the connection
                 db.close();
