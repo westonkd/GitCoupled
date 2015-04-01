@@ -42,6 +42,7 @@ public class ReplyToMessage extends HttpServlet {
         String sentFrom = request.getParameter("userFrom");
         String callback = request.getParameter("callback");
         int in_reply_to = Integer.parseInt(request.getParameter("in_reply_to"));
+        User user = (User) request.getSession().getAttribute("user");
           
         // Get the connection object
         SoulDao DB = new MySQLUser();
@@ -59,7 +60,10 @@ public class ReplyToMessage extends HttpServlet {
         // Save message
         mDao.saveMessage(newMessage);
         mDao.updateMessage(oldMessage);
-        //response.getWriter().println(mDao.printStatement(oldMessage));
+        
+        //update message count
+        int count = mDao.getNumMesssages(user);
+        user.setNumMessages(count);
         
         // Send user back to page they were privously on
         request.getRequestDispatcher(callback).forward(request, response);
