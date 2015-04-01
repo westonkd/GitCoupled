@@ -80,15 +80,36 @@
                     </c:forEach> 
                 </c:forEach>
                 
-                <%--Pagination --%>
+                <%-- Pagination --%>
                 <c:if test="${numPages > 1}">
                     <nav>
                         <ul class="pagination">
-                            <li><a href="Matches?page=${curPage - 1}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                            <c:choose>
+                                <c:when test="${curPage == 1}">
+                                    <li class="disabled"><a href="" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                                </c:when>
+                                <c:otherwise>
+                                    <li><a href="Matches?page=${curPage - 1}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                                </c:otherwise>
+                            </c:choose>
                             <c:forEach begin="1" end="${numPages}" var="page">
-                                <li><a href="Matches?page=${page}">${page}</a></li>
+                                <c:choose>
+                                    <c:when test="${page == curPage}">
+                                        <li class="active"><a href="">${page}</a></li>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <li><a href="Matches?page=${page}">${page}</a></li>
+                                    </c:otherwise>
+                                </c:choose>
                             </c:forEach>
-                            <li><a href="Matches?page=${curPage + 1}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                            <c:choose>
+                                <c:when test="${curPage == numPages}">
+                                    <li class="disabled"><a href="" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                                </c:when>
+                                <c:otherwise>
+                                    <li><a href="Matches?page=${curPage + 1}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                                </c:otherwise>
+                            </c:choose>
                         </ul>
                       </nav>
                 </c:if>
