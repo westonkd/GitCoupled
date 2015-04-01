@@ -42,13 +42,24 @@ public class Matches extends HttpServlet {
         GitHub github = (GitHub) request.getSession().getAttribute("github");
         User user = (User) request.getSession().getAttribute("user");
         SoulDao dao = new MySQLUser();
+        int page = 1;
+        String pageParam = request.getParameter("page");
+        
+        //get the page number
+        if (pageParam != null)
+        {
+            page = Integer.parseInt(pageParam);
+        }
 
         if (github != null && user != null) {
            //get the matches
-            Map<Integer, Set<User>> matches = dao.getMatchesWithScores(user, 1);
+            Map<Integer, Set<User>> matches = dao.getMatchesWithScores(user, page);
+            int numPages = dao.getNumPages(user);
             
             //set the attribute and pass to jsp
             request.setAttribute("matches", matches);
+            request.setAttribute("numPages", numPages);
+            request.setAttribute("page", page);
             
             request.getRequestDispatcher("matches.jsp").forward(request, response);
         } else {

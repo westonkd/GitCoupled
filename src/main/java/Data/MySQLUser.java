@@ -28,6 +28,7 @@ public class MySQLUser implements SoulDao {
     private Connection conn;
     private Statement statement;
     private ResultSet results;
+    private static final int NUM_RECORDS_PER_PAGE = 5;
 
     public MySQLUser() {
         
@@ -652,7 +653,7 @@ public class MySQLUser implements SoulDao {
         String first = user.getFirst_language();
         String second = user.getSecond_language();
         String third = user.getThird_language();
-        int limit = (page * 10) - 10;
+        int limit = (page * NUM_RECORDS_PER_PAGE) - NUM_RECORDS_PER_PAGE;
 
         String sql = "SELECT * FROM ( "
                 + "(SELECT *, 10 as 'score' FROM user "
@@ -740,7 +741,7 @@ public class MySQLUser implements SoulDao {
                 + ") temp "
                 + "WHERE github_username != '" + user.getGithub_username() + "' "
                 + "GROUP BY id "
-                + "LIMIT " + limit + " , 10 ";
+                + "LIMIT " + limit + " , " + NUM_RECORDS_PER_PAGE + " ";
 
         try {
             results = statement.executeQuery(sql);
@@ -901,6 +902,116 @@ public class MySQLUser implements SoulDao {
         close();
         return matches;
 
+    }
+    
+    @Override
+    public int getNumPages(User user) {
+        
+            open();
+            
+            String first = user.getFirst_language();
+            String second = user.getSecond_language();
+            String third = user.getThird_language();
+            int count = 0;
+            
+            String sql = "SELECT COUNT(*) as 'count' FROM ( "
+                    + "(SELECT * FROM user "
+                    + "WHERE "
+                    + "first_language  = '" + first + "' AND "
+                    + "second_language = '" + second + "' AND "
+                    + "third_language  = '" + third + "') "
+                    + "UNION "
+                    + "(SELECT * FROM user "
+                    + "WHERE "
+                    + "first_language  = '" + first + "' AND "
+                    + "second_language = '" + second + "') "
+                    + "UNION "
+                    + "(SELECT * FROM user "
+                    + "WHERE  "
+                    + "first_language  = '" + first + "' AND "
+                    + "third_language  = '" + third + "') "
+                    + "UNION "
+                    + "(SELECT * FROM user "
+                    + "WHERE  "
+                    + "second_language  = '" + second + "' AND "
+                    + "third_language = '" + third + "') "
+                    + "UNION "
+                    + "(SELECT * FROM user "
+                    + "WHERE  "
+                    + "(first_language  = '" + first + "' OR  "
+                    + "second_language = '" + first + "' OR  "
+                    + "third_language  = '" + first + "')  "
+                    + "AND "
+                    + "(first_language  = '" + second + "' OR "
+                    + "second_language = '" + second + "' OR "
+                    + "third_language  = '" + second + "')  "
+                    + "AND  "
+                    + "(first_language  = '" + third + "' OR  "
+                    + "second_language = '" + third + "' OR "
+                    + "third_language  = '" + third + "')) "
+                    + "UNION "
+                    + "(SELECT * FROM user "
+                    + "WHERE  "
+                    + "(first_language  = '" + first + "' OR  "
+                    + "second_language = '" + first + "' OR  "
+                    + "third_language  = '" + first + "')  "
+                    + "AND "
+                    + "(first_language  = '" + second + "' OR "
+                    + "second_language = '" + second + "' OR "
+                    + "third_language  = '" + second + "')) "
+                    + "UNION "
+                    + "(SELECT * FROM user "
+                    + "WHERE  "
+                    + "(first_language  = '" + first + "' OR  "
+                    + "second_language = '" + first + "' OR  "
+                    + "third_language  = '" + first + "')  "
+                    + "AND  "
+                    + "(first_language  = '" + third + "' OR  "
+                    + "second_language = '" + third + "' OR "
+                    + "third_language  = '" + third + "')) "
+                    + "UNION "
+                    + "(SELECT * FROM user "
+                    + "WHERE  "
+                    + "(first_language  = '" + second + "' OR "
+                    + "second_language = '" + second + "' OR "
+                    + "third_language  = '" + second + "')  "
+                    + "AND  "
+                    + "(first_language  = '" + third + "' OR  "
+                    + "second_language = '" + third + "' OR "
+                    + "third_language  = '" + third + "')) "
+                    + "UNION "
+                    + "(SELECT * FROM user "
+                    + "WHERE "
+                    + " first_language  = '" + first + "') "
+                    + "UNION "
+                    + "(SELECT * FROM user "
+                    + "WHERE "
+                    + "second_language = '" + second + "') "
+                    + "UNION "
+                    + "(SELECT * FROM user "
+                    + "WHERE "
+                    + "third_language  = '" + third + "') "
+                    + "UNION "
+                    + "(SELECT * FROM user "
+                    + "WHERE "
+                    + "(first_language IN('" + first + "', '" + second + "', '" + third + "') OR "
+                    + "second_language IN('" + first + "', '" + second + "', '" + third + "') OR "
+                    + "third_language IN('" + first + "', '" + second + "', '" + third + "'))) "
+                    + ") temp "
+                    + "WHERE github_username != '" + user.getGithub_username() + "' "
+                    + "GROUP BY id ";
+            
+        try {
+            
+            results = statement.executeQuery(sql);
+            count = results.getInt("count");
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        close();
+        return count / NUM_RECORDS_PER_PAGE;
     }
 
     @Override

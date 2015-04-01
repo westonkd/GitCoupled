@@ -39,6 +39,7 @@ public interface SoulDao {
     public Map<Integer, Set<User>> getMatchesWithScores(User user);
     public Map<Integer, Set<User>> getMatchesWithScores(User user, int page);
     public Set<User> getMatches(User user); 
+    public int getNumPages(User user);
     
     //This is for debuging only. Returns a sql string to see what you are printing out
     public String getStatement(User user);

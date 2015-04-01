@@ -79,6 +79,12 @@
                             </div>
                     </c:forEach> 
                 </c:forEach>
+                
+                <%--For displaying Next link --%>
+                <c:if test="${page lt numPages}">
+                    <a href="Matches?page=${page + 1}">Next</a>
+                </c:if>
+                
             </main>
             <footer class="row">
                 <div class="col-sm-3">
