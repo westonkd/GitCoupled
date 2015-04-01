@@ -51,6 +51,9 @@
                     <c:forEach items="${messages}" var="message">
                         <div class="message">
                             <h1>${github.getUser(message.getFrom()).getName()}</h1>
+                            <div class="pull-right">
+                                <span class="glyphicon glyphicon-remove delete-message"></span>
+                            </div>
                             <h3><strong>Subject:</strong> ${message.getSubject()}</h3>
                             <p>
                                 ${message.getBody()}
@@ -60,8 +63,6 @@
                     </c:forEach>
                 </div>
             </main>
-
-
 
             <footer class="row">
                 <div class="col-sm-3">

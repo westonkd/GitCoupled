@@ -1,4 +1,4 @@
-*{
+div{
     transition: all 0.25s ease;
 }
 h1 {
@@ -232,6 +232,15 @@ img.profile {
 
 .pag-container {
     text-align: center;
+}
+
+.delete-message {
+    opacity: 0.8;
+    transition: opacity .25s;
+}
+
+.delete-message:hover {
+    opacity:1;
 }
 
 @media only screen and (max-width : 768px) {
