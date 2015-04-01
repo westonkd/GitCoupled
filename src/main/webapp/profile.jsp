@@ -83,7 +83,7 @@
                     <div class="bio col-sm-12">
                         <h2>Bio</h2>
                         <p>
-                            <c:out value = "${user.bio}" ></c:out>
+                          <c:out value = "${user.bio}" ></c:out>
                         </p>
                     </div>
                         <div class="col-sm-12">
