@@ -48,7 +48,7 @@
             <main class="edit-profile">
                 <div class="col-sm-12">
                     <h2>Tell us a bit about yourself <c:out value = "${github.getMyself().getName()}" ></c:out></h2>
-                    <img src="<c:out value = "${github.getMyself().getAvatarUrl()}" ></c:out>" id="profile-pic" class="profile pull-right" alt="user-image" />
+                    <img src="${github.getMyself().getAvatarUrl()}" id="profile-pic" class="profile pull-right" alt="user-image" />
                     <form role="form" action="UpdateUser" method="GET" id="profile-form">
                         <h4>Gender</h4>
                         <div class="radio">
