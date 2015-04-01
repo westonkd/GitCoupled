@@ -45,7 +45,7 @@ public class Matches extends HttpServlet {
 
         if (github != null && user != null) {
            //get the matches
-            Map<Integer, Set<User>> matches = dao.getMatchesWithScores(user);
+            Map<Integer, Set<User>> matches = dao.getMatchesWithScores(user, 1);
             
             //set the attribute and pass to jsp
             request.setAttribute("matches", matches);
