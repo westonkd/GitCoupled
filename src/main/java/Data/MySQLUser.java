@@ -28,7 +28,7 @@ public class MySQLUser implements SoulDao {
     private Connection conn;
     private Statement statement;
     private ResultSet results;
-    private static final int NUM_RECORDS_PER_PAGE = 5;
+    private static final int NUM_RECORDS_PER_PAGE = 10;
 
     public MySQLUser() {
         
@@ -741,7 +741,6 @@ public class MySQLUser implements SoulDao {
                 + ") temp "
                 + "WHERE github_username != '" + user.getGithub_username() + "' "
                 + "GROUP BY id "
-                + "ORDER BY score"
                 + "LIMIT " + limit + " , " + NUM_RECORDS_PER_PAGE + " ";
 
         try {
