@@ -42,7 +42,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="Profile">Profile</a>
                             </li>
-                            <li><a href="SignIn">Login</a>
+                            <li><a href="ViewMessages">Messages</a>
                             </li>
                         </ul>
                     </div>

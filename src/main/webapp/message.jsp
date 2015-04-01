@@ -39,7 +39,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="Profile">Profile</a>
                             </li>
-                            <li><a href="SignIn">Login</a>
+                            <li><a href="Matches">Matches</a>
                             </li>
                         </ul>
                     </div>

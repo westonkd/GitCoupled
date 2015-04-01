@@ -37,9 +37,7 @@
                     </div>
                     <div class="navbar-collapse collapse" id="navbar-main">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="Profile">Profile</a>
-                            </li>
-                            <li><a href="SignIn">Login</a>
+                            <li><a href="SignIn">Login/Sign up</a>
                             </li>
                         </ul>
                     </div>
@@ -64,7 +62,7 @@
                             <h2>Find your /match/g</h2>
                             <p>
                                 Is your love life lacking? GitCoupled integrates with your GitHub account and uses cool algorithms to find your perfect partner. Find potential matches based on your love languages (C++, Python, etc.), development habits, and project interests.
-                                <a data-brackets-id="8481" class="btn btn-primary" id="sign-up-small" style="opacity: 1;">Sign Up</a>
+                                <a href="SignIn" class="btn btn-primary" id="sign-up-small" style="opacity: 1;">Sign Up</a>
                             </p>
                         </div>
                     </div>
