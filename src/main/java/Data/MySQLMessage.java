@@ -6,6 +6,7 @@
 package Data;
 
 import Application.Message;
+import Application.User;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -228,6 +229,29 @@ public class MySQLMessage implements MessageDao {
         }
                         
         close();
+    }
+
+    @Override
+    public int getNumMesssages(User user) {
+        
+        open();
+        int count = 0;
+        String sql = "SELECT count(*) as 'count' "
+                + "FROM message "
+                + "WHERE "
+                + "recieved_by = " + user.getId() + " AND "
+                + "display = 1 ";
+        
+        try {
+            results = statement.executeQuery(sql);
+            results.first();
+            count = results.getInt("count");
+        } catch (SQLException ex) {
+            Logger.getLogger(MySQLMessage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        close();
+        return count;
     }
     
     @Override

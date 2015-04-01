@@ -41,6 +41,7 @@ public class User {
     private String first_language;
     private String second_language;
     private String third_language;
+    private int numMessages;
 
     public User() {
         id = -1;
@@ -364,5 +365,13 @@ public class User {
         hash = 53 * hash + this.id;
         hash = 53 * hash + Objects.hashCode(this.github_username);
         return hash;
+    }
+
+    public int getNumMessages() {
+        return numMessages;
+    }
+
+    public void setNumMessages(int numMessages) {
+        this.numMessages = numMessages;
     }
 }

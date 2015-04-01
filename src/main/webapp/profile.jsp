@@ -39,7 +39,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="Profile">Profile</a>
                             </li>
-                            <li><a href="ViewMessages">Messages</a>
+                            <li><a href="ViewMessages">Messages<span class="badge">${user.getNumMessages()}</span></a>
                             </li>
                         </ul>
                     </div>

@@ -6,6 +6,8 @@
 package UI;
 
 import Application.User;
+import Data.MessageDao;
+import Data.MySQLMessage;
 import Data.MySQLUser;
 import Data.SoulDao;
 import java.io.IOException;
@@ -44,6 +46,7 @@ public class Profile extends HttpServlet {
             
             //create DAO 
             SoulDao db = new MySQLUser();
+            MessageDao mdb = new MySQLMessage();
 
             //create the user
             User user = db.getUser(github.getMyself().getLogin());
@@ -59,9 +62,9 @@ public class Profile extends HttpServlet {
 
                 //update the languages in the DB
                 db.saveLanguages(user.getId(), user.getFirst_language(), user.getSecond_language(), user.getThird_language());
+                int count = mdb.getNumMesssages(user);
                 
-                //close the connection
-                db.close();
+                user.setNumMessages(count);
                 
                 //Set user attribute
                 request.setAttribute("user", user);
