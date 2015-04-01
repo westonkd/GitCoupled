@@ -35,24 +35,25 @@ public class ViewProfile extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         //get the github object
         GitHub github = (GitHub) request.getSession().getAttribute("github");
         String username = (String) request.getParameter("username");
-        
+
         response.getWriter().write(username);
-        
+
         SoulDao db = new MySQLUser();
         User userToVisit = db.getUser(username);
-        
+
         request.setAttribute("visit", userToVisit);
-        request.setAttribute("github", github); 
-        
-         response.getWriter().write(userToVisit.getFirst_language());
-          response.getWriter().write(userToVisit.getSecond_language());
-          response.getWriter().write(userToVisit.getQuote());
-        
+        request.setAttribute("github", github);
+
+        response.getWriter().write(userToVisit.getFirst_language());
+        response.getWriter().write(userToVisit.getSecond_language());
+        response.getWriter().write(userToVisit.getQuote());
+
         //forward
-        //request.getRequestDispatcher("public-profile.jsp").forward(request, response);
+        request.getRequestDispatcher("other-user-profile.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
