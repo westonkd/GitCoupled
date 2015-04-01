@@ -59,7 +59,7 @@
                               <c:out value = "${user.quote}" ></c:out>
                         </p>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-5">
                         <div class="profile-info">
                             <h1 id="profile-name"><c:out value = "${github.getMyself().getName()}" ></c:out></h1>
                             <h2>Age: <c:out value = "${user.age}" ></c:out></h2>
@@ -72,10 +72,10 @@
                             </ol>
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <a class="btn btn-primary message-btn btn-lg" style="opacity: 1;" href="ViewMessages">Messages</a>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <a class="btn btn-default message-btn btn-lg" style="opacity: 1;" href="Matches">Matches</a>
                     </div>
                 </div>
