@@ -1008,14 +1008,14 @@ public class MySQLUser implements SoulDao {
             
             results = statement.executeQuery(sql);
             results.first();
-            count = results.getInt("count");
+            count = results.getDouble("count");
             
         } catch (SQLException ex) {
             Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         close();
-        return (int) ceil(count / NUM_RECORDS_PER_PAGE);
+        return (int) count;
     }
 
     @Override
