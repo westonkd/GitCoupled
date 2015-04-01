@@ -96,7 +96,7 @@
                     <span>© 2015 PureMagic</span>
                 </div>
                 <div class="col-sm-6 center">
-                    <img id="footer-logo" src="images/blacklogo.png" alt="">
+                    <img id="footer-logo" src="images/blacklogo.png" alt=""> 
                 </div>
                 <div class="col-sm-3 right">    
                     <a href="SignIn">login/register</a>
