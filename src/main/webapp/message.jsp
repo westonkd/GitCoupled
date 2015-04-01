@@ -50,8 +50,8 @@
                     <h2>Messages</h2>
                     <c:forEach items="${messages}" var="message">
                         <div class="message">
-                            <div class="pull-right">
-                                <span class="glyphicon glyphicon-remove delete-message"></span>
+                            <div class="pull-right delete-message">
+                                <span class="glyphicon glyphicon-remove "></span>
                             </div>
                             <h1>${github.getUser(message.getFrom()).getName()}</h1>
                             

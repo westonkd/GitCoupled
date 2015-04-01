@@ -235,6 +235,7 @@ img.profile {
 }
 
 .delete-message {
+    cursor: pointer;
     opacity: 0.8;
     transition: opacity .25s;
 }
