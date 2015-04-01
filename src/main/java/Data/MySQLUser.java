@@ -741,6 +741,7 @@ public class MySQLUser implements SoulDao {
                 + ") temp "
                 + "WHERE github_username != '" + user.getGithub_username() + "' "
                 + "GROUP BY id "
+                + "ORDER BY score"
                 + "LIMIT " + limit + " , " + NUM_RECORDS_PER_PAGE + " ";
 
         try {
