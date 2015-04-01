@@ -80,11 +80,17 @@
                     </c:forEach> 
                 </c:forEach>
                 
-                <h1>${page} ${numPages}</h1>
-                <p>${sql}</p>
-                <%--For displaying Next link --%>
-                <c:if test="${page lt numPages}">
-                    <a href="Matches?page=${page + 1}">Next</a>
+                <%--Pagination --%>
+                <c:if test="${numPages > 1}">
+                    <nav>
+                        <ul class="pagination">
+                            <li><a href="Matches?page=${curPage - 1}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                            <c:forEach begin="1" end="${numPages}" var="page">
+                                <li><a href="Matches?page=${page}">${page}</a></li>
+                            </c:forEach>
+                            <li><a href="Matches?page=${curPage + 1}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                        </ul>
+                      </nav>
                 </c:if>
                 
             </main>

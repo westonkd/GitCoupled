@@ -60,7 +60,7 @@ public class Matches extends HttpServlet {
             //set the attribute and pass to jsp
             request.setAttribute("matches", matches);
             request.setAttribute("numPages", numPages);
-            request.setAttribute("page", page);            
+            request.setAttribute("curPage", page);            
             
             request.getRequestDispatcher("matches.jsp").forward(request, response);
         } else {
