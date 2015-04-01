@@ -102,7 +102,7 @@
                             <h4 class="modal-title">To: ${github.getUser(visit.getGithub_username()).getName()}</h4>
                     </div>
                     <div class="modal-body">
-                        <form role="form" action="ReplyToMessage" method="POST" id="message-form">
+                        <form role="form" action="CreateNewMessage" method="POST" id="message-form">
                             <h4>Subject: </h4>
                             <div class="form-group">
                                 <input required type="text" class="form-control" placeholder="Love" name="subject" id="subject">
