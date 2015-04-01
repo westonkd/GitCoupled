@@ -914,7 +914,7 @@ public class MySQLUser implements SoulDao {
             String first = user.getFirst_language();
             String second = user.getSecond_language();
             String third = user.getThird_language();
-            int count = 0;
+            int count = -1;
             
             String sql = "SELECT count(*) as 'count' FROM "
                     + "(SELECT id FROM ( "
@@ -1014,7 +1014,7 @@ public class MySQLUser implements SoulDao {
         }
         
         close();
-        return (int) ceil(count / NUM_RECORDS_PER_PAGE);
+        return count;
     }
 
     @Override

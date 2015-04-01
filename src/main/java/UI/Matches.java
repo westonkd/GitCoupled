@@ -56,16 +56,18 @@ public class Matches extends HttpServlet {
             Map<Integer, Set<User>> matches = dao.getMatchesWithScores(user, page);
             int numPages = dao.getNumPages(user);
             
-            String sql = dao.getStatement(user);
+            //String sql = dao.getStatement(user);
             
             //set the attribute and pass to jsp
             request.setAttribute("matches", matches);
             request.setAttribute("numPages", numPages);
             request.setAttribute("page", page);
-            request.setAttribute("sql", sql);
+            //request.setAttribute("sql", sql);
+            
+            response.getWriter().println(numPages);
             
             
-            request.getRequestDispatcher("matches.jsp").forward(request, response);
+            //request.getRequestDispatcher("matches.jsp").forward(request, response);
         } else {
             response.sendRedirect("SignIn");
         }
