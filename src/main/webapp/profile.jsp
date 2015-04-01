@@ -39,7 +39,13 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="Profile">Profile</a>
                             </li>
-                            <li><a href="ViewMessages">Messages <span class="badge">${user.getNumMessages()}</span></a>
+                            <li>
+                                <a href="ViewMessages">
+                                    Messages 
+                                    <c:if test="${user.getNumMessages() > 0}">
+                                        <span class="badge">${user.getNumMessages()}</span>
+                                    </c:if>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -71,6 +77,9 @@
                     </div>
                     <div class="col-sm-4">
                         <a class="btn btn-default message-btn btn-lg" style="opacity: 1;" href="Matches">Matches</a>
+                    </div>
+                    <div class="col-sm-4">
+                        <a class="btn btn-default message-btn btn-lg" style="opacity: 1;" href="UpdateProfile">Update Profile</a>
                     </div>
                 </div>
                 <div class="row">

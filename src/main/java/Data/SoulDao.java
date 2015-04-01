@@ -20,6 +20,7 @@ public interface SoulDao {
     public void close();
     
     public void addUser(User user);
+    public void updateUser(User user);
     public User getUser(String username);
     public User getUser(User user);
 
@@ -30,7 +31,7 @@ public interface SoulDao {
     public List<User> usersThatHaveLanguages(String aLanguage, String bLanguage);
     public List<User> usersThatHaveLanguages(String aLanguage, String bLanguage, String cLanguage);
     
-    public void updateUser(User user);
+
     public void saveLanguages(int id, String first, String second, String third);
     public void saveScore(int id, int score);
     

@@ -7,29 +7,21 @@ package Application;
 
 import Data.MySQLUser;
 import Data.SoulDao;
-
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.SortedSet;
-import java.util.TreeSet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GitHub;
 
 /**
  *
- * @author weston
+ * @author McKay
  */
-@WebServlet(name = "CreateNewUser", urlPatterns = {"/CreateNewUser"})
-public class CreateNewUser extends HttpServlet {
+@WebServlet(name = "UpdateUser", urlPatterns = {"/UpdateUser"})
+public class UpdateUser extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,23 +34,25 @@ public class CreateNewUser extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //get the github object
-        GitHub github = (GitHub) request.getSession().getAttribute("github");
         
-        try (PrintWriter out = response.getWriter()) {
-            //get the POST variables if they exists
-            if (request.getParameter("gender") != null && github != null) {
+        GitHub github = (GitHub) request.getSession().getAttribute("github");
+        User user = (User) request.getSession().getAttribute("user");
+        
+        if (request.getParameter("gender") != null && github != null) {
                 String gender = request.getParameter("gender");
                 String bio = request.getParameter("bio").replace("\"", "").replace("'", "");
                 String quote = request.getParameter("quote").replace("\"", "").replace("'", "");
                 int age = Integer.parseInt(request.getParameter("age"));
                 String userName = github.getMyself().getLogin();
-
-                //create the user object
-                User newUser = new User(gender, age, userName, quote, bio);
+                
+                user.setGender(gender);
+                user.setBio(bio);
+                user.setQuote(quote);
+                user.setAge(age);
+                user.setGithub_username(userName);
                 
                 try {
-                    newUser.calcTopThreeLangs(github);
+                    user.calcTopThreeLangs(github);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -67,10 +61,10 @@ public class CreateNewUser extends HttpServlet {
                 SoulDao dao = new MySQLUser();
 
                 //add the user to the database
-                dao.addUser(newUser);
+                dao.updateUser(user);
 
                 //Set user attribute
-                request.setAttribute("user", newUser);
+                request.setAttribute("user", user);
                 request.setAttribute("github", github);
                
                 //close the connection
@@ -81,7 +75,7 @@ public class CreateNewUser extends HttpServlet {
             } else {
                 response.sendRedirect("index.jsp");
             }
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
