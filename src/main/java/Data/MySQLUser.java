@@ -6,6 +6,7 @@
 package Data;
 
 import Application.User;
+import static java.lang.Math.ceil;
 import java.util.List;
 import java.sql.*;
 import java.util.ArrayList;
@@ -915,7 +916,8 @@ public class MySQLUser implements SoulDao {
             String third = user.getThird_language();
             int count = 0;
             
-            String sql = "SELECT COUNT(*) as 'count' FROM ( "
+            String sql = "SELECT count(*) as 'count' FROM "
+                    + "(SELECT id FROM ( "
                     + "(SELECT * FROM user "
                     + "WHERE "
                     + "first_language  = '" + first + "' AND "
@@ -1000,7 +1002,7 @@ public class MySQLUser implements SoulDao {
                     + "third_language IN('" + first + "', '" + second + "', '" + third + "'))) "
                     + ") temp "
                     + "WHERE github_username != '" + user.getGithub_username() + "' "
-                    + "GROUP BY id ";
+                    + "GROUP BY id) temp2 ";
             
         try {
             
@@ -1012,105 +1014,13 @@ public class MySQLUser implements SoulDao {
         }
         
         close();
-        return count;
+        return (int) ceil(count / NUM_RECORDS_PER_PAGE);
     }
 
     @Override
     public String getStatement(User user) {
         
-        String first = user.getFirst_language();
-            String second = user.getSecond_language();
-            String third = user.getThird_language();
-            int count = 0;
-            
-            String sql = "SELECT COUNT(*) as 'count' FROM ( "
-                    + "(SELECT * FROM user "
-                    + "WHERE "
-                    + "first_language  = '" + first + "' AND "
-                    + "second_language = '" + second + "' AND "
-                    + "third_language  = '" + third + "') "
-                    + "UNION "
-                    + "(SELECT * FROM user "
-                    + "WHERE "
-                    + "first_language  = '" + first + "' AND "
-                    + "second_language = '" + second + "') "
-                    + "UNION "
-                    + "(SELECT * FROM user "
-                    + "WHERE  "
-                    + "first_language  = '" + first + "' AND "
-                    + "third_language  = '" + third + "') "
-                    + "UNION "
-                    + "(SELECT * FROM user "
-                    + "WHERE  "
-                    + "second_language  = '" + second + "' AND "
-                    + "third_language = '" + third + "') "
-                    + "UNION "
-                    + "(SELECT * FROM user "
-                    + "WHERE  "
-                    + "(first_language  = '" + first + "' OR  "
-                    + "second_language = '" + first + "' OR  "
-                    + "third_language  = '" + first + "')  "
-                    + "AND "
-                    + "(first_language  = '" + second + "' OR "
-                    + "second_language = '" + second + "' OR "
-                    + "third_language  = '" + second + "')  "
-                    + "AND  "
-                    + "(first_language  = '" + third + "' OR  "
-                    + "second_language = '" + third + "' OR "
-                    + "third_language  = '" + third + "')) "
-                    + "UNION "
-                    + "(SELECT * FROM user "
-                    + "WHERE  "
-                    + "(first_language  = '" + first + "' OR  "
-                    + "second_language = '" + first + "' OR  "
-                    + "third_language  = '" + first + "')  "
-                    + "AND "
-                    + "(first_language  = '" + second + "' OR "
-                    + "second_language = '" + second + "' OR "
-                    + "third_language  = '" + second + "')) "
-                    + "UNION "
-                    + "(SELECT * FROM user "
-                    + "WHERE  "
-                    + "(first_language  = '" + first + "' OR  "
-                    + "second_language = '" + first + "' OR  "
-                    + "third_language  = '" + first + "')  "
-                    + "AND  "
-                    + "(first_language  = '" + third + "' OR  "
-                    + "second_language = '" + third + "' OR "
-                    + "third_language  = '" + third + "')) "
-                    + "UNION "
-                    + "(SELECT * FROM user "
-                    + "WHERE  "
-                    + "(first_language  = '" + second + "' OR "
-                    + "second_language = '" + second + "' OR "
-                    + "third_language  = '" + second + "')  "
-                    + "AND  "
-                    + "(first_language  = '" + third + "' OR  "
-                    + "second_language = '" + third + "' OR "
-                    + "third_language  = '" + third + "')) "
-                    + "UNION "
-                    + "(SELECT * FROM user "
-                    + "WHERE "
-                    + " first_language  = '" + first + "') "
-                    + "UNION "
-                    + "(SELECT * FROM user "
-                    + "WHERE "
-                    + "second_language = '" + second + "') "
-                    + "UNION "
-                    + "(SELECT * FROM user "
-                    + "WHERE "
-                    + "third_language  = '" + third + "') "
-                    + "UNION "
-                    + "(SELECT * FROM user "
-                    + "WHERE "
-                    + "(first_language IN('" + first + "', '" + second + "', '" + third + "') OR "
-                    + "second_language IN('" + first + "', '" + second + "', '" + third + "') OR "
-                    + "third_language IN('" + first + "', '" + second + "', '" + third + "'))) "
-                    + ") temp "
-                    + "WHERE github_username != '" + user.getGithub_username() + "' "
-                    + "GROUP BY id ";
-        
-        return sql;
+        return null;
         
     }
 
