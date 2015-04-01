@@ -80,6 +80,7 @@
                     </c:forEach> 
                 </c:forEach>
                 
+                <h1>${page} ${numPages}</h1>
                 <%--For displaying Next link --%>
                 <c:if test="${page lt numPages}">
                     <a href="Matches?page=${page + 1}">Next</a>
