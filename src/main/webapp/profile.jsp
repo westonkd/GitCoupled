@@ -78,9 +78,6 @@
                     <div class="col-sm-4">
                         <a class="btn btn-default message-btn btn-lg" style="opacity: 1;" href="Matches">Matches</a>
                     </div>
-                    <div class="col-sm-4">
-                        <a class="btn btn-info message-btn btn-lg" style="opacity: 1;" href="EditProfile">Edit Profile</a>
-                    </div>
                 </div>
                 <div class="row">
                     <div class="bio col-sm-12">
@@ -89,6 +86,11 @@
                             <c:out value = "${user.bio}" ></c:out>
                         </p>
                     </div>
+                        <div class="col-sm-12">
+                            <p>
+                                <a href="EditProfile">edit profile</a>
+                            </p>
+                        </div>    
                 </div>
             </main>
             <footer class="row">
