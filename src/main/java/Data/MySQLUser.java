@@ -1113,6 +1113,7 @@ public class MySQLUser implements SoulDao {
                 + "ORDER BY score DESC"
                 + "LIMIT " + limit + " , " + NUM_RECORDS_PER_PAGE + " ";
         
+        
         return sql;
         
     }

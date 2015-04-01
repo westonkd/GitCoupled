@@ -64,6 +64,7 @@ public class Matches extends HttpServlet {
             request.setAttribute("page", page);
             request.setAttribute("sql", sql);
             
+            
             request.getRequestDispatcher("matches.jsp").forward(request, response);
         } else {
             response.sendRedirect("SignIn");
