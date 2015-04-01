@@ -29,7 +29,7 @@ public class MySQLUser implements SoulDao {
     private Connection conn;
     private Statement statement;
     private ResultSet results;
-    private static final int NUM_RECORDS_PER_PAGE = 5;
+    private static final double NUM_RECORDS_PER_PAGE = 5;
 
     public MySQLUser() {
         
@@ -914,7 +914,7 @@ public class MySQLUser implements SoulDao {
             String first = user.getFirst_language();
             String second = user.getSecond_language();
             String third = user.getThird_language();
-            int count = -1;
+            double count = -1;
             
             String sql = "SELECT count(*) as 'count' FROM "
                     + "(SELECT id FROM ( "
