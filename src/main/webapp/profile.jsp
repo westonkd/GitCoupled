@@ -79,7 +79,7 @@
                         <a class="btn btn-default message-btn btn-lg" style="opacity: 1;" href="Matches">Matches</a>
                     </div>
                     <div class="col-sm-4">
-                        <a class="btn btn-default message-btn btn-lg" style="opacity: 1;" href="EditProfile">Edit Profile</a>
+                        <a class="btn btn-info message-btn btn-lg" style="opacity: 1;" href="EditProfile">Edit Profile</a>
                     </div>
                 </div>
                 <div class="row">
