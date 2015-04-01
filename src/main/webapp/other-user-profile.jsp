@@ -67,10 +67,10 @@
                             </div>
                         </div>
                         <div class="col-sm-4">
-                            <a class="btn btn-primary message-btn btn-lg" style="opacity: 1;" href="ViewMessages">Messages</a>
+                            <a class="btn btn-primary message-btn btn-lg" style="opacity: 1;" data-toggle="modal" data-target="#send-message">Send Message</a>
                         </div>
                         <div class="col-sm-4">
-                            <a class="btn btn-default message-btn btn-lg" style="opacity: 1;" href="Matches">Matches</a>
+                            <a class="btn btn-default message-btn btn-lg" style="opacity: 1;" href="Matches">Back to Matches</a>
                         </div>
                     </div>
                     <div class="row">
@@ -78,22 +78,52 @@
                             <h2>Bio</h2>
                             <p>
                             <c:out value = "${visit.bio}" ></c:out>
-                        </p>
+                            </p>
+                        </div>
                     </div>
-                </div>
-            </main>
-            <footer class="row">
-                <div class="col-sm-3">
-                    <span>© 2015 PureMagic</span>
-                </div>
-                <div class="col-sm-6 center">
-                    <img id="footer-logo" src="images/blacklogo.png" alt="">
-                </div>
-                <div class="col-sm-3 right">    
-                    <a href="SignIn">login/register</a>
-                </div>
-            </footer>
-        </div>
+                </main>
+                <footer class="row">
+                    <div class="col-sm-3">
+                        <span>© 2015 PureMagic</span>
+                    </div>
+                    <div class="col-sm-6 center">
+                        <img id="footer-logo" src="images/blacklogo.png" alt="">
+                    </div>
+                    <div class="col-sm-3 right">    
+                        <a href="SignIn">login/register</a>
+                    </div>
+                </footer>
+            </div>
+            <div class="modal fade" id="send-message">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">To: ${github.getUser(visit.getGithub_username()).getName()}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form" action="ReplyToMessage" method="POST" id="message-form">
+                            <h4>Subject: </h4>
+                            <div class="form-group">
+                                <input required type="text" class="form-control" placeholder="Love" name="subject" id="subject">
+                            </div>
+                            <h4>Message: </h4>
+                            <div class="form-group">
+                                <textarea required class="form-control" name="body" rows="5" id="message-body" placeholder="Hi there..."></textarea>
+                            </div>
+                            <div style="display:none;">
+                                <input type="text" name="userTo" value="${github.getUser(visit.getGithub_username()).getLogin()}">
+                                <input type="text" name="userFrom" value="${github.getMyself().getLogin()}">
+                                <input type="text" name="callback" value="ViewMessages">
+                            </div>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Send</button>
+                        </form>
+                    </div>
+
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
     </body>
 </html>
 
