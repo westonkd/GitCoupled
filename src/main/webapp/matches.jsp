@@ -104,10 +104,10 @@
                             </c:forEach>
                             <c:choose>
                                 <c:when test="${curPage == numPages}">
-                                    <li class="disabled"><a href="" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                                    <li class="disabled"><a href="" aria-label="Previous"><span aria-hidden="true">&raquo;</span></a></li>
                                 </c:when>
                                 <c:otherwise>
-                                    <li><a href="Matches?page=${curPage + 1}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                                    <li><a href="Matches?page=${curPage + 1}" aria-label="Previous"><span aria-hidden="true">&raquo;</span></a></li>
                                 </c:otherwise>
                             </c:choose>
                         </ul>
