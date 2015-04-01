@@ -29,7 +29,7 @@ public class MySQLUser implements SoulDao {
     private Connection conn;
     private Statement statement;
     private ResultSet results;
-    private static final double NUM_RECORDS_PER_PAGE = 5;
+    private static final int NUM_RECORDS_PER_PAGE = 5;
 
     public MySQLUser() {
         
@@ -1015,7 +1015,7 @@ public class MySQLUser implements SoulDao {
         }
         
         close();
-        return (int) count;
+        return (int) ceil(count/(double)NUM_RECORDS_PER_PAGE);
     }
 
     @Override
