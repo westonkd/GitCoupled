@@ -59,7 +59,7 @@
                             <c:out value = "${visit.quote}" ></c:out>
                             </p>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-5">
                             <div class="profile-info">
                             <c:set var="userName" value="${github.getUser(visit.getGithub_username()).getName()}"></c:set>
 
@@ -80,10 +80,10 @@
                                 </ol>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <a class="btn btn-primary message-btn btn-lg" style="opacity: 1;" data-toggle="modal" data-target="#send-message">Send Message</a>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <a class="btn btn-default message-btn btn-lg" style="opacity: 1;" href="Matches">Back to Matches</a>
                         </div>
                     </div>
