@@ -62,10 +62,11 @@
                         <div class="col-sm-4">
                             <div class="profile-info">
                             <c:set var="userName" value="${github.getUser(visit.getGithub_username()).getName()}"></c:set>
+
                             <c:if test="${empty userName}">
                                 <h1 id="profile-name"><c:out value="${github.getUser(visit.getGithub_username()).getLogin()}"></c:out></h1>
                             </c:if>
-                            <c:if test="${not empty var1}">
+                            <c:if test="${not empty userName}">
                                 <h1 id="profile-name"><c:out value = "${github.getUser(visit.getGithub_username()).getName()}" ></c:out></h1>
                             </c:if>
 
