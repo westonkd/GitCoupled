@@ -106,7 +106,7 @@
                                 <option value="57">57</option>
                                 <option value="58">58</option>
                                 <option value="59">59</option>
-                                <option value="50">50</option>
+                                <option value="50">60</option>
                                 <option value="61">61</option>
                                 <option value="62">62</option>
                                 <option value="63">63</option>

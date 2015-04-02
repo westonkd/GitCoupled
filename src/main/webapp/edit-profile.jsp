@@ -107,7 +107,7 @@
                                 <option value="57">57</option>
                                 <option value="58">58</option>
                                 <option value="59">59</option>
-                                <option value="50">50</option>
+                                <option value="50">60</option>
                                 <option value="61">61</option>
                                 <option value="62">62</option>
                                 <option value="63">63</option>
@@ -179,6 +179,12 @@
                 }
             });
             $('#profile-form').validate();
+            
+            $("input[value='${user.getGender()}']").click();
+            $("option[selected='selected']").removeAttr("selected");
+            $("option[value='${user.getAge()}']").attr("selected", "selected");
+            $("#quote").val("${user.getQuote()}");
+            $("textarea[name='bio'").html("${user.getBio()}");
         });
     </script>
 
