@@ -238,6 +238,10 @@ img.profile {
     cursor: pointer;
     opacity: 0.5;
     transition: opacity .25s;
+
+}
+
+button.delete-message-button {
     background: none !important;
     box-shadow: none !important;
     border: none !important;
