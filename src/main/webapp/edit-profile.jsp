@@ -179,12 +179,6 @@
                 }
             });
             $('#profile-form').validate();
-            
-            $("input[value='${user.getGender()}']").click();
-            $("option[selected='selected']").removeAttr("selected");
-            $("option[value='${user.getAge()}']").attr("selected", "selected");
-            $("#quote").val("${user.getQuote()}");
-            $("textarea[name='bio'").html("${user.getBio()}");
         });
     </script>
 
