@@ -88,7 +88,7 @@
                 
                 <%-- Pagination --%>
                 <c:if test="${numPages > 1}">
-                    <nav>
+                    <nav class="pag-container">
                         <ul class="pagination">
                             <c:choose>
                                 <c:when test="${curPage == 1}">

@@ -51,16 +51,22 @@
                     <c:forEach items="${messages}" var="message">
                         <div class="message">
                             <div class="pull-right delete-message">
-                                <span class="glyphicon glyphicon-remove "></span>
+                                <form action="DeleteMessage" method="POST">
+                                    <div style="display:none;">
+                                        <input type="text" value="<c:out value="${message.getId()}"></c:out>" name="toDelete" />
+                                        <input type="text" value="<c:out value="ViewMessages" name="callback" />
+                                    </div>
+                                    <button type="submit"><span class="glyphicon glyphicon-remove "></span></button>
+                                </form>
                             </div>
                             <h1>${github.getUser(message.getFrom()).getName()}</h1>
-                            
+
                             <h3><strong>Subject:</strong> ${message.getSubject()}</h3>
                             <p>
                                 ${message.getBody()}
                             </p>  
                             <a type="submit" class="btn btn-primary" onclick="$('#<c:out value="${message.getFrom()}"></c:out>').modal()">Reply</a>
-                        </div>
+                            </div>
                     </c:forEach>
                 </div>
             </main>
@@ -106,7 +112,7 @@
                                 <button type="submit" class="btn btn-primary">Send</button>
                             </form>
                         </div>
-                        
+
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
