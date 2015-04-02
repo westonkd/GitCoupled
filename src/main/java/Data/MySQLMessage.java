@@ -188,7 +188,7 @@ public class MySQLMessage implements MessageDao {
     public void deleteMessage(int id) {
         
         open();
-        String sql = "DELETE FROM message WHERE id = " + id;
+        String sql = "UPDATE message SET display = 0 WHERE id = " + id;
         
         try {
             statement.executeUpdate(sql);
@@ -268,6 +268,52 @@ public class MySQLMessage implements MessageDao {
                 + "display = " + message.getDisplay() + " "
                 + "WHERE "
                 + "id = " + message.getId();
+        
+    }
+
+    @Override
+    public List<Message> getSentMessages(String username) {
+        
+        open();
+        List<Message> lovenotes = new ArrayList();
+        
+        String sql = "SELECT m.*, sf.github_username as 'from', rb.github_username as 'to' " +
+                        "FROM message m " +
+                        "JOIN (SELECT id, github_username from user) sf " +
+                        "ON m.sent_from = sf.id " +
+                        "JOIN (SELECT id, github_username from user) rb " +
+                        "ON m.recieved_by = rb.id " +
+                        "WHERE sf.github_username = '" + username + "' AND " +
+                        "display = " + 0 + " " +
+                        "ORDER BY sent_date DESC";
+        
+        try {
+            
+            results = statement.executeQuery(sql);
+            
+            while (results.next())
+            {
+                int id = results.getInt("id");
+                String subject = results.getString("subject");
+                String body = results.getString("body");
+                Timestamp sent_date = results.getTimestamp("sent_date");
+                int sent_from = results.getInt("sent_from");
+                int recieved_by = results.getInt("recieved_by");
+                int in_reply_to = results.getInt("in_reply_to");
+                int display = results.getInt("display");
+                String from = results.getString("from");            
+        
+                Message lovenote = new Message(id, subject, body, sent_date, sent_from, recieved_by, in_reply_to, display, from, username);
+                
+                lovenotes.add(lovenote);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MySQLMessage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        close();
+        return lovenotes;
         
     }
     

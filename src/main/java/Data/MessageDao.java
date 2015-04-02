@@ -20,10 +20,12 @@ public interface MessageDao {
     
     public Message getMessage(int id);
     public List<Message> getMessages(String username);
+    public List<Message> getSentMessages(String username);
     
     public void saveMessage(Message message);
     public void updateMessage(Message message);
     public int getNumMesssages(User user);
+    
     
     public void deleteMessage(int id);
     
