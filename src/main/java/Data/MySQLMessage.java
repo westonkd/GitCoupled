@@ -301,9 +301,9 @@ public class MySQLMessage implements MessageDao {
                 int recieved_by = results.getInt("recieved_by");
                 int in_reply_to = results.getInt("in_reply_to");
                 int display = results.getInt("display");
-                String from = results.getString("from");            
+                String to = results.getString("to");          
         
-                Message lovenote = new Message(id, subject, body, sent_date, sent_from, recieved_by, in_reply_to, display, from, username);
+                Message lovenote = new Message(id, subject, body, sent_date, sent_from, recieved_by, in_reply_to, display, username, to);
                 
                 lovenotes.add(lovenote);
             }
