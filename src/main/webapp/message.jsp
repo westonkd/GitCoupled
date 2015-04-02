@@ -11,7 +11,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <meta charset="UTF-8">
-        <title>Profile</title>
+        <title>Messages</title>
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
         <link rel="stylesheet" href="https://bootswatch.com/cosmo/bootstrap.min.css">
         <link rel="stylesheet" href="css/main.css">
@@ -56,7 +56,7 @@
                                         <input type="text" value="<c:out value="${message.getId()}"></c:out>" name="toDelete" />
                                         <input type="text" value="ViewMessages" name="callback" />
                                     </div>
-                                    <button type="submit"><span class="glyphicon glyphicon-remove "></span></button>
+                                    <button type="submit" class="delete-message-button"><span class="glyphicon glyphicon-remove "></span></button>
                                 </form>
                             </div>
                             <h1>${github.getUser(message.getFrom()).getName()}</h1>
