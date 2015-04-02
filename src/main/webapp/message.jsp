@@ -50,10 +50,10 @@
                 <div class="col-sm-12">
                     <h2>Messages</h2>
                     <div role="tabpanel">
-                        <ul class="nav nav-tabs-justified" role="tablist">
+                        <ul class="nav nav-tabs" role="tablist">
                             <li role="presentation" class="active"><a href="#newMessages" role="tab" data-toggle="tab">New Messages</a></li>
-                            <li role="presentation" class="active"><a href="#sentMessages" role="tab" data-toggle="tab">Sent Messages</a></li>
-                            <li role="presentation" class="active"><a href="#deletedMessages" role="tab" data-toggle="tab">Deleted Messages</a></li>
+                            <li role="presentation"><a href="#sentMessages" role="tab" data-toggle="tab">Sent Messages</a></li>
+                            <li role="presentation"><a href="#deletedMessages" role="tab" data-toggle="tab">Deleted Messages</a></li>
                         </ul>
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade in active" id="newMessages">
