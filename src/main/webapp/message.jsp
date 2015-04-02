@@ -54,7 +54,7 @@
                                 <form action="DeleteMessage" method="POST">
                                     <div style="display:none;">
                                         <input type="text" value="<c:out value="${message.getId()}"></c:out>" name="toDelete" />
-                                        <input type="text" value="<c:out value="ViewMessages" name="callback" />
+                                        <input type="text" value="<c:out value="ViewMessages" name="callback" ></c:out>
                                     </div>
                                     <button type="submit"><span class="glyphicon glyphicon-remove "></span></button>
                                 </form>
