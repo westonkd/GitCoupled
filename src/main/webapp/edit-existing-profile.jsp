@@ -141,12 +141,12 @@
                         <h4>Bio</h4>
                         <p>Let everyone know about yourself here. Hobbies, interests, past projects, etc.</p>
                         <div class="form-group">
-                            <textarea required class="form-control" name="bio" rows="5" id="comment" placeholder="I love fighting crime by night, slaying dragons..."></textarea>
+                            <textarea required class="form-control" name="bio" rows="5" id="comment" placeholder="I love fighting crime by night, slaying dragons...">${user.getBio()}</textarea>
                         </div>
                         <h4>Quote</h4>
                         <p>Enter your awesome quote here. It will be displayed with your picture when other users are matched with you.</p>
                         <div class="form-group">
-                            <input required type="text" class="form-control" placeholder="I'm pure magic." name="quote" id="quote">
+                            <input required type="text" class="form-control" placeholder="I'm pure magic." name="quote" id="quote" value="${user.getQuote()}">
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Submit</button>
@@ -182,8 +182,7 @@
             $("input[value='${user.getGender()}']").click();
             $("option[selected='selected']").removeAttr("selected");
             $("option[value='${user.getAge()}']").attr("selected", "selected");
-            $("#quote").val("${user.getQuote()}");
-            $("textarea[name='bio'").html("${user.getBio()}");
+            
         });
     </script>
 
