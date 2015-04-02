@@ -67,7 +67,15 @@
                                 </div>
                             </div>
                             <div class="col-sm-7">
-                                <h2>${github.getUser(match.getGithub_username()).getName()}</h2>
+                                <c:set var="userName" value="${github.getUser(match.getGithub_username()).getName()}"></c:set>
+
+                                <c:if test="${empty userName}">
+                                    <h2><c:out value="${github.getUser(match.getGithub_username()).getLogin()}"></c:out></h2>
+                                </c:if>
+                                <c:if test="${not empty userName}">
+                                    <h2>${github.getUser(match.getGithub_username()).getName()}</h2>
+                                </c:if>
+
                                 <h3>Relationship Match - <strong>${matchList}</strong></h3>
                                 <div class="stars" data-average="${matchList}" data-id="1"></div>
                                 <h3>Primary Language: ${match.getFirst_language()}</h3>
@@ -77,15 +85,15 @@
                             </div>
                             <div class="col-sm-3">
                                 <button class="btn btn-primary message-btn" onclick="$('#<c:out value="${match.getGithub_username()}"></c:out>').modal()">Message</button>
-                                <form action ="ViewProfile" method="GET">
-                                    <input type="hidden" name="username" value="${match.getGithub_username()}" />
+                                    <form action ="ViewProfile" method="GET">
+                                        <input type="hidden" name="username" value="${match.getGithub_username()}" />
                                     <button type="submit" class="btn btn-default message-btn">View Profile</button>
                                 </form>
-                                </div>
                             </div>
+                        </div>
                     </c:forEach> 
                 </c:forEach>
-                
+
                 <%-- Pagination --%>
                 <c:if test="${numPages > 1}">
                     <nav class="pag-container">
@@ -93,33 +101,33 @@
                             <c:choose>
                                 <c:when test="${curPage == 1}">
                                     <li class="disabled"><a href="" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-                                </c:when>
-                                <c:otherwise>
-                                    <li><a href="Matches?page=${curPage - 1}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-                                </c:otherwise>
-                            </c:choose>
-                            <c:forEach begin="1" end="${numPages}" var="page">
-                                <c:choose>
-                                    <c:when test="${page == curPage}">
-                                        <li class="active"><a href="">${page}</a></li>
                                     </c:when>
                                     <c:otherwise>
-                                        <li><a href="Matches?page=${page}">${page}</a></li>
+                                    <li><a href="Matches?page=${curPage - 1}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
                                     </c:otherwise>
                                 </c:choose>
-                            </c:forEach>
-                            <c:choose>
-                                <c:when test="${curPage == numPages}">
+                                <c:forEach begin="1" end="${numPages}" var="page">
+                                    <c:choose>
+                                        <c:when test="${page == curPage}">
+                                        <li class="active"><a href="">${page}</a></li>
+                                        </c:when>
+                                        <c:otherwise>
+                                        <li><a href="Matches?page=${page}">${page}</a></li>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
+                                <c:choose>
+                                    <c:when test="${curPage == numPages}">
                                     <li class="disabled"><a href="" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
-                                </c:when>
-                                <c:otherwise>
+                                    </c:when>
+                                    <c:otherwise>
                                     <li><a href="Matches?page=${curPage + 1}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
-                                </c:otherwise>
-                            </c:choose>
+                                    </c:otherwise>
+                                </c:choose>
                         </ul>
-                      </nav>
+                    </nav>
                 </c:if>
-                
+
             </main>
             <footer class="row">
                 <div class="col-sm-3">
@@ -169,13 +177,13 @@
             </c:forEach> 
         </c:forEach> 
         <script type="text/javascript">
-            $(document).ready(function(){
-                  $(".stars").jRating({
-                    length : 10, // nb of stars
-                    decimalLength:0, // number of decimal in the rate
-                    isDisabled: true, 
+            $(document).ready(function () {
+                $(".stars").jRating({
+                    length: 10, // nb of stars
+                    decimalLength: 0, // number of decimal in the rate
+                    isDisabled: true,
                     rateMax: 10
-                  });
+                });
             });
         </script>
     </body>
