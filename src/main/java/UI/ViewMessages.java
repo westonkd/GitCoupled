@@ -47,9 +47,13 @@ public class ViewMessages extends HttpServlet {
 
             //create a list of messages
             List<Message> messages = messageDao.getMessages(github.getMyself().getLogin());
+            List<Message> sentMessages = messageDao.getSentMessages(github.getMyself().getLogin());
+            List<Message> deletedMessages = messageDao.getDeletedMessages(github.getMyself().getLogin());
 
             //set the message data
             request.getSession().setAttribute("messages", messages);
+            request.getSession().setAttribute("sentMessages", sentMessages);
+            request.getSession().setAttribute("deletedMessages", deletedMessages);
 
             //forward
             request.getRequestDispatcher("message.jsp").forward(request, response);

@@ -49,26 +49,62 @@
             <main class="messages-page">
                 <div class="col-sm-12">
                     <h2>Messages</h2>
-                    <c:forEach items="${messages}" var="message">
-                        <div class="message">
-                            <div class="pull-right delete-message">
-                                <form action="DeleteMessage" method="POST">
-                                    <div style="display:none;">
-                                        <input type="text" value="<c:out value="${message.getId()}"></c:out>" name="toDelete" />
-                                        <input type="text" value="ViewMessages" name="callback" />
-                                    </div>
-                                    <button type="submit" class="delete-message-button"><span class="glyphicon glyphicon-remove "></span></button>
-                                </form>
-                            </div>
-                            <h1>${github.getUser(message.getFrom()).getName()}</h1>
+                    <div role="tabpanel">
+                        <ul class="nav nav-tabs-justified" role="tablist">
+                            <li role="presentation" class="active"><a href="#newMessages" role="tab" data-toggle="tab">New Messages</a></li>
+                            <li role="presentation" class="active"><a href="#sentMessages" role="tab" data-toggle="tab">Sent Messages</a></li>
+                            <li role="presentation" class="active"><a href="#deletedMessages" role="tab" data-toggle="tab">Deleted Messages</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active" id="newMessages">
+                                <c:forEach items="${messages}" var="message">
+                                    <div class="message">
+                                        <div class="pull-right delete-message">
+                                            <form action="DeleteMessage" method="POST">
+                                                <div style="display:none;">
+                                                    <input type="text" value="<c:out value="${message.getId()}"></c:out>" name="toDelete" />
+                                                    <input type="text" value="ViewMessages" name="callback" />
+                                                </div>
+                                                <button type="submit" class="delete-message-button"><span class="glyphicon glyphicon-remove "></span></button>
+                                            </form>
+                                        </div>
+                                        <h1>${github.getUser(message.getFrom()).getName()}</h1>
 
-                            <h3><strong>Subject:</strong> ${message.getSubject()}</h3>
-                            <p>
-                                ${message.getBody()}
-                            </p>  
-                            <a type="submit" class="btn btn-primary" onclick="$('#<c:out value="${message.getFrom()}"></c:out>').modal()">Reply</a>
+                                        <h3><strong>Subject:</strong> ${message.getSubject()}</h3>
+                                        <p>
+                                            ${message.getBody()}
+                                        </p>  
+                                        <a type="submit" class="btn btn-primary" onclick="$('#<c:out value="${message.getFrom()}"></c:out>').modal()">Reply</a>
+                                    </div>
+                                </c:forEach>
                             </div>
-                    </c:forEach>
+                            <div role="tabpanel" class="tab-pane fade" id="sentMesages">
+                                <c:forEach items="${sentMessages}" var="sent">
+                                    <div class="message">
+                                        <h1>${github.getUser(sent.getFrom()).getName()}</h1>
+
+                                        <h3><strong>Subject:</strong> ${sent.getSubject()}</h3>
+                                        <p>
+                                            ${sent.getBody()}
+                                        </p>
+                                    </div>
+                                </c:forEach>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="DeletedMesages">
+                                <c:forEach items="${deletedMessages}" var="deleted">
+                                    <div class="message">
+                                        <h1>${github.getUser(deleted.getFrom()).getName()}</h1>
+
+                                        <h3><strong>Subject:</strong> ${deleted.getSubject()}</h3>
+                                        <p>
+                                            ${deleted.getBody()}
+                                        </p>  
+                                        <a type="submit" class="btn btn-primary" onclick="$('#<c:out value="${deleted.getFrom()}"></c:out>').modal()">Reply</a>
+                                    </div>
+                                </c:forEach>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </main>
 
