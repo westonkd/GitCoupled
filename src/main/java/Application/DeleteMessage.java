@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Weston
  */
-@WebServlet(name = "ReplyToMessage", urlPatterns = {"/DeleteMessage"})
+@WebServlet(name = "DeleteMessage", urlPatterns = {"/DeleteMessage"})
 public class DeleteMessage extends HttpServlet {
 
     /**
