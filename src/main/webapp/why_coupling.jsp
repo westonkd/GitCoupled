@@ -14,6 +14,7 @@
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
         <link rel="stylesheet" href="https://bootswatch.com/cosmo/bootstrap.min.css">
         <link rel="stylesheet" href="css/main.css">
+        <link rel="icon" type="image/png" href="images/favicon.png">
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
         <script src="js/typed.js"></script>
