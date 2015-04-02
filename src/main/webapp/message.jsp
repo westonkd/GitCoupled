@@ -78,7 +78,7 @@
                                     </div>
                                 </c:forEach>
                             </div>
-                            <div role="tabpanel" class="tab-pane fade" id="sentMesages">
+                            <div role="tabpanel" class="tab-pane fade" id="sentMessages">
                                 <c:forEach items="${sentMessages}" var="sent">
                                     <div class="message">
                                         <h1>${github.getUser(sent.getFrom()).getName()}</h1>
@@ -90,7 +90,7 @@
                                     </div>
                                 </c:forEach>
                             </div>
-                            <div role="tabpanel" class="tab-pane fade" id="DeletedMesages">
+                            <div role="tabpanel" class="tab-pane fade" id="deletedMessages">
                                 <c:forEach items="${deletedMessages}" var="deleted">
                                     <div class="message">
                                         <h1>${github.getUser(deleted.getFrom()).getName()}</h1>
