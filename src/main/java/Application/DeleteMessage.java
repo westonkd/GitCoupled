@@ -50,11 +50,14 @@ public class DeleteMessage extends HttpServlet {
             //get the message to be modified
             Message toModify = dao.getMessage(messageID);
 
-            //modify the correct message to no longer be displayed
-            toModify.setDisplay(0);
-
-            //update the message
-            dao.updateMessage(toModify);    
+//            //modify the correct message to no longer be displayed
+//            toModify.setDisplay(0);
+//
+//            //update the message
+//            dao.updateMessage(toModify);  
+            
+            //now does the same thing as above
+            dao.deleteMessage(messageID);
             
             //update message count
             int count = dao.getNumMesssages(user);
