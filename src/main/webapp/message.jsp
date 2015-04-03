@@ -81,7 +81,6 @@
                             <div role="tabpanel" class="tab-pane fade" id="sentMessages">
                                 <c:forEach items="${sentMessages}" var="sent">
                                     <div class="message">
-                                        <h1>From: ${github.getUser(sent.getFrom()).getName()}</h1>
                                         <h1>To: ${github.getUser(sent.getTo()).getName()}</h1>
 
                                         <h3><strong>Subject:</strong> ${sent.getSubject()}</h3>
